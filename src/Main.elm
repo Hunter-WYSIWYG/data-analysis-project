@@ -3,6 +3,9 @@ module Main exposing (..)
 import Browser
 import Html
 import Html.Attributes
+import Http
+
+import Conflict
 
 main : Program () Model Msg
 main =
@@ -15,25 +18,39 @@ main =
 
 init : () -> ( Model, Cmd Msg )
 init flags =
-  ( initModel, Cmd.none )
+    ( initModel, initCmd )
 
 initModel : Model
 initModel =
-    { tmp = False
+    { conflicts = []
     }
 
+initCmd : Cmd Msg
+initCmd =
+    Cmd.batch
+        [ Http.get
+            { url = "data/Africa-Conflict_1997-2020.json" --"https://cors-anywhere.herokuapp.com/https://cloud.uzi.uni-halle.de/owncloud/index.php/s/jOcq5Jcf2E8zVhJ/download"
+            , expect = Http.expectJson GotData (Conflict.listDecoder Conflict.decodeConflict)
+            }
+        ]
+
 type alias Model =
-    { tmp : Bool
+    { conflicts : List Conflict.Conflict
     }
 
 type Msg
-  = Tmp
+    = GotData (Result Http.Error (List (Conflict.Conflict)))
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-  case msg of
-    Tmp ->
-        (model, Cmd.none)
+    case msg of
+        GotData result ->
+            case result of
+                Ok newConflicts ->
+                    ( { model | conflicts = newConflicts }, Cmd.none)
+
+                Err _ ->
+                    ( { model | conflicts = [] }, Cmd.none)
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =
