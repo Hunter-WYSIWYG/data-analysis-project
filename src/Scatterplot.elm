@@ -2,6 +2,16 @@ module Scatterplot exposing (..)
 
 import Scale exposing (ContinuousScale)
 import Statistics
+import Axis
+import TypedSvg.Core exposing (Svg)
+
+xAxis : List Float -> Svg msg
+xAxis values =
+    Axis.bottom [ Axis.tickCount tickCount ] (xScale values)
+
+yAxis : List Float -> Svg msg
+yAxis values =
+    Axis.left [ Axis.tickCount tickCount ] (yScale values)
 
 defaultExtent : ( number, number1 )
 defaultExtent =
