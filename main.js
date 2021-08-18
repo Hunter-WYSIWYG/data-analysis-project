@@ -7285,6 +7285,7 @@ var $author$project$Scatterplot$view = function (conflicts) {
 					_List_fromArray(
 						[
 							$elm$html$Html$Attributes$class('column is-3'),
+							A2($elm$html$Html$Attributes$style, 'padding', '30px'),
 							A2($elm$html$Html$Attributes$style, 'background-color', '#fafafa')
 						]),
 					_List_Nil),

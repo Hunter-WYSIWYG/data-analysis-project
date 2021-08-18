@@ -1,6 +1,7 @@
 module Scatterplot exposing (..)
 
 import Html exposing (Html)
+import Html.Attributes
 import Scale exposing (ContinuousScale)
 import Statistics
 import Axis
@@ -11,25 +12,6 @@ import TypedSvg.Core exposing (Svg)
 import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Transform(..))
 
 import Conflict
-import Html.Attributes
-
-view : List Conflict.Conflict -> List (Html.Html msg)
-view conflicts =
-    [ Html.div
-        [ Html.Attributes.class "columns", Html.Attributes.style "height" "100%" ]
-        [ Html.div [ Html.Attributes.class "column is-1 has-background-info" ]
-            []
-        , Html.div [ Html.Attributes.class "column is-7", Html.Attributes.style "padding" "30px" ]
-            [ scatterplot conflicts
-            ]
-        , Html.div [ Html.Attributes.class "column is-3", Html.Attributes.style "padding" "30px", Html.Attributes.style "background-color" "#fafafa" ]
-            [
-
-            ]
-        , Html.div [ Html.Attributes.class "column is-1 has-background-info" ]
-            []
-        ]
-    ]
 
 scatterplot : List Conflict.Conflict -> Svg msg
 scatterplot conflicts =

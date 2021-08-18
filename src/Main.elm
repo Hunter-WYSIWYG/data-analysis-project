@@ -60,5 +60,20 @@ subscriptions _ =
 view : Model -> Browser.Document Msg
 view model =
     { title = "IRuV-Project"
-    , body = Scatterplot.view model.conflicts
+    , body =
+        [ Html.div
+            [ Html.Attributes.class "columns", Html.Attributes.style "height" "100%" ]
+            [ Html.div [ Html.Attributes.class "column is-1 has-background-info" ]
+                []
+            , Html.div [ Html.Attributes.class "column is-7", Html.Attributes.style "padding" "30px" ]
+                [ Scatterplot.scatterplot model.conflicts
+                ]
+            , Html.div [ Html.Attributes.class "column is-3", Html.Attributes.style "padding" "30px", Html.Attributes.style "background-color" "#fafafa" ]
+                [
+
+                ]
+            , Html.div [ Html.Attributes.class "column is-1 has-background-info" ]
+                []
+            ]
+        ]
     }
