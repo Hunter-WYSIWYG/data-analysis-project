@@ -12,6 +12,10 @@ import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Transform(..))
 
 import Conflict
 
+view : List Conflict.Conflict -> List (Html.Html msg)
+view conflicts =
+    [ scatterplot conflicts ]
+
 scatterplot : List Conflict.Conflict -> Svg msg
 scatterplot conflicts =
     let
