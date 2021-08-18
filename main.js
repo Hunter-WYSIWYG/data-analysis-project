@@ -6187,7 +6187,7 @@ var $author$project$Main$initCmd = $elm$core$Platform$Cmd$batch(
 				url: 'data/Africa-Conflict_1997-2020.json'
 			})
 		]));
-var $author$project$Main$initModel = {conflicts: _List_Nil};
+var $author$project$Main$initModel = {conflicts: _List_Nil, scatterplotCountries: _List_Nil};
 var $author$project$Main$init = function (flags) {
 	return _Utils_Tuple2($author$project$Main$initModel, $author$project$Main$initCmd);
 };
@@ -6196,22 +6196,85 @@ var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
 var $author$project$Main$subscriptions = function (_v0) {
 	return $elm$core$Platform$Sub$none;
 };
+var $elm$core$List$any = F2(
+	function (isOkay, list) {
+		any:
+		while (true) {
+			if (!list.b) {
+				return false;
+			} else {
+				var x = list.a;
+				var xs = list.b;
+				if (isOkay(x)) {
+					return true;
+				} else {
+					var $temp$isOkay = isOkay,
+						$temp$list = xs;
+					isOkay = $temp$isOkay;
+					list = $temp$list;
+					continue any;
+				}
+			}
+		}
+	});
+var $elm$core$List$member = F2(
+	function (x, xs) {
+		return A2(
+			$elm$core$List$any,
+			function (a) {
+				return _Utils_eq(a, x);
+			},
+			xs);
+	});
+var $elm_community$list_extra$List$Extra$remove = F2(
+	function (x, xs) {
+		if (!xs.b) {
+			return _List_Nil;
+		} else {
+			var y = xs.a;
+			var ys = xs.b;
+			return _Utils_eq(x, y) ? ys : A2(
+				$elm$core$List$cons,
+				y,
+				A2($elm_community$list_extra$List$Extra$remove, x, ys));
+		}
+	});
+var $elm$core$List$sortBy = _List_sortBy;
+var $elm$core$List$sort = function (xs) {
+	return A2($elm$core$List$sortBy, $elm$core$Basics$identity, xs);
+};
+var $author$project$Main$newScatterplotCountries = F2(
+	function (oldCountries, newCountry) {
+		return A2($elm$core$List$member, newCountry, oldCountries) ? A2($elm_community$list_extra$List$Extra$remove, newCountry, oldCountries) : $elm$core$List$sort(
+			A2($elm$core$List$cons, newCountry, oldCountries));
+	});
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
 var $author$project$Main$update = F2(
 	function (msg, model) {
-		var result = msg.a;
-		if (result.$ === 'Ok') {
-			var newConflicts = result.a;
-			return _Utils_Tuple2(
-				_Utils_update(
-					model,
-					{conflicts: newConflicts}),
-				$elm$core$Platform$Cmd$none);
+		if (msg.$ === 'GotData') {
+			var result = msg.a;
+			if (result.$ === 'Ok') {
+				var newConflicts = result.a;
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{conflicts: newConflicts}),
+					$elm$core$Platform$Cmd$none);
+			} else {
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{conflicts: _List_Nil}),
+					$elm$core$Platform$Cmd$none);
+			}
 		} else {
+			var country = msg.a;
 			return _Utils_Tuple2(
 				_Utils_update(
 					model,
-					{conflicts: _List_Nil}),
+					{
+						scatterplotCountries: A2($author$project$Main$newScatterplotCountries, model.scatterplotCountries, country)
+					}),
 				$elm$core$Platform$Cmd$none);
 		}
 	});
@@ -6225,6 +6288,67 @@ var $elm$html$Html$Attributes$stringProperty = F2(
 	});
 var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
 var $elm$html$Html$div = _VirtualDom_node('div');
+var $author$project$Main$UpdateSPCountries = function (a) {
+	return {$: 'UpdateSPCountries', a: a};
+};
+var $elm$html$Html$input = _VirtualDom_node('input');
+var $elm$html$Html$label = _VirtualDom_node('label');
+var $elm$html$Html$li = _VirtualDom_node('li');
+var $elm$virtual_dom$VirtualDom$Normal = function (a) {
+	return {$: 'Normal', a: a};
+};
+var $elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
+var $elm$html$Html$Events$on = F2(
+	function (event, decoder) {
+		return A2(
+			$elm$virtual_dom$VirtualDom$on,
+			event,
+			$elm$virtual_dom$VirtualDom$Normal(decoder));
+	});
+var $elm$html$Html$Events$onClick = function (msg) {
+	return A2(
+		$elm$html$Html$Events$on,
+		'click',
+		$elm$json$Json$Decode$succeed(msg));
+};
+var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
+var $elm$html$Html$Attributes$style = $elm$virtual_dom$VirtualDom$style;
+var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
+var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
+var $elm$html$Html$Attributes$type_ = $elm$html$Html$Attributes$stringProperty('type');
+var $author$project$Main$renderCountryCheckboxes = function (countries) {
+	return A2(
+		$elm$core$List$map,
+		function (c) {
+			return A2(
+				$elm$html$Html$li,
+				_List_Nil,
+				_List_fromArray(
+					[
+						A2(
+						$elm$html$Html$label,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('checkbox')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								$elm$html$Html$input,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$type_('checkbox'),
+										A2($elm$html$Html$Attributes$style, 'margin-right', '5px'),
+										$elm$html$Html$Events$onClick(
+										$author$project$Main$UpdateSPCountries(c))
+									]),
+								_List_Nil),
+								$elm$html$Html$text(c)
+							]))
+					]));
+		},
+		countries);
+};
 var $elm_community$typed_svg$TypedSvg$Types$AnchorMiddle = {$: 'AnchorMiddle'};
 var $elm_community$typed_svg$TypedSvg$Types$Percent = function (a) {
 	return {$: 'Percent', a: a};
@@ -6323,8 +6447,6 @@ var $elm$core$Tuple$second = function (_v0) {
 };
 var $elm_community$typed_svg$TypedSvg$style = $elm_community$typed_svg$TypedSvg$Core$node('style');
 var $elm_community$typed_svg$TypedSvg$svg = $elm_community$typed_svg$TypedSvg$Core$node('svg');
-var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
-var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
 var $elm_community$typed_svg$TypedSvg$Core$text = $elm$virtual_dom$VirtualDom$text;
 var $elm_community$typed_svg$TypedSvg$TypesToStrings$anchorAlignmentToString = function (anchorAlignment) {
 	switch (anchorAlignment.$) {
@@ -7248,60 +7370,136 @@ var $author$project$Scatterplot$scatterplot = function (conflicts) {
 					]))
 			]));
 };
-var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
-var $elm$html$Html$Attributes$style = $elm$virtual_dom$VirtualDom$style;
-var $author$project$Scatterplot$view = function (conflicts) {
-	return _List_fromArray(
-		[
-			A2(
-			$elm$html$Html$div,
-			_List_fromArray(
-				[
-					$elm$html$Html$Attributes$class('columns'),
-					A2($elm$html$Html$Attributes$style, 'height', '100%')
-				]),
-			_List_fromArray(
-				[
-					A2(
-					$elm$html$Html$div,
-					_List_fromArray(
-						[
-							$elm$html$Html$Attributes$class('column is-1 has-background-info')
-						]),
-					_List_Nil),
-					A2(
-					$elm$html$Html$div,
-					_List_fromArray(
-						[
-							$elm$html$Html$Attributes$class('column is-7'),
-							A2($elm$html$Html$Attributes$style, 'padding', '30px')
-						]),
-					_List_fromArray(
-						[
-							$author$project$Scatterplot$scatterplot(conflicts)
-						])),
-					A2(
-					$elm$html$Html$div,
-					_List_fromArray(
-						[
-							$elm$html$Html$Attributes$class('column is-3'),
-							A2($elm$html$Html$Attributes$style, 'padding', '30px'),
-							A2($elm$html$Html$Attributes$style, 'background-color', '#fafafa')
-						]),
-					_List_Nil),
-					A2(
-					$elm$html$Html$div,
-					_List_fromArray(
-						[
-							$elm$html$Html$Attributes$class('column is-1 has-background-info')
-						]),
-					_List_Nil)
-				]))
-		]);
+var $elm$html$Html$ul = _VirtualDom_node('ul');
+var $elm$core$Set$Set_elm_builtin = function (a) {
+	return {$: 'Set_elm_builtin', a: a};
+};
+var $elm$core$Set$empty = $elm$core$Set$Set_elm_builtin($elm$core$Dict$empty);
+var $elm$core$Set$insert = F2(
+	function (key, _v0) {
+		var dict = _v0.a;
+		return $elm$core$Set$Set_elm_builtin(
+			A3($elm$core$Dict$insert, key, _Utils_Tuple0, dict));
+	});
+var $elm$core$Dict$member = F2(
+	function (key, dict) {
+		var _v0 = A2($elm$core$Dict$get, key, dict);
+		if (_v0.$ === 'Just') {
+			return true;
+		} else {
+			return false;
+		}
+	});
+var $elm$core$Set$member = F2(
+	function (key, _v0) {
+		var dict = _v0.a;
+		return A2($elm$core$Dict$member, key, dict);
+	});
+var $elm_community$list_extra$List$Extra$uniqueHelp = F4(
+	function (f, existing, remaining, accumulator) {
+		uniqueHelp:
+		while (true) {
+			if (!remaining.b) {
+				return $elm$core$List$reverse(accumulator);
+			} else {
+				var first = remaining.a;
+				var rest = remaining.b;
+				var computedFirst = f(first);
+				if (A2($elm$core$Set$member, computedFirst, existing)) {
+					var $temp$f = f,
+						$temp$existing = existing,
+						$temp$remaining = rest,
+						$temp$accumulator = accumulator;
+					f = $temp$f;
+					existing = $temp$existing;
+					remaining = $temp$remaining;
+					accumulator = $temp$accumulator;
+					continue uniqueHelp;
+				} else {
+					var $temp$f = f,
+						$temp$existing = A2($elm$core$Set$insert, computedFirst, existing),
+						$temp$remaining = rest,
+						$temp$accumulator = A2($elm$core$List$cons, first, accumulator);
+					f = $temp$f;
+					existing = $temp$existing;
+					remaining = $temp$remaining;
+					accumulator = $temp$accumulator;
+					continue uniqueHelp;
+				}
+			}
+		}
+	});
+var $elm_community$list_extra$List$Extra$unique = function (list) {
+	return A4($elm_community$list_extra$List$Extra$uniqueHelp, $elm$core$Basics$identity, $elm$core$Set$empty, list, _List_Nil);
 };
 var $author$project$Main$view = function (model) {
 	return {
-		body: $author$project$Scatterplot$view(model.conflicts),
+		body: _List_fromArray(
+			[
+				A2(
+				$elm$html$Html$div,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('columns'),
+						A2($elm$html$Html$Attributes$style, 'height', '100%')
+					]),
+				_List_fromArray(
+					[
+						A2(
+						$elm$html$Html$div,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('column is-1 has-background-info')
+							]),
+						_List_Nil),
+						A2(
+						$elm$html$Html$div,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('column is-7'),
+								A2($elm$html$Html$Attributes$style, 'padding', '30px')
+							]),
+						_List_fromArray(
+							[
+								$author$project$Scatterplot$scatterplot(model.conflicts)
+							])),
+						A2(
+						$elm$html$Html$div,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('column is-3'),
+								A2($elm$html$Html$Attributes$style, 'padding', '30px'),
+								A2($elm$html$Html$Attributes$style, 'background-color', '#fafafa')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								$elm$html$Html$div,
+								_List_Nil,
+								_List_fromArray(
+									[
+										A2(
+										$elm$html$Html$ul,
+										_List_Nil,
+										$author$project$Main$renderCountryCheckboxes(
+											$elm_community$list_extra$List$Extra$unique(
+												A2(
+													$elm$core$List$map,
+													function ($) {
+														return $.country;
+													},
+													model.conflicts))))
+									]))
+							])),
+						A2(
+						$elm$html$Html$div,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('column is-1 has-background-info')
+							]),
+						_List_Nil)
+					]))
+			]),
 		title: 'IRuV-Project'
 	};
 };
