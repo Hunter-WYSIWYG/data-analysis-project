@@ -4,13 +4,73 @@ import Html exposing (Html)
 import Scale exposing (ContinuousScale)
 import Statistics
 import Axis
-import TypedSvg exposing (circle, g, text_)
-import TypedSvg.Attributes exposing (class, fontFamily, fontSize, textAnchor, transform)
+import TypedSvg exposing (circle, g, text_, svg, style)
+import TypedSvg.Attributes exposing (class, fontFamily, fontSize, textAnchor, transform, viewBox)
 import TypedSvg.Attributes.InPx exposing (cx, cy, r, x, y)
 import TypedSvg.Core exposing (Svg)
 import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Transform(..))
 
 import Conflict
+
+scatterplot : List Conflict.Conflict -> Svg msg
+scatterplot conflicts =
+    let
+        kreisbeschriftung : String
+        kreisbeschriftung =
+            ""
+
+        xValues : List Float
+        xValues =
+            List.map (\c -> c.year |> toFloat) conflicts
+    
+        yValues : List Float
+        yValues =
+            List.map (\c -> c.fatalities |> toFloat) conflicts
+
+        xScaleLocal : ContinuousScale Float
+        xScaleLocal =
+            xScale xValues
+
+        yScaleLocal : ContinuousScale Float
+        yScaleLocal =
+            yScale yValues
+
+        half : ( Float, Float ) -> Float
+        half t =
+            Tuple.first t + (Tuple.second t - Tuple.first t) / 2
+
+        labelPositions : { x : Float, y : Float }
+        labelPositions =
+            { x = wideExtent xValues |> half
+            , y = wideExtent yValues |> Tuple.second
+            }
+    in
+    svg [ viewBox 0 0 w h, TypedSvg.Attributes.width <| TypedSvg.Types.Percent 100, TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100 ]
+        [ style [] [ TypedSvg.Core.text """
+            .point circle { stroke: rgba(0, 0, 0,0.4); fill: rgba(255, 255, 255,0.3); }
+            .point text { display: none; }
+            .point:hover circle { stroke: rgba(0, 0, 0,1.0); fill: rgb(118, 214, 78); }
+            .point:hover text { display: inline; }
+          """ ]
+        , g
+            [ transform [ Translate (padding - 1) (h - padding) ] 
+            , fontSize <| Px 15.0
+            , fontFamily [ "sans-serif" ]
+            ]
+            [ xAxis xValues
+            , text_ [ x (Scale.convert xScaleLocal labelPositions.x), y 30, textAnchor AnchorMiddle ] [ Html.text "Year" ]
+            ]
+        , g
+            [ transform [ Translate (padding - 1) (padding - 1) ]
+            , fontSize <| Px 15.0
+            , fontFamily [ "sans-serif" ]
+            ]
+            [ yAxis yValues
+            , text_ [ x 0, y ((Scale.convert yScaleLocal labelPositions.y) - (padding/3)), textAnchor AnchorMiddle ] [ Html.text "Fatalities" ]
+            ]
+        , g [ transform [ Translate padding padding ] ]
+            (List.map (point xScaleLocal yScaleLocal) conflicts)
+        ]
 
 point : ContinuousScale Float -> ContinuousScale Float -> Conflict.Conflict -> Svg msg
 point scaleX scaleY conflict =
