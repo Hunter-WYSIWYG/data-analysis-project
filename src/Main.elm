@@ -92,3 +92,14 @@ newScatterplotCountries oldCountries newCountry =
         List.Extra.remove newCountry oldCountries
     else
         List.sort (newCountry::oldCountries)
+
+renderCountryCheckboxes : List String -> List (Html.Html Msg)
+renderCountryCheckboxes countries =
+    List.map
+        (\c ->
+            Html.label [ Html.Attributes.class "checkbox" ]
+                [ Html.input [ Html.Attributes.type_ "checkbox", Html.Events.onClick (UpdateSPCountries c) ]
+                    [ Html.text c ]
+                ]
+        )
+        countries
