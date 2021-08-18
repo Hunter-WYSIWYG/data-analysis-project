@@ -4,9 +4,11 @@ import Browser
 import Html
 import Html.Attributes
 import Http
+import List.Extra
 
 import Conflict
 import Scatterplot
+import Html.Events
 
 main : Program () Model Msg
 main =
@@ -24,6 +26,7 @@ init flags =
 initModel : Model
 initModel =
     { conflicts = []
+    , scatterplotCountries = []
     }
 
 initCmd : Cmd Msg
@@ -37,10 +40,12 @@ initCmd =
 
 type alias Model =
     { conflicts : List Conflict.Conflict
+    , scatterplotCountries : List String
     }
 
 type Msg
     = GotData (Result Http.Error (List (Conflict.Conflict)))
+    | UpdateSPCountries String
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -52,6 +57,9 @@ update msg model =
 
                 Err _ ->
                     ( { model | conflicts = [] }, Cmd.none)
+
+        UpdateSPCountries country ->
+            ( { model | scatterplotCountries = (newScatterplotCountries model.scatterplotCountries country) }, Cmd.none)
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =
@@ -77,3 +85,10 @@ view model =
             ]
         ]
     }
+
+newScatterplotCountries : List String -> String -> List String
+newScatterplotCountries oldCountries newCountry =
+    if (List.member newCountry oldCountries) then
+        List.Extra.remove newCountry oldCountries
+    else
+        List.sort (newCountry::oldCountries)
