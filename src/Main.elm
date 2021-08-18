@@ -6,6 +6,7 @@ import Html.Attributes
 import Http
 
 import Conflict
+import Scatterplot
 
 main : Program () Model Msg
 main =
