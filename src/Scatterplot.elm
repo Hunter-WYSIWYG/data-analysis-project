@@ -1,9 +1,31 @@
 module Scatterplot exposing (..)
 
+import Html exposing (Html)
 import Scale exposing (ContinuousScale)
 import Statistics
 import Axis
+import TypedSvg exposing (circle, g, text_)
+import TypedSvg.Attributes exposing (class, fontFamily, fontSize, textAnchor, transform)
+import TypedSvg.Attributes.InPx exposing (cx, cy, r, x, y)
 import TypedSvg.Core exposing (Svg)
+import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Transform(..))
+
+import Conflict
+
+point : ContinuousScale Float -> ContinuousScale Float -> Conflict.Conflict -> Svg msg
+point scaleX scaleY conflict =
+    g   [ class [ "point" ]
+        , fontSize <| Px 10.0
+        , fontFamily [ "sans-serif" ]
+        , transform
+            [ Translate
+                (Scale.convert scaleX (toFloat conflict.year))
+                (Scale.convert scaleY (toFloat conflict.fatalities))
+            ]
+        ]
+        [ circle [ cx 0, cy 0, r 5 ] []
+        , text_ [ x 0, y 20, textAnchor AnchorMiddle ] [ Html.text conflict.notes ]
+        ]
 
 xAxis : List Float -> Svg msg
 xAxis values =
