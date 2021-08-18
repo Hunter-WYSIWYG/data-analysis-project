@@ -59,6 +59,6 @@ subscriptions _ =
 
 view : Model -> Browser.Document Msg
 view model =
-  { title = "URL Interceptor"
-  , body = [ Html.text "init" ]
-  }
+    { title = "IRuV-Project"
+    , body = Scatterplot.view model.conflicts
+    }
