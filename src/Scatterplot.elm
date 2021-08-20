@@ -5,7 +5,7 @@ import Html.Attributes
 import Scale exposing (ContinuousScale)
 import Statistics
 import Axis
-import TypedSvg exposing (circle, g, text_, svg, style)
+import TypedSvg exposing (circle, g, text_, svg, style, rect)
 import TypedSvg.Attributes exposing (class, fontFamily, fontSize, textAnchor, transform, viewBox)
 import TypedSvg.Attributes.InPx exposing (cx, cy, r, x, y)
 import TypedSvg.Core exposing (Svg)
@@ -13,9 +13,12 @@ import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Transform(..))
 import List.Extra
 
 import Conflict
+import TypedSvg exposing (rect)
+import Html.Attributes exposing (height)
+import Html exposing (text)
 
 scatterplot : List Conflict.Conflict -> List Conflict.Conflict -> Svg msg
-scatterplot conflictsForAxes filteredConflicts =
+scatterplot allConflicts filteredConflicts =
     let
         kreisbeschriftung : String
         kreisbeschriftung =
@@ -23,11 +26,11 @@ scatterplot conflictsForAxes filteredConflicts =
 
         xValues : List Float
         xValues =
-            List.map (\c -> c.year |> toFloat) conflictsForAxes
+            List.map (\c -> c.year |> toFloat) allConflicts
     
         yValues : List Float
         yValues =
-            List.map (\c -> c.fatalities |> toFloat) conflictsForAxes
+            List.map (\c -> c.fatalities |> toFloat) allConflicts
 
         xScaleLocal : ContinuousScale Float
         xScaleLocal =
@@ -49,18 +52,23 @@ scatterplot conflictsForAxes filteredConflicts =
     in
     svg [ viewBox 0 0 w h, TypedSvg.Attributes.width <| TypedSvg.Types.Percent 100, TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100 ]
         [ style []
-            [ TypedSvg.Core.text ".point circle { stroke: rgba(0, 0, 0,0.4); fill: rgba(255, 255, 255,0.3); }"
+            [ TypedSvg.Core.text """
+                .point circle { stroke: rgba(0, 0, 0, 0.4); fill: rgba(255, 255, 255,0.3); }
+                .yearSelection rect { stroke: rgba(0, 0, 0, 0); fill: rgba(255, 255, 255, 0.0); }
+                .yearSelection:hover rect { stroke: rgba(0, 0, 0, 1); fill: rgba(255, 255, 255, 0.5); cursor: pointer; }
+                .yearSelection text { display: none; }
+                .yearSelection:hover text { display: inline; font-size: calc(1em - 5px); font-weight: 400; line-height: 1.5; cursor: pointer; }
+                .yearSelection:hover .textBox { fill: rgba(255, 255, 255, 1); }
+                """
             ]
-        , g
-            [ transform [ Translate (padding - 1) (h - padding) ] 
+        , g [ transform [ Translate (padding - 1) (h - padding) ] 
             , fontSize <| Px 15.0
             , fontFamily [ "sans-serif" ]
             ]
             [ xAxis xValues
             , text_ [ x (Scale.convert xScaleLocal labelPositions.x), y 30, textAnchor AnchorMiddle ] [ Html.text "Year" ]
             ]
-        , g
-            [ transform [ Translate (padding - 1) (padding - 1) ]
+        , g [ transform [ Translate (padding - 1) (padding) ]
             , fontSize <| Px 15.0
             , fontFamily [ "sans-serif" ]
             ]
@@ -69,6 +77,38 @@ scatterplot conflictsForAxes filteredConflicts =
             ]
         , g [ transform [ Translate padding padding ] ]
             (List.map (point xScaleLocal yScaleLocal) filteredConflicts)
+        , g [ transform [ Translate padding padding ] ]
+            (List.map (yearSelectionBox xScaleLocal yScaleLocal) (List.Extra.unique (List.map (.year) filteredConflicts)))
+        ]
+
+yearSelectionBox : ContinuousScale Float -> ContinuousScale Float -> Int -> Svg msg
+yearSelectionBox scaleX scaleY conflictYear =
+    g
+        [ class [ "yearSelection" ]
+        , transform
+            [ Translate
+                ((Scale.convert scaleX (toFloat conflictYear)) - 13.5)
+                0
+            ]
+        ]
+        [ rect
+            [ TypedSvg.Attributes.InPx.height 330.5
+            , TypedSvg.Attributes.InPx.width 27
+            ]
+            []
+        , rect
+            [ class [ "textBox" ]
+            , x 0
+            , y 335
+            , TypedSvg.Attributes.InPx.height 15
+            , TypedSvg.Attributes.InPx.width 27
+            ]
+            []
+        , text_
+            [ x 2
+            , y 346.5
+            ]
+            [ Html.text (String.fromInt conflictYear) ]
         ]
 
 point : ContinuousScale Float -> ContinuousScale Float -> Conflict.Conflict -> Svg msg

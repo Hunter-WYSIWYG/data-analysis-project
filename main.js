@@ -6239,7 +6239,7 @@ var $elm_community$list_extra$List$Extra$remove = F2(
 				A2($elm_community$list_extra$List$Extra$remove, x, ys));
 		}
 	});
-var $author$project$Main$newScatterplotCountries = F2(
+var $author$project$Scatterplot$newScatterplotCountries = F2(
 	function (oldCountries, newCountry) {
 		return A2($elm$core$List$member, newCountry, oldCountries) ? A2($elm_community$list_extra$List$Extra$remove, newCountry, oldCountries) : A2($elm$core$List$cons, newCountry, oldCountries);
 	});
@@ -6268,7 +6268,7 @@ var $author$project$Main$update = F2(
 				_Utils_update(
 					model,
 					{
-						scatterplotCountries: A2($author$project$Main$newScatterplotCountries, model.scatterplotCountries, country)
+						scatterplotCountries: A2($author$project$Scatterplot$newScatterplotCountries, model.scatterplotCountries, country)
 					}),
 				$elm$core$Platform$Cmd$none);
 		}
@@ -6294,7 +6294,7 @@ var $elm$core$List$filter = F2(
 			_List_Nil,
 			list);
 	});
-var $author$project$Main$filterConflictForCountries = F2(
+var $author$project$Scatterplot$filterConflictForCountries = F2(
 	function (conflicts, countries) {
 		return A2(
 			$elm$core$List$filter,
@@ -6494,25 +6494,6 @@ var $elm_community$typed_svg$TypedSvg$Attributes$InPx$r = function (value) {
 	return $elm_community$typed_svg$TypedSvg$Attributes$r(
 		$elm_community$typed_svg$TypedSvg$Types$px(value));
 };
-var $elm_community$typed_svg$TypedSvg$TypesToStrings$anchorAlignmentToString = function (anchorAlignment) {
-	switch (anchorAlignment.$) {
-		case 'AnchorInherit':
-			return 'inherit';
-		case 'AnchorStart':
-			return 'start';
-		case 'AnchorMiddle':
-			return 'middle';
-		default:
-			return 'end';
-	}
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$textAnchor = function (anchorAlignment) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'text-anchor',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$anchorAlignmentToString(anchorAlignment));
-};
-var $elm_community$typed_svg$TypedSvg$text_ = $elm_community$typed_svg$TypedSvg$Core$node('text');
 var $elm$core$String$concat = function (strings) {
 	return A2($elm$core$String$join, '', strings);
 };
@@ -6594,26 +6575,6 @@ var $elm_community$typed_svg$TypedSvg$Attributes$transform = function (transform
 			' ',
 			A2($elm$core$List$map, $elm_community$typed_svg$TypedSvg$TypesToStrings$transformToString, transforms)));
 };
-var $elm_community$typed_svg$TypedSvg$Attributes$x = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'x',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$x = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$x(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$y = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'y',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$y = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$y(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
 var $author$project$Scatterplot$point = F3(
 	function (scaleX, scaleY, conflict) {
 		return A2(
@@ -6647,19 +6608,7 @@ var $author$project$Scatterplot$point = F3(
 							$elm_community$typed_svg$TypedSvg$Attributes$InPx$cy(0),
 							$elm_community$typed_svg$TypedSvg$Attributes$InPx$r(5)
 						]),
-					_List_Nil),
-					A2(
-					$elm_community$typed_svg$TypedSvg$text_,
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(0),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(20),
-							$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle)
-						]),
-					_List_fromArray(
-						[
-							$elm$html$Html$text(conflict.notes)
-						]))
+					_List_Nil)
 				]));
 	});
 var $elm$core$Tuple$second = function (_v0) {
@@ -6669,6 +6618,86 @@ var $elm$core$Tuple$second = function (_v0) {
 var $elm_community$typed_svg$TypedSvg$style = $elm_community$typed_svg$TypedSvg$Core$node('style');
 var $elm_community$typed_svg$TypedSvg$svg = $elm_community$typed_svg$TypedSvg$Core$node('svg');
 var $elm_community$typed_svg$TypedSvg$Core$text = $elm$virtual_dom$VirtualDom$text;
+var $elm_community$typed_svg$TypedSvg$TypesToStrings$anchorAlignmentToString = function (anchorAlignment) {
+	switch (anchorAlignment.$) {
+		case 'AnchorInherit':
+			return 'inherit';
+		case 'AnchorStart':
+			return 'start';
+		case 'AnchorMiddle':
+			return 'middle';
+		default:
+			return 'end';
+	}
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$textAnchor = function (anchorAlignment) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'text-anchor',
+		$elm_community$typed_svg$TypedSvg$TypesToStrings$anchorAlignmentToString(anchorAlignment));
+};
+var $elm_community$typed_svg$TypedSvg$text_ = $elm_community$typed_svg$TypedSvg$Core$node('text');
+var $elm$core$Set$Set_elm_builtin = function (a) {
+	return {$: 'Set_elm_builtin', a: a};
+};
+var $elm$core$Set$empty = $elm$core$Set$Set_elm_builtin($elm$core$Dict$empty);
+var $elm$core$Set$insert = F2(
+	function (key, _v0) {
+		var dict = _v0.a;
+		return $elm$core$Set$Set_elm_builtin(
+			A3($elm$core$Dict$insert, key, _Utils_Tuple0, dict));
+	});
+var $elm$core$Dict$member = F2(
+	function (key, dict) {
+		var _v0 = A2($elm$core$Dict$get, key, dict);
+		if (_v0.$ === 'Just') {
+			return true;
+		} else {
+			return false;
+		}
+	});
+var $elm$core$Set$member = F2(
+	function (key, _v0) {
+		var dict = _v0.a;
+		return A2($elm$core$Dict$member, key, dict);
+	});
+var $elm_community$list_extra$List$Extra$uniqueHelp = F4(
+	function (f, existing, remaining, accumulator) {
+		uniqueHelp:
+		while (true) {
+			if (!remaining.b) {
+				return $elm$core$List$reverse(accumulator);
+			} else {
+				var first = remaining.a;
+				var rest = remaining.b;
+				var computedFirst = f(first);
+				if (A2($elm$core$Set$member, computedFirst, existing)) {
+					var $temp$f = f,
+						$temp$existing = existing,
+						$temp$remaining = rest,
+						$temp$accumulator = accumulator;
+					f = $temp$f;
+					existing = $temp$existing;
+					remaining = $temp$remaining;
+					accumulator = $temp$accumulator;
+					continue uniqueHelp;
+				} else {
+					var $temp$f = f,
+						$temp$existing = A2($elm$core$Set$insert, computedFirst, existing),
+						$temp$remaining = rest,
+						$temp$accumulator = A2($elm$core$List$cons, first, accumulator);
+					f = $temp$f;
+					existing = $temp$existing;
+					remaining = $temp$remaining;
+					accumulator = $temp$accumulator;
+					continue uniqueHelp;
+				}
+			}
+		}
+	});
+var $elm_community$list_extra$List$Extra$unique = function (list) {
+	return A4($elm_community$list_extra$List$Extra$uniqueHelp, $elm$core$Basics$identity, $elm$core$Set$empty, list, _List_Nil);
+};
 var $elm_community$typed_svg$TypedSvg$Attributes$viewBox = F4(
 	function (minX, minY, vWidth, vHeight) {
 		return A2(
@@ -6773,6 +6802,16 @@ var $elm_community$typed_svg$TypedSvg$Attributes$width = function (length) {
 		$elm_community$typed_svg$TypedSvg$Core$attribute,
 		'width',
 		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$x = function (length) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'x',
+		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$InPx$x = function (value) {
+	return $elm_community$typed_svg$TypedSvg$Attributes$x(
+		$elm_community$typed_svg$TypedSvg$Types$px(value));
 };
 var $elm$svg$Svg$Attributes$class = _VirtualDom_attribute('class');
 var $gampleman$elm_visualization$Scale$tickFormat = function (_v0) {
@@ -7333,6 +7372,16 @@ var $author$project$Scatterplot$xAxis = function (values) {
 			]),
 		$author$project$Scatterplot$xScale(values));
 };
+var $elm_community$typed_svg$TypedSvg$Attributes$y = function (length) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'y',
+		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$InPx$y = function (value) {
+	return $elm_community$typed_svg$TypedSvg$Attributes$y(
+		$elm_community$typed_svg$TypedSvg$Types$px(value));
+};
 var $gampleman$elm_visualization$Axis$horizontalAttrs = {
 	horizontal: true,
 	translate: function (y) {
@@ -7361,21 +7410,85 @@ var $author$project$Scatterplot$yAxis = function (values) {
 			]),
 		$author$project$Scatterplot$yScale(values));
 };
+var $elm_community$typed_svg$TypedSvg$Attributes$InPx$height = function (value) {
+	return $elm_community$typed_svg$TypedSvg$Attributes$height(
+		$elm_community$typed_svg$TypedSvg$Types$px(value));
+};
+var $elm_community$typed_svg$TypedSvg$rect = $elm_community$typed_svg$TypedSvg$Core$node('rect');
+var $elm_community$typed_svg$TypedSvg$Attributes$InPx$width = function (value) {
+	return $elm_community$typed_svg$TypedSvg$Attributes$width(
+		$elm_community$typed_svg$TypedSvg$Types$px(value));
+};
+var $author$project$Scatterplot$yearSelectionBox = F3(
+	function (scaleX, scaleY, conflictYear) {
+		return A2(
+			$elm_community$typed_svg$TypedSvg$g,
+			_List_fromArray(
+				[
+					$elm_community$typed_svg$TypedSvg$Attributes$class(
+					_List_fromArray(
+						['yearSelection'])),
+					$elm_community$typed_svg$TypedSvg$Attributes$transform(
+					_List_fromArray(
+						[
+							A2(
+							$elm_community$typed_svg$TypedSvg$Types$Translate,
+							A2($gampleman$elm_visualization$Scale$convert, scaleX, conflictYear) - 13.5,
+							0)
+						]))
+				]),
+			_List_fromArray(
+				[
+					A2(
+					$elm_community$typed_svg$TypedSvg$rect,
+					_List_fromArray(
+						[
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$height(330.5),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$width(27)
+						]),
+					_List_Nil),
+					A2(
+					$elm_community$typed_svg$TypedSvg$rect,
+					_List_fromArray(
+						[
+							$elm_community$typed_svg$TypedSvg$Attributes$class(
+							_List_fromArray(
+								['textBox'])),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(0),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(335),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$height(15),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$width(27)
+						]),
+					_List_Nil),
+					A2(
+					$elm_community$typed_svg$TypedSvg$text_,
+					_List_fromArray(
+						[
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(2),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(346.5)
+						]),
+					_List_fromArray(
+						[
+							$elm$html$Html$text(
+							$elm$core$String$fromInt(conflictYear))
+						]))
+				]));
+	});
 var $author$project$Scatterplot$scatterplot = F2(
-	function (conflictsForAxes, filteredConflicts) {
+	function (allConflicts, filteredConflicts) {
 		var yValues = A2(
 			$elm$core$List$map,
 			function (c) {
 				return c.fatalities;
 			},
-			conflictsForAxes);
+			allConflicts);
 		var yScaleLocal = $author$project$Scatterplot$yScale(yValues);
 		var xValues = A2(
 			$elm$core$List$map,
 			function (c) {
 				return c.year;
 			},
-			conflictsForAxes);
+			allConflicts);
 		var xScaleLocal = $author$project$Scatterplot$xScale(xValues);
 		var kreisbeschriftung = '';
 		var half = function (t) {
@@ -7403,7 +7516,7 @@ var $author$project$Scatterplot$scatterplot = F2(
 					_List_Nil,
 					_List_fromArray(
 						[
-							$elm_community$typed_svg$TypedSvg$Core$text('\r\n            .point circle { stroke: rgba(0, 0, 0,0.4); fill: rgba(255, 255, 255,0.3); }\r\n            .point text { display: none; }\r\n            .point:hover circle { stroke: rgba(0, 0, 0,1.0); fill: rgb(118, 214, 78); }\r\n            .point:hover text { display: inline; }\r\n          ')
+							$elm_community$typed_svg$TypedSvg$Core$text('\r\n                .point circle { stroke: rgba(0, 0, 0, 0.4); fill: rgba(255, 255, 255,0.3); }\r\n                .yearSelection rect { stroke: rgba(0, 0, 0, 0); fill: rgba(255, 255, 255, 0.0); }\r\n                .yearSelection:hover rect { stroke: rgba(0, 0, 0, 1); fill: rgba(255, 255, 255, 0.5); cursor: pointer; }\r\n                .yearSelection text { display: none; }\r\n                .yearSelection:hover text { display: inline; font-size: calc(1em - 5px); font-weight: 400; line-height: 1.5; cursor: pointer; }\r\n                .yearSelection:hover .textBox { fill: rgba(255, 255, 255, 1); }\r\n                ')
 						])),
 					A2(
 					$elm_community$typed_svg$TypedSvg$g,
@@ -7444,7 +7557,7 @@ var $author$project$Scatterplot$scatterplot = F2(
 							$elm_community$typed_svg$TypedSvg$Attributes$transform(
 							_List_fromArray(
 								[
-									A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Scatterplot$padding - 1, $author$project$Scatterplot$padding - 1)
+									A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Scatterplot$padding - 1, $author$project$Scatterplot$padding)
 								])),
 							$elm_community$typed_svg$TypedSvg$Attributes$fontSize(
 							$elm_community$typed_svg$TypedSvg$Types$Px(15.0)),
@@ -7482,7 +7595,27 @@ var $author$project$Scatterplot$scatterplot = F2(
 					A2(
 						$elm$core$List$map,
 						A2($author$project$Scatterplot$point, xScaleLocal, yScaleLocal),
-						filteredConflicts))
+						filteredConflicts)),
+					A2(
+					$elm_community$typed_svg$TypedSvg$g,
+					_List_fromArray(
+						[
+							$elm_community$typed_svg$TypedSvg$Attributes$transform(
+							_List_fromArray(
+								[
+									A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Scatterplot$padding, $author$project$Scatterplot$padding)
+								]))
+						]),
+					A2(
+						$elm$core$List$map,
+						A2($author$project$Scatterplot$yearSelectionBox, xScaleLocal, yScaleLocal),
+						$elm_community$list_extra$List$Extra$unique(
+							A2(
+								$elm$core$List$map,
+								function ($) {
+									return $.year;
+								},
+								filteredConflicts))))
 				]));
 	});
 var $elm$core$List$sortBy = _List_sortBy;
@@ -7490,67 +7623,6 @@ var $elm$core$List$sort = function (xs) {
 	return A2($elm$core$List$sortBy, $elm$core$Basics$identity, xs);
 };
 var $elm$html$Html$ul = _VirtualDom_node('ul');
-var $elm$core$Set$Set_elm_builtin = function (a) {
-	return {$: 'Set_elm_builtin', a: a};
-};
-var $elm$core$Set$empty = $elm$core$Set$Set_elm_builtin($elm$core$Dict$empty);
-var $elm$core$Set$insert = F2(
-	function (key, _v0) {
-		var dict = _v0.a;
-		return $elm$core$Set$Set_elm_builtin(
-			A3($elm$core$Dict$insert, key, _Utils_Tuple0, dict));
-	});
-var $elm$core$Dict$member = F2(
-	function (key, dict) {
-		var _v0 = A2($elm$core$Dict$get, key, dict);
-		if (_v0.$ === 'Just') {
-			return true;
-		} else {
-			return false;
-		}
-	});
-var $elm$core$Set$member = F2(
-	function (key, _v0) {
-		var dict = _v0.a;
-		return A2($elm$core$Dict$member, key, dict);
-	});
-var $elm_community$list_extra$List$Extra$uniqueHelp = F4(
-	function (f, existing, remaining, accumulator) {
-		uniqueHelp:
-		while (true) {
-			if (!remaining.b) {
-				return $elm$core$List$reverse(accumulator);
-			} else {
-				var first = remaining.a;
-				var rest = remaining.b;
-				var computedFirst = f(first);
-				if (A2($elm$core$Set$member, computedFirst, existing)) {
-					var $temp$f = f,
-						$temp$existing = existing,
-						$temp$remaining = rest,
-						$temp$accumulator = accumulator;
-					f = $temp$f;
-					existing = $temp$existing;
-					remaining = $temp$remaining;
-					accumulator = $temp$accumulator;
-					continue uniqueHelp;
-				} else {
-					var $temp$f = f,
-						$temp$existing = A2($elm$core$Set$insert, computedFirst, existing),
-						$temp$remaining = rest,
-						$temp$accumulator = A2($elm$core$List$cons, first, accumulator);
-					f = $temp$f;
-					existing = $temp$existing;
-					remaining = $temp$remaining;
-					accumulator = $temp$accumulator;
-					continue uniqueHelp;
-				}
-			}
-		}
-	});
-var $elm_community$list_extra$List$Extra$unique = function (list) {
-	return A4($elm_community$list_extra$List$Extra$uniqueHelp, $elm$core$Basics$identity, $elm$core$Set$empty, list, _List_Nil);
-};
 var $author$project$Main$view = function (model) {
 	return {
 		body: _List_fromArray(
@@ -7583,7 +7655,7 @@ var $author$project$Main$view = function (model) {
 								A2(
 								$author$project$Scatterplot$scatterplot,
 								model.conflicts,
-								A2($author$project$Main$filterConflictForCountries, model.conflicts, model.scatterplotCountries))
+								A2($author$project$Scatterplot$filterConflictForCountries, model.conflicts, model.scatterplotCountries))
 							])),
 						A2(
 						$elm$html$Html$div,
