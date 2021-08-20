@@ -25,7 +25,8 @@ init flags =
 
 initModel : Model
 initModel =
-    { conflicts = []
+    { viewType = ScatterplotView
+    , conflicts = []
     , scatterplotCountries = []
     }
 
@@ -39,13 +40,20 @@ initCmd =
         ]
 
 type alias Model =
-    { conflicts : List Conflict.Conflict
+    { viewType : ViewType
+    , conflicts : List Conflict.Conflict
     , scatterplotCountries : List String
     }
 
 type Msg
     = GotData (Result Http.Error (List (Conflict.Conflict)))
-    | UpdateSPCountries String
+    | UpdateSelectedCountries String
+    | ChangeView ViewType
+
+type ViewType
+    = ScatterplotView
+    | ParallelCoordinatesView Int
+    | TreeView
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -58,8 +66,11 @@ update msg model =
                 Err _ ->
                     ( { model | conflicts = [] }, Cmd.none)
 
-        UpdateSPCountries country ->
+        UpdateSelectedCountries country ->
             ( { model | scatterplotCountries = (Scatterplot.newScatterplotCountries model.scatterplotCountries country) }, Cmd.none)
+
+        ChangeView newViewType ->
+            ( { model | viewType = newViewType }, Cmd.none )
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =
@@ -93,7 +104,7 @@ renderCountryCheckboxes countries =
     List.map
         (\c ->
             Html.li []
-                [ Html.label [ Html.Attributes.class "checkbox", Html.Events.onClick (UpdateSPCountries c) ]
+                [ Html.label [ Html.Attributes.class "checkbox", Html.Events.onClick (UpdateSelectedCountries c) ]
                     [ Html.input [ Html.Attributes.type_ "checkbox", Html.Attributes.style "margin-right" "5px" ] []
                     ]
                 , Html.text c
