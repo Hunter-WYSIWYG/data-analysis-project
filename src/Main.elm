@@ -79,7 +79,7 @@ view model =
             , Html.div [ Html.Attributes.class "column is-3", Html.Attributes.style "padding" "30px", Html.Attributes.style "background-color" "#fafafa" ]
                 [ Html.div []
                     [ Html.ul []
-                        (renderCountryCheckboxes (List.Extra.unique (List.map (.country) model.conflicts)))
+                        (renderCountryCheckboxes (List.sort (List.Extra.unique (List.map (.country) model.conflicts))))
                     ]
                 ]
             , Html.div [ Html.Attributes.class "column is-1 has-background-info" ]
@@ -97,17 +97,17 @@ newScatterplotCountries oldCountries newCountry =
     if (List.member newCountry oldCountries) then
         List.Extra.remove newCountry oldCountries
     else
-        List.sort (newCountry::oldCountries)
+        newCountry::oldCountries
 
 renderCountryCheckboxes : List String -> List (Html.Html Msg)
 renderCountryCheckboxes countries =
     List.map
         (\c ->
             Html.li []
-                [ Html.label [ Html.Attributes.class "checkbox" ]
-                    [ Html.input [ Html.Attributes.type_ "checkbox", Html.Attributes.style "margin-right" "5px",Html.Events.onClick (UpdateSPCountries c) ] []
-                    , Html.text c
+                [ Html.label [ Html.Attributes.class "checkbox", Html.Events.onClick (UpdateSPCountries c) ]
+                    [ Html.input [ Html.Attributes.type_ "checkbox", Html.Attributes.style "margin-right" "5px" ] []
                     ]
+                , Html.text c
                 ]
         )
         countries

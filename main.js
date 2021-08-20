@@ -11125,7 +11125,9 @@ var $author$project$Main$renderCountryCheckboxes = function (countries) {
 						$elm$html$Html$label,
 						_List_fromArray(
 							[
-								$elm$html$Html$Attributes$class('checkbox')
+								$elm$html$Html$Attributes$class('checkbox'),
+								$elm$html$Html$Events$onClick(
+								$author$project$Main$UpdateSPCountries(c))
 							]),
 						_List_fromArray(
 							[
@@ -11134,13 +11136,11 @@ var $author$project$Main$renderCountryCheckboxes = function (countries) {
 								_List_fromArray(
 									[
 										$elm$html$Html$Attributes$type_('checkbox'),
-										A2($elm$html$Html$Attributes$style, 'margin-right', '5px'),
-										$elm$html$Html$Events$onClick(
-										$author$project$Main$UpdateSPCountries(c))
+										A2($elm$html$Html$Attributes$style, 'margin-right', '5px')
 									]),
-								_List_Nil),
-								$elm$html$Html$text(c)
-							]))
+								_List_Nil)
+							])),
+						$elm$html$Html$text(c)
 					]));
 		},
 		countries);
