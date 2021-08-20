@@ -13,11 +13,10 @@ import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Transform(..))
 import List.Extra
 
 import Conflict
-import TypedSvg exposing (rect)
-import Html.Attributes exposing (height)
-import Html exposing (text)
+import Model exposing (Msg(..), ViewType(..))
+import Html.Events
 
-scatterplot : List Conflict.Conflict -> List Conflict.Conflict -> Svg msg
+scatterplot : List Conflict.Conflict -> List Conflict.Conflict -> Svg Msg
 scatterplot allConflicts filteredConflicts =
     let
         kreisbeschriftung : String
@@ -81,7 +80,7 @@ scatterplot allConflicts filteredConflicts =
             (List.map (yearSelectionBox xScaleLocal yScaleLocal) (List.Extra.unique (List.map (.year) filteredConflicts)))
         ]
 
-yearSelectionBox : ContinuousScale Float -> ContinuousScale Float -> Int -> Svg msg
+yearSelectionBox : ContinuousScale Float -> ContinuousScale Float -> Int -> Svg Msg
 yearSelectionBox scaleX scaleY conflictYear =
     g
         [ class [ "yearSelection" ]
@@ -94,6 +93,7 @@ yearSelectionBox scaleX scaleY conflictYear =
         [ rect
             [ TypedSvg.Attributes.InPx.height 330.5
             , TypedSvg.Attributes.InPx.width 27
+            , Html.Events.onClick (ChangeView (ParallelCoordinatesView conflictYear))
             ]
             []
         , rect
@@ -102,11 +102,13 @@ yearSelectionBox scaleX scaleY conflictYear =
             , y 335
             , TypedSvg.Attributes.InPx.height 15
             , TypedSvg.Attributes.InPx.width 27
+            , Html.Events.onClick (ChangeView (ParallelCoordinatesView conflictYear))
             ]
             []
         , text_
             [ x 2
             , y 346.5
+            , Html.Events.onClick (ChangeView (ParallelCoordinatesView conflictYear))
             ]
             [ Html.text (String.fromInt conflictYear) ]
         ]
@@ -192,3 +194,16 @@ newScatterplotCountries oldCountries newCountry =
 filterConflictForCountries : List Conflict.Conflict -> List String -> List Conflict.Conflict
 filterConflictForCountries conflicts countries =
     List.filter (\conflict -> (List.member conflict.country countries)) conflicts
+
+renderCountryCheckboxes : List String -> List (Html.Html Msg)
+renderCountryCheckboxes countries =
+    List.map
+        (\c ->
+            Html.li []
+                [ Html.label [ Html.Attributes.class "checkbox", Html.Events.onClick (UpdateSelectedCountries c) ]
+                    [ Html.input [ Html.Attributes.type_ "checkbox", Html.Attributes.style "margin-right" "5px" ] []
+                    ]
+                , Html.text c
+                ]
+        )
+        countries
