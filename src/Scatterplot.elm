@@ -13,8 +13,8 @@ import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Transform(..))
 
 import Conflict
 
-scatterplot : List Conflict.Conflict -> Svg msg
-scatterplot conflicts =
+scatterplot : List Conflict.Conflict -> List Conflict.Conflict -> Svg msg
+scatterplot conflictsForAxes filteredConflicts =
     let
         kreisbeschriftung : String
         kreisbeschriftung =
@@ -22,11 +22,11 @@ scatterplot conflicts =
 
         xValues : List Float
         xValues =
-            List.map (\c -> c.year |> toFloat) conflicts
+            List.map (\c -> c.year |> toFloat) conflictsForAxes
     
         yValues : List Float
         yValues =
-            List.map (\c -> c.fatalities |> toFloat) conflicts
+            List.map (\c -> c.fatalities |> toFloat) conflictsForAxes
 
         xScaleLocal : ContinuousScale Float
         xScaleLocal =
@@ -69,8 +69,8 @@ scatterplot conflicts =
             [ yAxis yValues
             , text_ [ x 0, y ((Scale.convert yScaleLocal labelPositions.y) - (padding/3)), textAnchor AnchorMiddle ] [ Html.text "Fatalities" ]
             ]
-        --, g [ transform [ Translate padding padding ] ]
-        --    (List.map (point xScaleLocal yScaleLocal) conflicts)
+        , g [ transform [ Translate padding padding ] ]
+            (List.map (point xScaleLocal yScaleLocal) filteredConflicts)
         ]
 
 point : ContinuousScale Float -> ContinuousScale Float -> Conflict.Conflict -> Svg msg

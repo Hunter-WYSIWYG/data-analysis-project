@@ -74,7 +74,7 @@ view model =
             [ Html.div [ Html.Attributes.class "column is-1 has-background-info" ]
                 []
             , Html.div [ Html.Attributes.class "column is-7", Html.Attributes.style "padding" "30px" ]
-                [ Scatterplot.scatterplot model.conflicts
+                [ Scatterplot.scatterplot model.conflicts (filterConflictForCountries model.conflicts model.scatterplotCountries)
                 ]
             , Html.div [ Html.Attributes.class "column is-3", Html.Attributes.style "padding" "30px", Html.Attributes.style "background-color" "#fafafa" ]
                 [ Html.div []
@@ -87,6 +87,10 @@ view model =
             ]
         ]
     }
+
+filterConflictForCountries : List Conflict.Conflict -> List String -> List Conflict.Conflict
+filterConflictForCountries conflicts countries =
+    List.filter (\conflict -> (List.member conflict.country countries)) conflicts
 
 newScatterplotCountries : List String -> String -> List String
 newScatterplotCountries oldCountries newCountry =
