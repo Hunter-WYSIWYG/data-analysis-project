@@ -10,6 +10,7 @@ import TypedSvg.Attributes exposing (class, fontFamily, fontSize, textAnchor, tr
 import TypedSvg.Attributes.InPx exposing (cx, cy, r, x, y)
 import TypedSvg.Core exposing (Svg)
 import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Transform(..))
+import List.Extra
 
 import Conflict
 
@@ -146,3 +147,14 @@ radius =
 tickCount : Int
 tickCount =
     5
+
+newScatterplotCountries : List String -> String -> List String
+newScatterplotCountries oldCountries newCountry =
+    if (List.member newCountry oldCountries) then
+        List.Extra.remove newCountry oldCountries
+    else
+        newCountry::oldCountries
+
+filterConflictForCountries : List Conflict.Conflict -> List String -> List Conflict.Conflict
+filterConflictForCountries conflicts countries =
+    List.filter (\conflict -> (List.member conflict.country countries)) conflicts

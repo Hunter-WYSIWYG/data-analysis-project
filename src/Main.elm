@@ -59,7 +59,7 @@ update msg model =
                     ( { model | conflicts = [] }, Cmd.none)
 
         UpdateSPCountries country ->
-            ( { model | scatterplotCountries = (newScatterplotCountries model.scatterplotCountries country) }, Cmd.none)
+            ( { model | scatterplotCountries = (Scatterplot.newScatterplotCountries model.scatterplotCountries country) }, Cmd.none)
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =
@@ -74,7 +74,7 @@ view model =
             [ Html.div [ Html.Attributes.class "column is-1 has-background-info" ]
                 []
             , Html.div [ Html.Attributes.class "column is-7", Html.Attributes.style "padding" "30px" ]
-                [ Scatterplot.scatterplot model.conflicts (filterConflictForCountries model.conflicts model.scatterplotCountries)
+                [ Scatterplot.scatterplot model.conflicts (Scatterplot.filterConflictForCountries model.conflicts model.scatterplotCountries)
                 ]
             , Html.div [ Html.Attributes.class "column is-3", Html.Attributes.style "padding" "30px", Html.Attributes.style "background-color" "#fafafa" ]
                 [ Html.div []
@@ -87,17 +87,6 @@ view model =
             ]
         ]
     }
-
-filterConflictForCountries : List Conflict.Conflict -> List String -> List Conflict.Conflict
-filterConflictForCountries conflicts countries =
-    List.filter (\conflict -> (List.member conflict.country countries)) conflicts
-
-newScatterplotCountries : List String -> String -> List String
-newScatterplotCountries oldCountries newCountry =
-    if (List.member newCountry oldCountries) then
-        List.Extra.remove newCountry oldCountries
-    else
-        newCountry::oldCountries
 
 renderCountryCheckboxes : List String -> List (Html.Html Msg)
 renderCountryCheckboxes countries =
