@@ -48,12 +48,9 @@ scatterplot conflictsForAxes filteredConflicts =
             }
     in
     svg [ viewBox 0 0 w h, TypedSvg.Attributes.width <| TypedSvg.Types.Percent 100, TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100 ]
-        [ style [] [ TypedSvg.Core.text """
-            .point circle { stroke: rgba(0, 0, 0,0.4); fill: rgba(255, 255, 255,0.3); }
-            .point text { display: none; }
-            .point:hover circle { stroke: rgba(0, 0, 0,1.0); fill: rgb(118, 214, 78); }
-            .point:hover text { display: inline; }
-          """ ]
+        [ style []
+            [ TypedSvg.Core.text ".point circle { stroke: rgba(0, 0, 0,0.4); fill: rgba(255, 255, 255,0.3); }"
+            ]
         , g
             [ transform [ Translate (padding - 1) (h - padding) ] 
             , fontSize <| Px 15.0
@@ -86,7 +83,6 @@ point scaleX scaleY conflict =
             ]
         ]
         [ circle [ cx 0, cy 0, r 5 ] []
-        , text_ [ x 0, y 20, textAnchor AnchorMiddle ] [ Html.text conflict.notes ]
         ]
 
 xAxis : List Float -> Svg msg
@@ -104,8 +100,6 @@ defaultExtent =
 padExtent : ( Float, Float ) -> ( Float, Float )
 padExtent ( min, max ) =
     let
-        -- extentPadding = 0.1 * (max - min)
-
         extentPadding = (max - min) / toFloat (tickCount * 2) 
     in
     ( min - extentPadding, max + extentPadding )
