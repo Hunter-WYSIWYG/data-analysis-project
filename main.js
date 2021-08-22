@@ -6197,7 +6197,12 @@ var $author$project$Model$initCmd = $elm$core$Platform$Cmd$batch(
 			})
 		]));
 var $author$project$Model$ScatterplotView = {$: 'ScatterplotView'};
-var $author$project$Model$initModel = {activeCountries: _List_Nil, conflicts: _List_Nil, viewType: $author$project$Model$ScatterplotView};
+var $author$project$Model$initModel = {
+	activeCountries: _List_fromArray(
+		['Algeria']),
+	conflicts: _List_Nil,
+	viewType: $author$project$Model$ScatterplotView
+};
 var $author$project$Model$init = function (flags) {
 	return _Utils_Tuple2($author$project$Model$initModel, $author$project$Model$initCmd);
 };
@@ -7948,43 +7953,47 @@ var $author$project$ParallelCoordinates$parallelCoordinates = F2(
 var $author$project$Model$UpdateSelectedCountries = function (a) {
 	return {$: 'UpdateSelectedCountries', a: a};
 };
+var $elm$html$Html$Attributes$checked = $elm$html$Html$Attributes$boolProperty('checked');
 var $elm$html$Html$input = _VirtualDom_node('input');
 var $elm$html$Html$label = _VirtualDom_node('label');
 var $elm$html$Html$li = _VirtualDom_node('li');
 var $elm$html$Html$Attributes$type_ = $elm$html$Html$Attributes$stringProperty('type');
-var $author$project$Main$renderCountryCheckboxes = function (countries) {
-	return A2(
-		$elm$core$List$map,
-		function (c) {
-			return A2(
-				$elm$html$Html$li,
-				_List_Nil,
-				_List_fromArray(
-					[
-						A2(
-						$elm$html$Html$label,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$class('checkbox'),
-								$elm$html$Html$Events$onClick(
-								$author$project$Model$UpdateSelectedCountries(c))
-							]),
-						_List_fromArray(
-							[
-								A2(
-								$elm$html$Html$input,
-								_List_fromArray(
-									[
-										$elm$html$Html$Attributes$type_('checkbox'),
-										A2($elm$html$Html$Attributes$style, 'margin-right', '5px')
-									]),
-								_List_Nil)
-							])),
-						$elm$html$Html$text(c)
-					]));
-		},
-		countries);
-};
+var $author$project$Main$renderCountryCheckboxes = F2(
+	function (countries, activeCountries) {
+		return A2(
+			$elm$core$List$map,
+			function (c) {
+				var isActive = A2($elm$core$List$member, c, activeCountries);
+				return A2(
+					$elm$html$Html$li,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$label,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('checkbox'),
+									$elm$html$Html$Events$onClick(
+									$author$project$Model$UpdateSelectedCountries(c))
+								]),
+							_List_fromArray(
+								[
+									A2(
+									$elm$html$Html$input,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$type_('checkbox'),
+											A2($elm$html$Html$Attributes$style, 'margin-right', '5px'),
+											$elm$html$Html$Attributes$checked(isActive)
+										]),
+									_List_Nil)
+								])),
+							$elm$html$Html$text(c)
+						]));
+			},
+			countries);
+	});
 var $author$project$Scatterplot$h = 450;
 var $author$project$Scatterplot$padding = 60;
 var $elm_community$typed_svg$TypedSvg$circle = $elm_community$typed_svg$TypedSvg$Core$node('circle');
@@ -8543,7 +8552,8 @@ var $author$project$Main$view = function (model) {
 										A2(
 										$elm$html$Html$ul,
 										_List_Nil,
-										$author$project$Main$renderCountryCheckboxes(
+										A2(
+											$author$project$Main$renderCountryCheckboxes,
 											$elm$core$List$sort(
 												$elm_community$list_extra$List$Extra$unique(
 													A2(
@@ -8551,7 +8561,8 @@ var $author$project$Main$view = function (model) {
 														function ($) {
 															return $.country;
 														},
-														model.conflicts)))))
+														model.conflicts))),
+											model.activeCountries))
 									]))
 							])),
 						A2(

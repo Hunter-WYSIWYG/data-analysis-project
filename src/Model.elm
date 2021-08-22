@@ -11,7 +11,7 @@ initModel : Model
 initModel =
     { viewType = ScatterplotView
     , conflicts = []
-    , activeCountries = []
+    , activeCountries = [ "Algeria" ]
     }
 
 initCmd : Cmd Msg

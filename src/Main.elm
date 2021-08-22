@@ -92,7 +92,7 @@ view model =
                     , Html.Attributes.style "transform" "translate(0, -50%)"
                     ]
                     [ Html.h4 [ Html.Attributes.class "title is-4" ] [ Html.text "Comparable Countries:" ]
-                    , Html.ul [] (renderCountryCheckboxes (List.sort (List.Extra.unique (List.map (.country) model.conflicts))))
+                    , Html.ul [] (renderCountryCheckboxes (List.sort (List.Extra.unique (List.map (.country) model.conflicts))) model.activeCountries)
                     ]
                 ]
             , Html.div [ Html.Attributes.class "column is-1 has-background-info" ]
@@ -112,13 +112,20 @@ newCountries oldCountries newCountry =
     else
         newCountry::oldCountries
 
-renderCountryCheckboxes : List String -> List (Html.Html Msg)
-renderCountryCheckboxes countries =
+renderCountryCheckboxes : List String -> List String -> List (Html.Html Msg)
+renderCountryCheckboxes countries activeCountries =
     List.map
         (\c ->
+            let
+                isActive = List.member c activeCountries
+            in
             Html.li []
                 [ Html.label [ Html.Attributes.class "checkbox", Html.Events.onClick (UpdateSelectedCountries c) ]
-                    [ Html.input [ Html.Attributes.type_ "checkbox", Html.Attributes.style "margin-right" "5px" ] []
+                    [ Html.input
+                        [ Html.Attributes.type_ "checkbox"
+                        , Html.Attributes.style "margin-right" "5px"
+                        , Html.Attributes.checked isActive
+                        ] []
                     ]
                 , Html.text c
                 ]
