@@ -8,6 +8,7 @@ import List.Extra
 
 import Conflict
 import Scatterplot
+import ParallelCoordinates
 import Html.Events
 import Model exposing (Msg(..), Model, ViewType(..), init)
 
