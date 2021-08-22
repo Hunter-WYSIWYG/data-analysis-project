@@ -166,3 +166,49 @@ parallelCoordinates conflicts year =
             ++
             [ description ]
         )
+
+drawAllSegments : List Conflict.Conflict -> List (Svg msg)
+drawAllSegments conflicts =
+    let
+        keyList1 = List.reverse (List.drop 1 (List.reverse dimensionNames))
+        keyList2 = (List.drop 1 dimensionNames)
+    in
+    List.concat
+        (List.indexedMap
+            (\i k1 ->
+                let
+                    k2 = Maybe.withDefault "" (getElem i keyList2)
+                in
+                drawOneSegment k1 k2 conflicts i
+            )
+            keyList1
+        )
+
+getElem : Int -> List a -> Maybe a
+getElem i list =
+    List.head (List.drop i list)
+
+drawOneSegment : String -> String -> List Conflict.Conflict -> Int -> List (Svg msg)
+drawOneSegment key1 key2 conflicts segmentIndex =
+    let
+        values1 = values key1 conflicts
+        values2 = values key2 conflicts
+    in
+    List.map2
+        (\v1 v2 ->
+            drawLine key1 key2 v1 v2 conflicts segmentIndex
+        )
+        values1
+        values2
+
+drawLine : String -> String -> Float -> Float -> List Conflict.Conflict -> Int -> Svg msg
+drawLine key1 key2 value1 value2 conflicts segmentIndex =
+    line
+        [ x1 <| Px (padding + ((toFloat segmentIndex) * segmentDistance) - 1)
+        , y1 <| Px ((Scale.convert (yScaleLocal key1 conflicts) value1) + padding)
+        , x2 <| Px (padding + ((toFloat (segmentIndex+1)) * segmentDistance) - 1)
+        , y2 <| Px ((Scale.convert (yScaleLocal key2 conflicts) value2) + padding)
+        , strokeWidth <| Px 0.5
+        , stroke <| Paint <| Color.rgba 0 0 0 1
+        ]
+        []
