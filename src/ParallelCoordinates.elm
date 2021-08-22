@@ -75,3 +75,37 @@ yAxisFloat v =
 yScaleFloat : List Float -> ContinuousScale Float
 yScaleFloat v =
     Scale.linear ( h - 2 * padding, 0 ) ( wideExtent v )
+
+yAxisOrdinal : List Int -> String -> Svg msg
+yAxisOrdinal valueList axisName =
+    let
+        formatFunction =
+            case axisName of
+                "Month" -> intToMonth
+                "Event type" -> intToEventType
+                _ -> (\j -> "")
+    in
+    Axis.left [] (Scale.toRenderable formatFunction (yScaleOrdinal valueList axisName))
+
+yScaleOrdinal : List Int -> String -> Scale.BandScale Int
+yScaleOrdinal valueList axisName =
+    let
+        outerPadding =
+            case axisName of
+                "Month" -> 0.19
+                "Event type" -> 0
+                _ -> 0
+
+        innerPadding =
+            case axisName of
+                "Month" -> 0
+                "Event type" -> 0.36
+                _ -> 0
+
+        align =
+            case axisName of
+                "Month" -> 0.6
+                "Event type" -> 0.5
+                _ -> 0
+    in
+    Scale.band { defaultBandConfig | paddingInner = innerPadding, paddingOuter = outerPadding, align = align } ( h - 2 * padding, 0 ) valueList
