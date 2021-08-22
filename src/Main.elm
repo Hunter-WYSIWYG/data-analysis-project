@@ -33,7 +33,7 @@ update msg model =
                     ( { model | conflicts = [] }, Cmd.none)
 
         UpdateSelectedCountries country ->
-            ( { model | scatterplotCountries = (Scatterplot.newScatterplotCountries model.scatterplotCountries country) }, Cmd.none)
+            ( { model | activeCountries = (newCountries model.activeCountries country) }, Cmd.none)
 
         ChangeView newViewType ->
             ( { model | viewType = newViewType }, Cmd.none )
@@ -51,7 +51,7 @@ view model =
             [ Html.div [ Html.Attributes.class "column is-1 has-background-info" ]
                 []
             , Html.div [ Html.Attributes.class "column is-7", Html.Attributes.style "padding" "30px" ]
-                [ Scatterplot.scatterplot model.conflicts (Scatterplot.filterConflictForCountries model.conflicts model.scatterplotCountries)
+                [ Scatterplot.scatterplot model.conflicts (Scatterplot.filterConflictForCountries model.conflicts model.activeCountries)
                 ]
             , Html.div [ Html.Attributes.class "column is-3", Html.Attributes.style "padding" "30px", Html.Attributes.style "background-color" "#fafafa" ]
                 [ Html.div []
@@ -64,3 +64,10 @@ view model =
             ]
         ]
     }
+
+newCountries : List String -> String -> List String
+newCountries oldCountries newCountry =
+    if (List.member newCountry oldCountries) then
+        List.Extra.remove newCountry oldCountries
+    else
+        newCountry::oldCountries
