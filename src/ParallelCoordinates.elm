@@ -114,6 +114,9 @@ yScaleOrdinal valueList axisName =
 parallelCoordinates : List Conflict.Conflict -> Int -> Svg msg
 parallelCoordinates conflicts year =
     let
+        filteredConflicts =
+            List.filter (\c -> c.year == year) conflicts
+
         half : ( Float, Float ) -> Float
         half t =
             Tuple.first t + (Tuple.second t - Tuple.first t) / 2
@@ -128,7 +131,7 @@ parallelCoordinates conflicts year =
                                 , fontSize <| Px 15.0
                                 , fontFamily [ "sans-serif" ]
                                 ]
-                                [ yAxisFloat (values axisName conflicts)
+                                [ yAxisFloat (values axisName filteredConflicts)
                                 , text_ [ x 0, y (-20), textAnchor AnchorMiddle ] [ Html.text axisName ]
                                 ]
                         _ ->
@@ -168,7 +171,7 @@ parallelCoordinates conflicts year =
         ]
         (   achsen
             ++
-            drawAllSegments conflicts
+            drawAllSegments filteredConflicts
             ++
             [ description ]
         )

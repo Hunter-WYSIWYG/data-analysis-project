@@ -7777,6 +7777,12 @@ var $author$project$ParallelCoordinates$parallelCoordinates = F2(
 		var half = function (t) {
 			return t.a + ((t.b - t.a) / 2);
 		};
+		var filteredConflicts = A2(
+			$elm$core$List$filter,
+			function (c) {
+				return _Utils_eq(c.year, year);
+			},
+			conflicts);
 		var description = A2(
 			$elm_community$typed_svg$TypedSvg$g,
 			_List_fromArray(
@@ -7835,7 +7841,7 @@ var $author$project$ParallelCoordinates$parallelCoordinates = F2(
 							_List_fromArray(
 								[
 									$author$project$ParallelCoordinates$yAxisFloat(
-									A2($author$project$ParallelCoordinates$values, axisName, conflicts)),
+									A2($author$project$ParallelCoordinates$values, axisName, filteredConflicts)),
 									A2(
 									$elm_community$typed_svg$TypedSvg$text_,
 									_List_fromArray(
@@ -7911,7 +7917,7 @@ var $author$project$ParallelCoordinates$parallelCoordinates = F2(
 			_Utils_ap(
 				achsen,
 				_Utils_ap(
-					$author$project$ParallelCoordinates$drawAllSegments(conflicts),
+					$author$project$ParallelCoordinates$drawAllSegments(filteredConflicts),
 					_List_fromArray(
 						[description]))));
 	});
