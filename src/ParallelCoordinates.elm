@@ -2,6 +2,7 @@ module ParallelCoordinates exposing (..)
 
 import Axis
 import Html exposing (Html)
+import Html.Attributes
 import Scale exposing (ContinuousScale, defaultBandConfig)
 import Statistics
 import TypedSvg exposing (circle, g, rect, style, svg, text_, line, polygon)
@@ -16,7 +17,7 @@ import Conflict
 
 w : Float
 w =
-    900
+    500
 
 
 h : Float
@@ -159,7 +160,12 @@ parallelCoordinates conflicts year =
                 [ text_ [ x -20, y -40 ] [ Html.text (String.concat ["Year: ", (String.fromInt year)]) ]
                 ]
     in
-    svg [ viewBox 0 0 w h, TypedSvg.Attributes.width <| TypedSvg.Types.Percent 100, TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100 ]
+    svg [ viewBox 0 0 w h
+        , TypedSvg.Attributes.width <| TypedSvg.Types.Percent 70
+        , TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100
+        , Html.Attributes.style "display" "block"
+        , Html.Attributes.style "margin" "auto"
+        ]
         (   achsen
             ++
             drawAllSegments conflicts

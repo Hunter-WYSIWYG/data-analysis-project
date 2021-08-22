@@ -50,7 +50,10 @@ view model =
                 ScatterplotView ->
                     Scatterplot.scatterplot model.conflicts (filterConflictsByCountries model.conflicts model.activeCountries)
                 ParallelCoordinatesView year ->
-                    ParallelCoordinates.parallelCoordinates (filterConflictsByCountries model.conflicts model.activeCountries) year
+                    Html.div [ Html.Attributes.style "width" "100%", Html.Attributes.style "height" "100%" ]
+                        [ Html.button [ Html.Attributes.class "button", Html.Events.onClick (ChangeView ScatterplotView) ] [ Html.text "Back" ]
+                        , ParallelCoordinates.parallelCoordinates (filterConflictsByCountries model.conflicts model.activeCountries) year
+                        ]
                 TreeView ->
                     Html.div [] []
         eventTypeList = List.Extra.unique (List.map (.event_type) model.conflicts)

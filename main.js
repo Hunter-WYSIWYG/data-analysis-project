@@ -6291,6 +6291,10 @@ var $author$project$Main$update = F2(
 					$elm$core$Platform$Cmd$none);
 		}
 	});
+var $author$project$Model$ChangeView = function (a) {
+	return {$: 'ChangeView', a: a};
+};
+var $elm$html$Html$button = _VirtualDom_node('button');
 var $elm$json$Json$Encode$string = _Json_wrap;
 var $elm$html$Html$Attributes$stringProperty = F2(
 	function (key, string) {
@@ -6321,6 +6325,23 @@ var $author$project$Main$filterConflictsByCountries = F2(
 			},
 			conflicts);
 	});
+var $elm$virtual_dom$VirtualDom$Normal = function (a) {
+	return {$: 'Normal', a: a};
+};
+var $elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
+var $elm$html$Html$Events$on = F2(
+	function (event, decoder) {
+		return A2(
+			$elm$virtual_dom$VirtualDom$on,
+			event,
+			$elm$virtual_dom$VirtualDom$Normal(decoder));
+	});
+var $elm$html$Html$Events$onClick = function (msg) {
+	return A2(
+		$elm$html$Html$Events$on,
+		'click',
+		$elm$json$Json$Decode$succeed(msg));
+};
 var $elm_community$typed_svg$TypedSvg$Types$AnchorMiddle = {$: 'AnchorMiddle'};
 var $elm_community$typed_svg$TypedSvg$Types$Percent = function (a) {
 	return {$: 'Percent', a: a};
@@ -7148,6 +7169,8 @@ var $elm$core$Tuple$second = function (_v0) {
 	var y = _v0.b;
 	return y;
 };
+var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
+var $elm$html$Html$Attributes$style = $elm$virtual_dom$VirtualDom$style;
 var $elm_community$typed_svg$TypedSvg$svg = $elm_community$typed_svg$TypedSvg$Core$node('svg');
 var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
@@ -7262,7 +7285,7 @@ var $elm_community$typed_svg$TypedSvg$Attributes$viewBox = F4(
 					_List_fromArray(
 						[minX, minY, vWidth, vHeight]))));
 	});
-var $author$project$ParallelCoordinates$w = 900;
+var $author$project$ParallelCoordinates$w = 500;
 var $elm_community$typed_svg$TypedSvg$Attributes$width = function (length) {
 	return A2(
 		$elm_community$typed_svg$TypedSvg$Core$attribute,
@@ -7879,9 +7902,11 @@ var $author$project$ParallelCoordinates$parallelCoordinates = F2(
 				[
 					A4($elm_community$typed_svg$TypedSvg$Attributes$viewBox, 0, 0, $author$project$ParallelCoordinates$w, $author$project$ParallelCoordinates$h),
 					$elm_community$typed_svg$TypedSvg$Attributes$width(
-					$elm_community$typed_svg$TypedSvg$Types$Percent(100)),
+					$elm_community$typed_svg$TypedSvg$Types$Percent(70)),
 					$elm_community$typed_svg$TypedSvg$Attributes$height(
-					$elm_community$typed_svg$TypedSvg$Types$Percent(100))
+					$elm_community$typed_svg$TypedSvg$Types$Percent(100)),
+					A2($elm$html$Html$Attributes$style, 'display', 'block'),
+					A2($elm$html$Html$Attributes$style, 'margin', 'auto')
 				]),
 			_Utils_ap(
 				achsen,
@@ -7896,25 +7921,6 @@ var $author$project$Model$UpdateSelectedCountries = function (a) {
 var $elm$html$Html$input = _VirtualDom_node('input');
 var $elm$html$Html$label = _VirtualDom_node('label');
 var $elm$html$Html$li = _VirtualDom_node('li');
-var $elm$virtual_dom$VirtualDom$Normal = function (a) {
-	return {$: 'Normal', a: a};
-};
-var $elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
-var $elm$html$Html$Events$on = F2(
-	function (event, decoder) {
-		return A2(
-			$elm$virtual_dom$VirtualDom$on,
-			event,
-			$elm$virtual_dom$VirtualDom$Normal(decoder));
-	});
-var $elm$html$Html$Events$onClick = function (msg) {
-	return A2(
-		$elm$html$Html$Events$on,
-		'click',
-		$elm$json$Json$Decode$succeed(msg));
-};
-var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
-var $elm$html$Html$Attributes$style = $elm$virtual_dom$VirtualDom$style;
 var $elm$html$Html$Attributes$type_ = $elm$html$Html$Attributes$stringProperty('type');
 var $author$project$Main$renderCountryCheckboxes = function (countries) {
 	return A2(
@@ -8147,9 +8153,6 @@ var $author$project$Scatterplot$yAxis = function (values) {
 				$gampleman$elm_visualization$Axis$tickCount($author$project$Scatterplot$tickCount)
 			]),
 		$author$project$Scatterplot$yScale(values));
-};
-var $author$project$Model$ChangeView = function (a) {
-	return {$: 'ChangeView', a: a};
 };
 var $author$project$Model$ParallelCoordinatesView = function (a) {
 	return {$: 'ParallelCoordinatesView', a: a};
@@ -8395,9 +8398,31 @@ var $author$project$Main$view = function (model) {
 			case 'ParallelCoordinatesView':
 				var year = _v0.a;
 				return A2(
-					$author$project$ParallelCoordinates$parallelCoordinates,
-					A2($author$project$Main$filterConflictsByCountries, model.conflicts, model.activeCountries),
-					year);
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							A2($elm$html$Html$Attributes$style, 'width', '100%'),
+							A2($elm$html$Html$Attributes$style, 'height', '100%')
+						]),
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$button,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('button'),
+									$elm$html$Html$Events$onClick(
+									$author$project$Model$ChangeView($author$project$Model$ScatterplotView))
+								]),
+							_List_fromArray(
+								[
+									$elm$html$Html$text('Back')
+								])),
+							A2(
+							$author$project$ParallelCoordinates$parallelCoordinates,
+							A2($author$project$Main$filterConflictsByCountries, model.conflicts, model.activeCountries),
+							year)
+						]));
 			default:
 				return A2($elm$html$Html$div, _List_Nil, _List_Nil);
 		}
