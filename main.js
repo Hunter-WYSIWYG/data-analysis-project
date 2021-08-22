@@ -6337,6 +6337,7 @@ var $author$project$Main$filterConflictsByCountries = F2(
 			},
 			conflicts);
 	});
+var $elm$html$Html$h4 = _VirtualDom_node('h4');
 var $elm$virtual_dom$VirtualDom$Normal = function (a) {
 	return {$: 'Normal', a: a};
 };
@@ -8437,7 +8438,8 @@ var $author$project$Main$view = function (model) {
 								[
 									$elm$html$Html$Attributes$class('button'),
 									$elm$html$Html$Events$onClick(
-									$author$project$Model$ChangeView($author$project$Model$ScatterplotView))
+									$author$project$Model$ChangeView($author$project$Model$ScatterplotView)),
+									A2($elm$html$Html$Attributes$style, 'margin-right', '10px')
 								]),
 							_List_fromArray(
 								[
@@ -8520,9 +8522,24 @@ var $author$project$Main$view = function (model) {
 							[
 								A2(
 								$elm$html$Html$div,
-								_List_Nil,
 								_List_fromArray(
 									[
+										A2($elm$html$Html$Attributes$style, 'position', 'absolute'),
+										A2($elm$html$Html$Attributes$style, 'top', '50%'),
+										A2($elm$html$Html$Attributes$style, 'transform', 'translate(0, -50%)')
+									]),
+								_List_fromArray(
+									[
+										A2(
+										$elm$html$Html$h4,
+										_List_fromArray(
+											[
+												$elm$html$Html$Attributes$class('title is-4')
+											]),
+										_List_fromArray(
+											[
+												$elm$html$Html$text('Comparable Countries:')
+											])),
 										A2(
 										$elm$html$Html$ul,
 										_List_Nil,

@@ -58,6 +58,7 @@ view model =
                         [ Html.button
                             [ Html.Attributes.class "button"
                             , Html.Events.onClick (ChangeView ScatterplotView)
+                            , Html.Attributes.style "margin-right" "10px"
                             ] [ Html.text "Back" ]
                         , Html.button
                             [ Html.Attributes.class "button"
@@ -85,9 +86,13 @@ view model =
                 [ conflictView
                 ]
             , Html.div [ Html.Attributes.class "column is-3", Html.Attributes.style "padding" "30px", Html.Attributes.style "background-color" "#fafafa" ]
-                [ Html.div []
-                    [ Html.ul []
-                        (renderCountryCheckboxes (List.sort (List.Extra.unique (List.map (.country) model.conflicts))))
+                [ Html.div 
+                    [ Html.Attributes.style "position" "absolute"
+                    , Html.Attributes.style "top" "50%"
+                    , Html.Attributes.style "transform" "translate(0, -50%)"
+                    ]
+                    [ Html.h4 [ Html.Attributes.class "title is-4" ] [ Html.text "Comparable Countries:" ]
+                    , Html.ul [] (renderCountryCheckboxes (List.sort (List.Extra.unique (List.map (.country) model.conflicts))))
                     ]
                 ]
             , Html.div [ Html.Attributes.class "column is-1 has-background-info" ]
