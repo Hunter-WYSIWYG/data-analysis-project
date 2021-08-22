@@ -240,3 +240,74 @@ dimensionNames =
     , "Fatalities"
     , "Event type"
     ]
+
+eventTypeToInt : String -> Int
+eventTypeToInt eventType =
+    case eventType of
+        "Violence against civilians" -> 1
+        "Battles" -> 2
+        "Explosions/Remote violence" -> 3
+        "Protests" -> 4
+        "Strategic developments" -> 5
+        "Riots" -> 6
+        _ -> 0
+
+intToEventType : Int -> String
+intToEventType eventType =
+    case eventType of
+        1 -> "Violence against civilians"
+        2 -> "Battles"
+        3 -> "Explosions/Remote violence"
+        4 -> "Protests"
+        5 -> "Strategic developments"
+        6 -> "Riots"
+        _ -> "undefined"
+
+dateStringToMonthString : String -> Maybe String
+dateStringToMonthString date =
+    if (String.contains "janvier" date) then Just "Jan" else
+    if (String.contains "février" date) then Just "Feb" else
+    if (String.contains "mars" date) then Just "Mar" else
+    if (String.contains "avril" date) then Just "Apr" else
+    if (String.contains "mai" date) then Just "May" else
+    if (String.contains "juin" date) then Just "June" else
+    if (String.contains "juillet" date) then Just "July" else
+    if (String.contains "août" date) then Just "Aug" else
+    if (String.contains "septembre" date) then Just "Sep" else
+    if (String.contains "octobre" date) then Just "Oct" else
+    if (String.contains "novembre" date) then Just "Nov" else
+    if (String.contains "décembre" date) then Just "Dec" else Nothing
+
+monthToInt : Maybe String -> Int
+monthToInt month =
+    case month of
+        Just "Jan" -> 1
+        Just "Feb" -> 2
+        Just "Mar" -> 3
+        Just "Apr" -> 4
+        Just "May" -> 5
+        Just "June" -> 6
+        Just "July" -> 7
+        Just "Aug" -> 8
+        Just "Sep" -> 9
+        Just "Oct" -> 10
+        Just "Nov" -> 11
+        Just "Dec" -> 12
+        _ -> 0
+
+intToMonth : Int -> String
+intToMonth monthID =
+    case monthID of
+        1 -> "Jan"
+        2 -> "Feb"
+        3 -> "Mar"
+        4 -> "Apr"
+        5 -> "May"
+        6 -> "June"
+        7 -> "July"
+        8 -> "Aug"
+        9 -> "Sep"
+        10 -> "Oct"
+        11 -> "Nov"
+        12 -> "Dec"
+        _ -> "undefined"
