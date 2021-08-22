@@ -11,7 +11,7 @@ initModel : Model
 initModel =
     { viewType = ScatterplotView
     , conflicts = []
-    , scatterplotCountries = []
+    , activeCountries = []
     }
 
 initCmd : Cmd Msg
@@ -26,7 +26,7 @@ initCmd =
 type alias Model =
     { viewType : ViewType
     , conflicts : List Conflict.Conflict
-    , scatterplotCountries : List String
+    , activeCountries : List String
     }
 
 type Msg
