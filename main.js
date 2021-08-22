@@ -6531,6 +6531,16 @@ var $elm_community$typed_svg$TypedSvg$Attributes$y2 = function (position) {
 		'y2',
 		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(position));
 };
+var $author$project$ParallelCoordinates$idList = function (axisName) {
+	switch (axisName) {
+		case 'Month':
+			return A2($elm$core$List$range, 1, 12);
+		case 'Event type':
+			return A2($elm$core$List$range, 1, 6);
+		default:
+			return _List_Nil;
+	}
+};
 var $author$project$ParallelCoordinates$dateStringToMonthString = function (date) {
 	return A2($elm$core$String$contains, 'janvier', date) ? $elm$core$Maybe$Just('Jan') : (A2($elm$core$String$contains, 'février', date) ? $elm$core$Maybe$Just('Feb') : (A2($elm$core$String$contains, 'mars', date) ? $elm$core$Maybe$Just('Mar') : (A2($elm$core$String$contains, 'avril', date) ? $elm$core$Maybe$Just('Apr') : (A2($elm$core$String$contains, 'mai', date) ? $elm$core$Maybe$Just('May') : (A2($elm$core$String$contains, 'juin', date) ? $elm$core$Maybe$Just('June') : (A2($elm$core$String$contains, 'juillet', date) ? $elm$core$Maybe$Just('July') : (A2($elm$core$String$contains, 'août', date) ? $elm$core$Maybe$Just('Aug') : (A2($elm$core$String$contains, 'septembre', date) ? $elm$core$Maybe$Just('Sep') : (A2($elm$core$String$contains, 'octobre', date) ? $elm$core$Maybe$Just('Oct') : (A2($elm$core$String$contains, 'novembre', date) ? $elm$core$Maybe$Just('Nov') : (A2($elm$core$String$contains, 'décembre', date) ? $elm$core$Maybe$Just('Dec') : $elm$core$Maybe$Nothing)))))))))));
 };
@@ -7041,8 +7051,23 @@ var $author$project$ParallelCoordinates$yScaleFloat = function (v) {
 };
 var $author$project$ParallelCoordinates$yScaleLocal = F2(
 	function (key, conflicts) {
-		return $author$project$ParallelCoordinates$yScaleFloat(
-			A2($author$project$ParallelCoordinates$values, key, conflicts));
+		var scaleList = function () {
+			switch (key) {
+				case 'Month':
+					return A2(
+						$elm$core$List$map,
+						$elm$core$Basics$toFloat,
+						$author$project$ParallelCoordinates$idList('Month'));
+				case 'Event type':
+					return A2(
+						$elm$core$List$map,
+						$elm$core$Basics$toFloat,
+						$author$project$ParallelCoordinates$idList('Event type'));
+				default:
+					return A2($author$project$ParallelCoordinates$values, key, conflicts);
+			}
+		}();
+		return $author$project$ParallelCoordinates$yScaleFloat(scaleList);
 	});
 var $author$project$ParallelCoordinates$drawLine = F6(
 	function (key1, key2, value1, value2, conflicts, segmentIndex) {
@@ -7710,68 +7735,66 @@ var $gampleman$elm_visualization$Scale$band = F3(
 			});
 	});
 var $gampleman$elm_visualization$Scale$defaultBandConfig = {align: 0.5, paddingInner: 0.0, paddingOuter: 0.0};
-var $author$project$ParallelCoordinates$yScaleOrdinal = F2(
-	function (valueList, axisName) {
-		var outerPadding = function () {
-			switch (axisName) {
-				case 'Month':
-					return 0.19;
-				case 'Event type':
-					return 0;
-				default:
-					return 0;
-			}
-		}();
-		var innerPadding = function () {
-			switch (axisName) {
-				case 'Month':
-					return 0;
-				case 'Event type':
-					return 0.36;
-				default:
-					return 0;
-			}
-		}();
-		var align = function () {
-			switch (axisName) {
-				case 'Month':
-					return 0.6;
-				case 'Event type':
-					return 0.5;
-				default:
-					return 0;
-			}
-		}();
-		return A3(
-			$gampleman$elm_visualization$Scale$band,
-			_Utils_update(
-				$gampleman$elm_visualization$Scale$defaultBandConfig,
-				{align: align, paddingInner: innerPadding, paddingOuter: outerPadding}),
-			_Utils_Tuple2($author$project$ParallelCoordinates$h - (2 * $author$project$ParallelCoordinates$padding), 0),
-			valueList);
-	});
-var $author$project$ParallelCoordinates$yAxisOrdinal = F2(
-	function (valueList, axisName) {
-		var formatFunction = function () {
-			switch (axisName) {
-				case 'Month':
-					return $author$project$ParallelCoordinates$intToMonth;
-				case 'Event type':
-					return $author$project$ParallelCoordinates$intToEventType;
-				default:
-					return function (j) {
-						return '';
-					};
-			}
-		}();
-		return A2(
-			$gampleman$elm_visualization$Axis$left,
-			_List_Nil,
-			A2(
-				$gampleman$elm_visualization$Scale$toRenderable,
-				formatFunction,
-				A2($author$project$ParallelCoordinates$yScaleOrdinal, valueList, axisName)));
-	});
+var $author$project$ParallelCoordinates$yScaleOrdinal = function (axisName) {
+	var outerPadding = function () {
+		switch (axisName) {
+			case 'Month':
+				return 0.19;
+			case 'Event type':
+				return 0;
+			default:
+				return 0;
+		}
+	}();
+	var innerPadding = function () {
+		switch (axisName) {
+			case 'Month':
+				return 0;
+			case 'Event type':
+				return 0.36;
+			default:
+				return 0;
+		}
+	}();
+	var align = function () {
+		switch (axisName) {
+			case 'Month':
+				return 0.6;
+			case 'Event type':
+				return 0.5;
+			default:
+				return 0;
+		}
+	}();
+	return A3(
+		$gampleman$elm_visualization$Scale$band,
+		_Utils_update(
+			$gampleman$elm_visualization$Scale$defaultBandConfig,
+			{align: align, paddingInner: innerPadding, paddingOuter: outerPadding}),
+		_Utils_Tuple2($author$project$ParallelCoordinates$h - (2 * $author$project$ParallelCoordinates$padding), 0),
+		$author$project$ParallelCoordinates$idList(axisName));
+};
+var $author$project$ParallelCoordinates$yAxisOrdinal = function (axisName) {
+	var formatFunction = function () {
+		switch (axisName) {
+			case 'Month':
+				return $author$project$ParallelCoordinates$intToMonth;
+			case 'Event type':
+				return $author$project$ParallelCoordinates$intToEventType;
+			default:
+				return function (j) {
+					return '';
+				};
+		}
+	}();
+	return A2(
+		$gampleman$elm_visualization$Axis$left,
+		_List_Nil,
+		A2(
+			$gampleman$elm_visualization$Scale$toRenderable,
+			formatFunction,
+			$author$project$ParallelCoordinates$yScaleOrdinal(axisName)));
+};
 var $author$project$ParallelCoordinates$parallelCoordinates = F2(
 	function (conflicts, year) {
 		var half = function (t) {
@@ -7856,18 +7879,6 @@ var $author$project$ParallelCoordinates$parallelCoordinates = F2(
 										]))
 								]));
 					} else {
-						var scaleList = function () {
-							switch (axisName) {
-								case 'Month':
-									return A2($elm$core$List$range, 1, 12);
-								case 'Event type':
-									return A2($elm$core$List$range, 1, 6);
-								case 'Region':
-									return A2($elm$core$List$range, 1, 5);
-								default:
-									return _List_Nil;
-							}
-						}();
 						return A2(
 							$elm_community$typed_svg$TypedSvg$g,
 							_List_fromArray(
@@ -7885,7 +7896,7 @@ var $author$project$ParallelCoordinates$parallelCoordinates = F2(
 								]),
 							_List_fromArray(
 								[
-									A2($author$project$ParallelCoordinates$yAxisOrdinal, scaleList, axisName),
+									$author$project$ParallelCoordinates$yAxisOrdinal(axisName),
 									A2(
 									$elm_community$typed_svg$TypedSvg$text_,
 									_List_fromArray(

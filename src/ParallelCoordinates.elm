@@ -77,8 +77,8 @@ yScaleFloat : List Float -> ContinuousScale Float
 yScaleFloat v =
     Scale.linear ( h - 2 * padding, 0 ) ( wideExtent v )
 
-yAxisOrdinal : List Int -> String -> Svg msg
-yAxisOrdinal valueList axisName =
+yAxisOrdinal : String -> Svg msg
+yAxisOrdinal axisName =
     let
         formatFunction =
             case axisName of
@@ -86,10 +86,10 @@ yAxisOrdinal valueList axisName =
                 "Event type" -> intToEventType
                 _ -> (\j -> "")
     in
-    Axis.left [] (Scale.toRenderable formatFunction (yScaleOrdinal valueList axisName))
+    Axis.left [] (Scale.toRenderable formatFunction (yScaleOrdinal axisName))
 
-yScaleOrdinal : List Int -> String -> Scale.BandScale Int
-yScaleOrdinal valueList axisName =
+yScaleOrdinal : String -> Scale.BandScale Int
+yScaleOrdinal axisName =
     let
         outerPadding =
             case axisName of
@@ -109,7 +109,7 @@ yScaleOrdinal valueList axisName =
                 "Event type" -> 0.5
                 _ -> 0
     in
-    Scale.band { defaultBandConfig | paddingInner = innerPadding, paddingOuter = outerPadding, align = align } ( h - 2 * padding, 0 ) valueList
+    Scale.band { defaultBandConfig | paddingInner = innerPadding, paddingOuter = outerPadding, align = align } ( h - 2 * padding, 0 ) (idList axisName)
 
 parallelCoordinates : List Conflict.Conflict -> Int -> Svg msg
 parallelCoordinates conflicts year =
@@ -135,20 +135,12 @@ parallelCoordinates conflicts year =
                                 , text_ [ x 0, y (-20), textAnchor AnchorMiddle ] [ Html.text axisName ]
                                 ]
                         _ ->
-                            let
-                                scaleList =
-                                    case axisName of
-                                        "Month" -> List.range 1 12
-                                        "Event type" -> List.range 1 6
-                                        "Region" -> List.range 1 5
-                                        _ -> []
-                            in
                             g
                                 [ transform [ Translate (padding + ((toFloat i)*segmentDistance) - 1) (padding - 1) ]
                                 , fontSize <| Px 15.0
                                 , fontFamily [ "sans-serif" ]
                                 ]
-                                [ yAxisOrdinal scaleList axisName
+                                [ yAxisOrdinal axisName
                                 , text_ [ x 0, y (-20), textAnchor AnchorMiddle ] [ Html.text axisName ]
                                 ]
                 )
@@ -224,7 +216,14 @@ drawLine key1 key2 value1 value2 conflicts segmentIndex =
 
 yScaleLocal : String -> List Conflict.Conflict -> ContinuousScale Float
 yScaleLocal key conflicts =
-    yScaleFloat (values key conflicts)
+    let
+        scaleList =
+            case key of
+                "Month" -> List.map (toFloat) (idList "Month")
+                "Event type" -> List.map (toFloat) (idList "Event type")
+                _ -> values key conflicts
+    in
+    yScaleFloat scaleList
 
 values : String -> List Conflict.Conflict -> List Float
 values key conflicts =
@@ -249,6 +248,13 @@ dimensionNames =
     , "Fatalities"
     , "Event type"
     ]
+
+idList : String -> List Int
+idList axisName =
+    case axisName of
+        "Month" -> List.range 1 12
+        "Event type" -> List.range 1 6
+        _ -> []
 
 eventTypeToInt : String -> Int
 eventTypeToInt eventType =
