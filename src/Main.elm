@@ -48,7 +48,7 @@ view model =
         conflictView =
             case model.viewType of
                 ScatterplotView ->
-                    Scatterplot.scatterplot model.conflicts (filterConflictsByCountries model.conflicts model.activeCountries)
+                    Scatterplot.scatterplot (filterConflictsByCountries model.conflicts model.activeCountries)
                 ParallelCoordinatesView year ->
                     Html.div [ Html.Attributes.style "width" "100%", Html.Attributes.style "height" "100%" ]
                         [ Html.button [ Html.Attributes.class "button", Html.Events.onClick (ChangeView ScatterplotView) ] [ Html.text "Back" ]

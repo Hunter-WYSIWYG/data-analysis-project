@@ -8236,150 +8236,149 @@ var $author$project$Scatterplot$yearSelectionBox = F3(
 						]))
 				]));
 	});
-var $author$project$Scatterplot$scatterplot = F2(
-	function (allConflicts, filteredConflicts) {
-		var yValues = A2(
-			$elm$core$List$map,
-			function (c) {
-				return c.fatalities;
-			},
-			allConflicts);
-		var yScaleLocal = $author$project$Scatterplot$yScale(yValues);
-		var xValues = A2(
-			$elm$core$List$map,
-			function (c) {
-				return c.year;
-			},
-			allConflicts);
-		var xScaleLocal = $author$project$Scatterplot$xScale(xValues);
-		var kreisbeschriftung = '';
-		var half = function (t) {
-			return t.a + ((t.b - t.a) / 2);
-		};
-		var labelPositions = {
-			x: half(
-				$author$project$Scatterplot$wideExtent(xValues)),
-			y: $author$project$Scatterplot$wideExtent(yValues).b
-		};
-		return A2(
-			$elm_community$typed_svg$TypedSvg$svg,
-			_List_fromArray(
-				[
-					A4($elm_community$typed_svg$TypedSvg$Attributes$viewBox, 0, 0, $author$project$Scatterplot$w, $author$project$Scatterplot$h),
-					$elm_community$typed_svg$TypedSvg$Attributes$width(
-					$elm_community$typed_svg$TypedSvg$Types$Percent(100)),
-					$elm_community$typed_svg$TypedSvg$Attributes$height(
-					$elm_community$typed_svg$TypedSvg$Types$Percent(100))
-				]),
-			_List_fromArray(
-				[
-					A2(
-					$elm_community$typed_svg$TypedSvg$style,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Core$text('\r\n                .point circle { stroke: rgba(0, 0, 0, 0.4); fill: rgba(255, 255, 255,0.3); }\r\n                .yearSelection rect { stroke: rgba(0, 0, 0, 0); fill: rgba(255, 255, 255, 0.0); }\r\n                .yearSelection:hover rect { stroke: rgba(0, 0, 0, 1); fill: rgba(255, 255, 255, 0.5); cursor: pointer; }\r\n                .yearSelection text { display: none; }\r\n                .yearSelection:hover text { display: inline; font-size: calc(1em - 5px); font-weight: 400; line-height: 1.5; cursor: pointer; }\r\n                .yearSelection:hover .textBox { fill: rgba(255, 255, 255, 1); }\r\n                ')
-						])),
-					A2(
-					$elm_community$typed_svg$TypedSvg$g,
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Attributes$transform(
-							_List_fromArray(
-								[
-									A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Scatterplot$padding - 1, $author$project$Scatterplot$h - $author$project$Scatterplot$padding)
-								])),
-							$elm_community$typed_svg$TypedSvg$Attributes$fontSize(
-							$elm_community$typed_svg$TypedSvg$Types$Px(15.0)),
-							$elm_community$typed_svg$TypedSvg$Attributes$fontFamily(
-							_List_fromArray(
-								['sans-serif']))
-						]),
-					_List_fromArray(
-						[
-							$author$project$Scatterplot$xAxis(xValues),
-							A2(
-							$elm_community$typed_svg$TypedSvg$text_,
-							_List_fromArray(
-								[
-									$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(
-									A2($gampleman$elm_visualization$Scale$convert, xScaleLocal, labelPositions.x)),
-									$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(30),
-									$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle)
-								]),
-							_List_fromArray(
-								[
-									$elm$html$Html$text('Year')
-								]))
-						])),
-					A2(
-					$elm_community$typed_svg$TypedSvg$g,
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Attributes$transform(
-							_List_fromArray(
-								[
-									A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Scatterplot$padding - 1, $author$project$Scatterplot$padding)
-								])),
-							$elm_community$typed_svg$TypedSvg$Attributes$fontSize(
-							$elm_community$typed_svg$TypedSvg$Types$Px(15.0)),
-							$elm_community$typed_svg$TypedSvg$Attributes$fontFamily(
-							_List_fromArray(
-								['sans-serif']))
-						]),
-					_List_fromArray(
-						[
-							$author$project$Scatterplot$yAxis(yValues),
-							A2(
-							$elm_community$typed_svg$TypedSvg$text_,
-							_List_fromArray(
-								[
-									$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(0),
-									$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(
-									A2($gampleman$elm_visualization$Scale$convert, yScaleLocal, labelPositions.y) - ($author$project$Scatterplot$padding / 3)),
-									$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle)
-								]),
-							_List_fromArray(
-								[
-									$elm$html$Html$text('Fatalities')
-								]))
-						])),
-					A2(
-					$elm_community$typed_svg$TypedSvg$g,
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Attributes$transform(
-							_List_fromArray(
-								[
-									A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Scatterplot$padding, $author$project$Scatterplot$padding)
-								]))
-						]),
-					A2(
-						$elm$core$List$map,
-						A2($author$project$Scatterplot$point, xScaleLocal, yScaleLocal),
-						filteredConflicts)),
-					A2(
-					$elm_community$typed_svg$TypedSvg$g,
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Attributes$transform(
-							_List_fromArray(
-								[
-									A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Scatterplot$padding, $author$project$Scatterplot$padding)
-								]))
-						]),
-					A2(
-						$elm$core$List$map,
-						A2($author$project$Scatterplot$yearSelectionBox, xScaleLocal, yScaleLocal),
-						$elm_community$list_extra$List$Extra$unique(
-							A2(
-								$elm$core$List$map,
-								function ($) {
-									return $.year;
-								},
-								filteredConflicts))))
-				]));
-	});
+var $author$project$Scatterplot$scatterplot = function (filteredConflicts) {
+	var yValues = A2(
+		$elm$core$List$map,
+		function (c) {
+			return c.fatalities;
+		},
+		filteredConflicts);
+	var yScaleLocal = $author$project$Scatterplot$yScale(yValues);
+	var xValues = A2(
+		$elm$core$List$map,
+		function (c) {
+			return c.year;
+		},
+		filteredConflicts);
+	var xScaleLocal = $author$project$Scatterplot$xScale(xValues);
+	var kreisbeschriftung = '';
+	var half = function (t) {
+		return t.a + ((t.b - t.a) / 2);
+	};
+	var labelPositions = {
+		x: half(
+			$author$project$Scatterplot$wideExtent(xValues)),
+		y: $author$project$Scatterplot$wideExtent(yValues).b
+	};
+	return A2(
+		$elm_community$typed_svg$TypedSvg$svg,
+		_List_fromArray(
+			[
+				A4($elm_community$typed_svg$TypedSvg$Attributes$viewBox, 0, 0, $author$project$Scatterplot$w, $author$project$Scatterplot$h),
+				$elm_community$typed_svg$TypedSvg$Attributes$width(
+				$elm_community$typed_svg$TypedSvg$Types$Percent(100)),
+				$elm_community$typed_svg$TypedSvg$Attributes$height(
+				$elm_community$typed_svg$TypedSvg$Types$Percent(100))
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$elm_community$typed_svg$TypedSvg$style,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$elm_community$typed_svg$TypedSvg$Core$text('\r\n                .point circle { stroke: rgba(0, 0, 0, 0.4); fill: rgba(255, 255, 255,0.3); }\r\n                .yearSelection rect { stroke: rgba(0, 0, 0, 0); fill: rgba(255, 255, 255, 0.0); }\r\n                .yearSelection:hover rect { stroke: rgba(0, 0, 0, 1); fill: rgba(255, 255, 255, 0.5); cursor: pointer; }\r\n                .yearSelection text { display: none; }\r\n                .yearSelection:hover text { display: inline; font-size: calc(1em - 5px); font-weight: 400; line-height: 1.5; cursor: pointer; }\r\n                .yearSelection:hover .textBox { fill: rgba(255, 255, 255, 1); }\r\n                ')
+					])),
+				A2(
+				$elm_community$typed_svg$TypedSvg$g,
+				_List_fromArray(
+					[
+						$elm_community$typed_svg$TypedSvg$Attributes$transform(
+						_List_fromArray(
+							[
+								A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Scatterplot$padding - 1, $author$project$Scatterplot$h - $author$project$Scatterplot$padding)
+							])),
+						$elm_community$typed_svg$TypedSvg$Attributes$fontSize(
+						$elm_community$typed_svg$TypedSvg$Types$Px(15.0)),
+						$elm_community$typed_svg$TypedSvg$Attributes$fontFamily(
+						_List_fromArray(
+							['sans-serif']))
+					]),
+				_List_fromArray(
+					[
+						$author$project$Scatterplot$xAxis(xValues),
+						A2(
+						$elm_community$typed_svg$TypedSvg$text_,
+						_List_fromArray(
+							[
+								$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(
+								A2($gampleman$elm_visualization$Scale$convert, xScaleLocal, labelPositions.x)),
+								$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(30),
+								$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle)
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text('Year')
+							]))
+					])),
+				A2(
+				$elm_community$typed_svg$TypedSvg$g,
+				_List_fromArray(
+					[
+						$elm_community$typed_svg$TypedSvg$Attributes$transform(
+						_List_fromArray(
+							[
+								A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Scatterplot$padding - 1, $author$project$Scatterplot$padding)
+							])),
+						$elm_community$typed_svg$TypedSvg$Attributes$fontSize(
+						$elm_community$typed_svg$TypedSvg$Types$Px(15.0)),
+						$elm_community$typed_svg$TypedSvg$Attributes$fontFamily(
+						_List_fromArray(
+							['sans-serif']))
+					]),
+				_List_fromArray(
+					[
+						$author$project$Scatterplot$yAxis(yValues),
+						A2(
+						$elm_community$typed_svg$TypedSvg$text_,
+						_List_fromArray(
+							[
+								$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(0),
+								$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(
+								A2($gampleman$elm_visualization$Scale$convert, yScaleLocal, labelPositions.y) - ($author$project$Scatterplot$padding / 3)),
+								$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle)
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text('Fatalities')
+							]))
+					])),
+				A2(
+				$elm_community$typed_svg$TypedSvg$g,
+				_List_fromArray(
+					[
+						$elm_community$typed_svg$TypedSvg$Attributes$transform(
+						_List_fromArray(
+							[
+								A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Scatterplot$padding, $author$project$Scatterplot$padding)
+							]))
+					]),
+				A2(
+					$elm$core$List$map,
+					A2($author$project$Scatterplot$point, xScaleLocal, yScaleLocal),
+					filteredConflicts)),
+				A2(
+				$elm_community$typed_svg$TypedSvg$g,
+				_List_fromArray(
+					[
+						$elm_community$typed_svg$TypedSvg$Attributes$transform(
+						_List_fromArray(
+							[
+								A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Scatterplot$padding, $author$project$Scatterplot$padding)
+							]))
+					]),
+				A2(
+					$elm$core$List$map,
+					A2($author$project$Scatterplot$yearSelectionBox, xScaleLocal, yScaleLocal),
+					$elm_community$list_extra$List$Extra$unique(
+						A2(
+							$elm$core$List$map,
+							function ($) {
+								return $.year;
+							},
+							filteredConflicts))))
+			]));
+};
 var $elm$core$List$sortBy = _List_sortBy;
 var $elm$core$List$sort = function (xs) {
 	return A2($elm$core$List$sortBy, $elm$core$Basics$identity, xs);
@@ -8397,9 +8396,7 @@ var $author$project$Main$view = function (model) {
 		var _v0 = model.viewType;
 		switch (_v0.$) {
 			case 'ScatterplotView':
-				return A2(
-					$author$project$Scatterplot$scatterplot,
-					model.conflicts,
+				return $author$project$Scatterplot$scatterplot(
 					A2($author$project$Main$filterConflictsByCountries, model.conflicts, model.activeCountries));
 			case 'ParallelCoordinatesView':
 				var year = _v0.a;

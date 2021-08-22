@@ -16,8 +16,8 @@ import Conflict
 import Model exposing (Msg(..), ViewType(..))
 import Html.Events
 
-scatterplot : List Conflict.Conflict -> List Conflict.Conflict -> Svg Msg
-scatterplot allConflicts filteredConflicts =
+scatterplot : List Conflict.Conflict -> Svg Msg
+scatterplot filteredConflicts =
     let
         kreisbeschriftung : String
         kreisbeschriftung =
@@ -25,11 +25,11 @@ scatterplot allConflicts filteredConflicts =
 
         xValues : List Float
         xValues =
-            List.map (\c -> c.year |> toFloat) allConflicts
+            List.map (\c -> c.year |> toFloat) filteredConflicts
     
         yValues : List Float
         yValues =
-            List.map (\c -> c.fatalities |> toFloat) allConflicts
+            List.map (\c -> c.fatalities |> toFloat) filteredConflicts
 
         xScaleLocal : ContinuousScale Float
         xScaleLocal =
