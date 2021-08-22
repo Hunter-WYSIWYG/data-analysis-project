@@ -64,3 +64,14 @@ wideExtent v =
             padExtent
             (Statistics.extent v)
         )
+
+yAxisFloat : List Float -> Svg msg
+yAxisFloat v =
+    Axis.left
+        [ Axis.tickCount tickCount
+        ]
+        (yScaleFloat v)
+
+yScaleFloat : List Float -> ContinuousScale Float
+yScaleFloat v =
+    Scale.linear ( h - 2 * padding, 0 ) ( wideExtent v )
