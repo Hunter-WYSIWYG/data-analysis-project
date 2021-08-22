@@ -212,3 +212,7 @@ drawLine key1 key2 value1 value2 conflicts segmentIndex =
         , stroke <| Paint <| Color.rgba 0 0 0 1
         ]
         []
+
+yScaleLocal : String -> List Conflict.Conflict -> ContinuousScale Float
+yScaleLocal key conflicts =
+    yScaleFloat (values key conflicts)
