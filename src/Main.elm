@@ -50,8 +50,25 @@ view model =
                 ScatterplotView ->
                     Scatterplot.scatterplot (filterConflictsByCountries model.conflicts model.activeCountries)
                 ParallelCoordinatesView year ->
+                    let
+                        previousDisabled = year==1997
+                        nextDisabled = year==2021
+                    in
                     Html.div [ Html.Attributes.style "width" "100%", Html.Attributes.style "height" "100%" ]
-                        [ Html.button [ Html.Attributes.class "button", Html.Events.onClick (ChangeView ScatterplotView) ] [ Html.text "Back" ]
+                        [ Html.button
+                            [ Html.Attributes.class "button"
+                            , Html.Events.onClick (ChangeView ScatterplotView)
+                            ] [ Html.text "Back" ]
+                        , Html.button
+                            [ Html.Attributes.class "button"
+                            , Html.Events.onClick (ChangeView (ParallelCoordinatesView (year-1)))
+                            , Html.Attributes.disabled previousDisabled
+                            ] [ Html.text "Previous Year" ]
+                        , Html.button
+                            [ Html.Attributes.class "button"
+                            , Html.Events.onClick (ChangeView (ParallelCoordinatesView (year+1)))
+                            , Html.Attributes.disabled nextDisabled
+                            ] [ Html.text "Next Year" ]
                         , ParallelCoordinates.parallelCoordinates (filterConflictsByCountries model.conflicts model.activeCountries) year
                         ]
                 TreeView ->

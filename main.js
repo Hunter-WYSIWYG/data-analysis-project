@@ -6294,6 +6294,9 @@ var $author$project$Main$update = F2(
 var $author$project$Model$ChangeView = function (a) {
 	return {$: 'ChangeView', a: a};
 };
+var $author$project$Model$ParallelCoordinatesView = function (a) {
+	return {$: 'ParallelCoordinatesView', a: a};
+};
 var $elm$html$Html$button = _VirtualDom_node('button');
 var $elm$json$Json$Encode$string = _Json_wrap;
 var $elm$html$Html$Attributes$stringProperty = F2(
@@ -6304,6 +6307,15 @@ var $elm$html$Html$Attributes$stringProperty = F2(
 			$elm$json$Json$Encode$string(string));
 	});
 var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
+var $elm$json$Json$Encode$bool = _Json_wrap;
+var $elm$html$Html$Attributes$boolProperty = F2(
+	function (key, bool) {
+		return A2(
+			_VirtualDom_property,
+			key,
+			$elm$json$Json$Encode$bool(bool));
+	});
+var $elm$html$Html$Attributes$disabled = $elm$html$Html$Attributes$boolProperty('disabled');
 var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$core$List$filter = F2(
 	function (isGood, list) {
@@ -8171,9 +8183,6 @@ var $author$project$Scatterplot$yAxis = function (values) {
 			]),
 		$author$project$Scatterplot$yScale(values));
 };
-var $author$project$Model$ParallelCoordinatesView = function (a) {
-	return {$: 'ParallelCoordinatesView', a: a};
-};
 var $elm_community$typed_svg$TypedSvg$Attributes$InPx$height = function (value) {
 	return $elm_community$typed_svg$TypedSvg$Attributes$height(
 		$elm_community$typed_svg$TypedSvg$Types$px(value));
@@ -8411,6 +8420,8 @@ var $author$project$Main$view = function (model) {
 					A2($author$project$Main$filterConflictsByCountries, model.conflicts, model.activeCountries));
 			case 'ParallelCoordinatesView':
 				var year = _v0.a;
+				var previousDisabled = year === 1997;
+				var nextDisabled = year === 2021;
 				return A2(
 					$elm$html$Html$div,
 					_List_fromArray(
@@ -8431,6 +8442,34 @@ var $author$project$Main$view = function (model) {
 							_List_fromArray(
 								[
 									$elm$html$Html$text('Back')
+								])),
+							A2(
+							$elm$html$Html$button,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('button'),
+									$elm$html$Html$Events$onClick(
+									$author$project$Model$ChangeView(
+										$author$project$Model$ParallelCoordinatesView(year - 1))),
+									$elm$html$Html$Attributes$disabled(previousDisabled)
+								]),
+							_List_fromArray(
+								[
+									$elm$html$Html$text('Previous Year')
+								])),
+							A2(
+							$elm$html$Html$button,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('button'),
+									$elm$html$Html$Events$onClick(
+									$author$project$Model$ChangeView(
+										$author$project$Model$ParallelCoordinatesView(year + 1))),
+									$elm$html$Html$Attributes$disabled(nextDisabled)
+								]),
+							_List_fromArray(
+								[
+									$elm$html$Html$text('Next Year')
 								])),
 							A2(
 							$author$project$ParallelCoordinates$parallelCoordinates,
