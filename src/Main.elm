@@ -44,6 +44,17 @@ subscriptions _ =
 
 view : Model -> Browser.Document Msg
 view model =
+    let
+        conflictView =
+            case model.viewType of
+                ScatterplotView ->
+                    Scatterplot.scatterplot model.conflicts (filterConflictsByCountries model.conflicts model.activeCountries)
+                ParallelCoordinatesView year ->
+                    ParallelCoordinates.parallelCoordinates (filterConflictsByCountries model.conflicts model.activeCountries) year
+                TreeView ->
+                    Html.div [] []
+        eventTypeList = List.Extra.unique (List.map (.event_type) model.conflicts)
+    in
     { title = "IRuV-Project"
     , body =
         [ Html.div
@@ -51,12 +62,12 @@ view model =
             [ Html.div [ Html.Attributes.class "column is-1 has-background-info" ]
                 []
             , Html.div [ Html.Attributes.class "column is-7", Html.Attributes.style "padding" "30px" ]
-                [ Scatterplot.scatterplot model.conflicts (Scatterplot.filterConflictForCountries model.conflicts model.activeCountries)
+                [ conflictView
                 ]
             , Html.div [ Html.Attributes.class "column is-3", Html.Attributes.style "padding" "30px", Html.Attributes.style "background-color" "#fafafa" ]
                 [ Html.div []
                     [ Html.ul []
-                        (Scatterplot.renderCountryCheckboxes (List.sort (List.Extra.unique (List.map (.country) model.conflicts))))
+                        (renderCountryCheckboxes (List.sort (List.Extra.unique (List.map (.country) model.conflicts))))
                     ]
                 ]
             , Html.div [ Html.Attributes.class "column is-1 has-background-info" ]
@@ -65,9 +76,26 @@ view model =
         ]
     }
 
+filterConflictsByCountries : List Conflict.Conflict -> List String -> List Conflict.Conflict
+filterConflictsByCountries conflicts countries =
+    List.filter (\conflict -> (List.member conflict.country countries)) conflicts
+
 newCountries : List String -> String -> List String
 newCountries oldCountries newCountry =
     if (List.member newCountry oldCountries) then
         List.Extra.remove newCountry oldCountries
     else
         newCountry::oldCountries
+
+renderCountryCheckboxes : List String -> List (Html.Html Msg)
+renderCountryCheckboxes countries =
+    List.map
+        (\c ->
+            Html.li []
+                [ Html.label [ Html.Attributes.class "checkbox", Html.Events.onClick (UpdateSelectedCountries c) ]
+                    [ Html.input [ Html.Attributes.type_ "checkbox", Html.Attributes.style "margin-right" "5px" ] []
+                    ]
+                , Html.text c
+                ]
+        )
+        countries
