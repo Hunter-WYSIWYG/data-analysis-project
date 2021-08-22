@@ -183,27 +183,3 @@ radius =
 tickCount : Int
 tickCount =
     5
-
-newScatterplotCountries : List String -> String -> List String
-newScatterplotCountries oldCountries newCountry =
-    if (List.member newCountry oldCountries) then
-        List.Extra.remove newCountry oldCountries
-    else
-        newCountry::oldCountries
-
-filterConflictForCountries : List Conflict.Conflict -> List String -> List Conflict.Conflict
-filterConflictForCountries conflicts countries =
-    List.filter (\conflict -> (List.member conflict.country countries)) conflicts
-
-renderCountryCheckboxes : List String -> List (Html.Html Msg)
-renderCountryCheckboxes countries =
-    List.map
-        (\c ->
-            Html.li []
-                [ Html.label [ Html.Attributes.class "checkbox", Html.Events.onClick (UpdateSelectedCountries c) ]
-                    [ Html.input [ Html.Attributes.type_ "checkbox", Html.Attributes.style "margin-right" "5px" ] []
-                    ]
-                , Html.text c
-                ]
-        )
-        countries
