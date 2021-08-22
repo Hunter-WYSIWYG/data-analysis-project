@@ -216,3 +216,20 @@ drawLine key1 key2 value1 value2 conflicts segmentIndex =
 yScaleLocal : String -> List Conflict.Conflict -> ContinuousScale Float
 yScaleLocal key conflicts =
     yScaleFloat (values key conflicts)
+
+values : String -> List Conflict.Conflict -> List Float
+values key conflicts =
+    case key of
+        "Event type" ->
+            List.map
+                (\c -> toFloat (eventTypeToInt c.event_type))
+                conflicts
+        "Fatalities" ->
+            List.map
+                (\c -> toFloat c.fatalities)
+                conflicts
+        "Month" ->
+                List.map
+                (\c -> toFloat (monthToInt (dateStringToMonthString c.event_date)))
+                conflicts
+        _ -> []
