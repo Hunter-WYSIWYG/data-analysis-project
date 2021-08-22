@@ -233,3 +233,10 @@ values key conflicts =
                 (\c -> toFloat (monthToInt (dateStringToMonthString c.event_date)))
                 conflicts
         _ -> []
+
+dimensionNames : List String
+dimensionNames =
+    [ "Month"
+    , "Fatalities"
+    , "Event type"
+    ]
