@@ -13,7 +13,7 @@ import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Transform(..))
 import List.Extra
 
 import Conflict
-import Model exposing (Msg(..), ViewType(..))
+import Model exposing (Msg(..), MainViewType(..))
 import Html.Events
 
 scatterplot : List Conflict.Conflict -> Svg Msg

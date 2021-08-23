@@ -24,7 +24,7 @@ initCmd =
         ]
 
 type alias Model =
-    { viewType : ViewType
+    { viewType : MainViewType
     , conflicts : List Conflict.Conflict
     , activeCountries : List String
     }
@@ -32,14 +32,13 @@ type alias Model =
 type Msg
     = GotData (Result Http.Error (List (Conflict.Conflict)))
     | UpdateSelectedCountries String
-    | ChangeView ViewType
+    | ChangeView MainViewType
 
-type ViewType
+type MainViewType
     = ScatterplotView
     | ParallelCoordinatesView Int
-    | TreeView 
 
-type TreeViewType
+type FilterViewType
     = Region
     | Country
     | Location
