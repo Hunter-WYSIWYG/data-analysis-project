@@ -6344,11 +6344,11 @@ var $author$project$Main$update = F2(
 						{mainViewType: newViewType}),
 					$elm$core$Platform$Cmd$none);
 			case 'ChangeFilterView':
-				var newFilterView = msg.a;
+				var newFilterType = msg.a;
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{filterViewType: newFilterView}),
+						{filterViewType: newFilterType}),
 					$elm$core$Platform$Cmd$none);
 			default:
 				var maybeNewFilterType = msg.a;
@@ -6365,7 +6365,7 @@ var $author$project$Main$update = F2(
 					return _Utils_Tuple2(
 						_Utils_update(
 							model,
-							{activeFilter: newActiveFilter3}),
+							{activeFilter: newActiveFilter3, filterViewType: newFilterType}),
 						$elm$core$Platform$Cmd$none);
 				} else {
 					return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
@@ -9393,18 +9393,14 @@ var $author$project$Main$view = function (model) {
 							[
 								$elm$html$Html$Attributes$class('column is-3'),
 								A2($elm$html$Html$Attributes$style, 'padding', '30px'),
-								A2($elm$html$Html$Attributes$style, 'background-color', '#fafafa')
+								A2($elm$html$Html$Attributes$style, 'background-color', '#fafafa'),
+								A2($elm$html$Html$Attributes$style, 'overflow-y', 'scroll')
 							]),
 						_List_fromArray(
 							[
 								A2(
 								$elm$html$Html$div,
-								_List_fromArray(
-									[
-										A2($elm$html$Html$Attributes$style, 'position', 'absolute'),
-										A2($elm$html$Html$Attributes$style, 'top', '50%'),
-										A2($elm$html$Html$Attributes$style, 'transform', 'translate(0, -50%)')
-									]),
+								_List_Nil,
 								_List_fromArray(
 									[
 										A2(

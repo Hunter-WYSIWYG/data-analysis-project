@@ -41,8 +41,8 @@ update msg model =
         ChangeMainView newViewType ->
             ( { model | mainViewType = newViewType }, Cmd.none )
 
-        ChangeFilterView newFilterView ->
-            ( { model | filterViewType = newFilterView }, Cmd.none )
+        ChangeFilterView newFilterType ->
+            ( { model | filterViewType = newFilterType }, Cmd.none )
 
         UpdateActiveFilter maybeNewFilterType geoLocation ->
             case maybeNewFilterType of
@@ -52,7 +52,7 @@ update msg model =
                         newActiveFilter2 = if (List.isEmpty newActiveFilter1.countries) then { newActiveFilter1 | locations = [] } else newActiveFilter1
                         newActiveFilter3 = if (List.isEmpty newActiveFilter2.regions) then { newActiveFilter2 | countries = [], locations = [] } else newActiveFilter2
                     in
-                    ( { model | activeFilter = newActiveFilter3 }, Cmd.none)
+                    ( { model | activeFilter = newActiveFilter3, filterViewType = newFilterType }, Cmd.none)
                 Nothing ->
                     ( model, Cmd.none )
 
@@ -101,12 +101,13 @@ view model =
             , Html.div [ Html.Attributes.class "column is-7", Html.Attributes.style "padding" "30px" ]
                 [ conflictView
                 ]
-            , Html.div [ Html.Attributes.class "column is-3", Html.Attributes.style "padding" "30px", Html.Attributes.style "background-color" "#fafafa" ]
-                [ Html.div 
-                    [ Html.Attributes.style "position" "absolute"
-                    , Html.Attributes.style "top" "50%"
-                    , Html.Attributes.style "transform" "translate(0, -50%)"
-                    ]
+            , Html.div
+                [ Html.Attributes.class "column is-3"
+                , Html.Attributes.style "padding" "30px"
+                , Html.Attributes.style "background-color" "#fafafa"
+                , Html.Attributes.style "overflow-y" "scroll"
+                ]
+                [ Html.div []
                     [ Html.h4 [ Html.Attributes.class "title is-4" ] [ Html.text "Geographical Filter:" ]
                     , Html.nav
                         [ Html.Attributes.class "breadcrumb has-arrow-separator", Html.Attributes.attribute "aria-label" "breadcrumbs" ]
