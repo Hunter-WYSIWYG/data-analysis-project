@@ -6513,6 +6513,13 @@ var $author$project$Main$getTreeData = function (model) {
 	}
 };
 var $elm$html$Html$h4 = _VirtualDom_node('h4');
+var $elm$core$List$isEmpty = function (xs) {
+	if (!xs.b) {
+		return true;
+	} else {
+		return false;
+	}
+};
 var $elm$html$Html$li = _VirtualDom_node('li');
 var $elm$html$Html$nav = _VirtualDom_node('nav');
 var $elm$virtual_dom$VirtualDom$Normal = function (a) {
@@ -9344,7 +9351,11 @@ var $author$project$Main$view = function (model) {
 															])),
 														A2(
 														$elm$html$Html$li,
-														_List_Nil,
+														_List_fromArray(
+															[
+																$elm$html$Html$Attributes$class(
+																$elm$core$List$isEmpty(model.activeFilter.regions) ? 'is-active' : '')
+															]),
 														_List_fromArray(
 															[
 																A2(
@@ -9361,7 +9372,11 @@ var $author$project$Main$view = function (model) {
 															])),
 														A2(
 														$elm$html$Html$li,
-														_List_Nil,
+														_List_fromArray(
+															[
+																$elm$html$Html$Attributes$class(
+																$elm$core$List$isEmpty(model.activeFilter.countries) ? 'is-active' : '')
+															]),
 														_List_fromArray(
 															[
 																A2(

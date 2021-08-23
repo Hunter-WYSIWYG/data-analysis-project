@@ -104,12 +104,12 @@ view model =
                                     [ Html.Events.onClick (ChangeFilterView Region) ]
                                     [ Html.text "Filter Region" ]
                                 ]
-                            , Html.li []
+                            , Html.li [ Html.Attributes.class (if List.isEmpty (model.activeFilter.regions) then "is-active" else "") ]
                                 [ Html.a
-                                    [ Html.Events.onClick (ChangeFilterView Country) ]
+                                    [ Html.Events.onClick (ChangeFilterView Country)]
                                     [ Html.text "Filter Country" ]
                                 ]
-                            , Html.li []
+                            , Html.li [ Html.Attributes.class (if List.isEmpty (model.activeFilter.countries) then "is-active" else "") ]
                                 [ Html.a
                                     [ Html.Events.onClick (ChangeFilterView Location) ]
                                     [ Html.text "Filter Location" ]
