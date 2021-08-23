@@ -8,6 +8,13 @@ import TreeDiagram.Svg exposing (draw)
 
 import Model exposing (Msg(..))
 
+renderTree : String -> List String -> Svg Msg
+renderTree root nodes =
+    let
+        tree = buildTree root nodes
+    in
+    draw { defaultTreeLayout | orientation = leftToRight } drawNode drawLine tree
+
 buildTree : String -> List String -> Tree String
 buildTree root nodes =
     node
