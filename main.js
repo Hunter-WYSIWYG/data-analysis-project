@@ -6218,6 +6218,13 @@ var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
 var $author$project$Main$subscriptions = function (_v0) {
 	return $elm$core$Platform$Sub$none;
 };
+var $elm$core$List$isEmpty = function (xs) {
+	if (!xs.b) {
+		return true;
+	} else {
+		return false;
+	}
+};
 var $elm$core$List$any = F2(
 	function (isOkay, list) {
 		any:
@@ -6348,12 +6355,17 @@ var $author$project$Main$update = F2(
 				var geoLocation = msg.b;
 				if (maybeNewFilterType.$ === 'Just') {
 					var newFilterType = maybeNewFilterType.a;
+					var newActiveFilter1 = A3($author$project$Main$newFilter, model.activeFilter, newFilterType, geoLocation);
+					var newActiveFilter2 = $elm$core$List$isEmpty(newActiveFilter1.countries) ? _Utils_update(
+						newActiveFilter1,
+						{locations: _List_Nil}) : newActiveFilter1;
+					var newActiveFilter3 = $elm$core$List$isEmpty(newActiveFilter2.regions) ? _Utils_update(
+						newActiveFilter2,
+						{countries: _List_Nil, locations: _List_Nil}) : newActiveFilter2;
 					return _Utils_Tuple2(
 						_Utils_update(
 							model,
-							{
-								activeFilter: A3($author$project$Main$newFilter, model.activeFilter, newFilterType, geoLocation)
-							}),
+							{activeFilter: newActiveFilter3}),
 						$elm$core$Platform$Cmd$none);
 				} else {
 					return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
@@ -6563,13 +6575,6 @@ var $author$project$Main$getTreeData = function (model) {
 	}
 };
 var $elm$html$Html$h4 = _VirtualDom_node('h4');
-var $elm$core$List$isEmpty = function (xs) {
-	if (!xs.b) {
-		return true;
-	} else {
-		return false;
-	}
-};
 var $elm$html$Html$li = _VirtualDom_node('li');
 var $elm$html$Html$nav = _VirtualDom_node('nav');
 var $elm$virtual_dom$VirtualDom$Normal = function (a) {

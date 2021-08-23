@@ -47,7 +47,12 @@ update msg model =
         UpdateActiveFilter maybeNewFilterType geoLocation ->
             case maybeNewFilterType of
                 Just newFilterType ->
-                    ( { model | activeFilter = (newFilter model.activeFilter newFilterType geoLocation) }, Cmd.none)
+                    let
+                        newActiveFilter1 = (newFilter model.activeFilter newFilterType geoLocation)
+                        newActiveFilter2 = if (List.isEmpty newActiveFilter1.countries) then { newActiveFilter1 | locations = [] } else newActiveFilter1
+                        newActiveFilter3 = if (List.isEmpty newActiveFilter2.regions) then { newActiveFilter2 | countries = [], locations = [] } else newActiveFilter2
+                    in
+                    ( { model | activeFilter = newActiveFilter3 }, Cmd.none)
                 Nothing ->
                     ( model, Cmd.none )
 
