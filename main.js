@@ -8847,23 +8847,99 @@ var $author$project$Model$UpdateActiveFilter = F2(
 		return {$: 'UpdateActiveFilter', a: a, b: b};
 	});
 var $elm$svg$Svg$rect = $elm$svg$Svg$trustedNode('rect');
-var $elm_community$typed_svg$TypedSvg$style = $elm_community$typed_svg$TypedSvg$Core$node('style');
-var $elm_community$typed_svg$TypedSvg$Core$text = $elm$virtual_dom$VirtualDom$text;
 var $author$project$Tree$drawNode = function (_v0) {
 	var maybeFilterType = _v0.a;
 	var name = _v0.b;
-	return A2(
-		$elm$svg$Svg$g,
-		_List_Nil,
-		_List_fromArray(
-			[
-				A2(
-				$elm_community$typed_svg$TypedSvg$style,
-				_List_Nil,
+	var rootWidth = 60;
+	var regionWidth = 100;
+	var locationWidth = 80;
+	var countryWidth = 80;
+	var offsetString = function () {
+		if (maybeFilterType.$ === 'Just') {
+			switch (maybeFilterType.a.$) {
+				case 'Region':
+					var _v6 = maybeFilterType.a;
+					return $elm$core$String$concat(
+						_List_fromArray(
+							[
+								$elm$core$String$fromInt(
+								$elm$core$Basics$floor(-(regionWidth / 2))),
+								'px'
+							]));
+				case 'Country':
+					var _v7 = maybeFilterType.a;
+					return $elm$core$String$concat(
+						_List_fromArray(
+							[
+								$elm$core$String$fromInt(
+								$elm$core$Basics$floor(-(countryWidth / 2))),
+								'px'
+							]));
+				default:
+					var _v8 = maybeFilterType.a;
+					return $elm$core$String$concat(
+						_List_fromArray(
+							[
+								$elm$core$String$fromInt(
+								$elm$core$Basics$floor(-(locationWidth / 2))),
+								'px'
+							]));
+			}
+		} else {
+			return $elm$core$String$concat(
 				_List_fromArray(
 					[
-						$elm_community$typed_svg$TypedSvg$Core$text('\r\n                .treeSelectionBox rect { stroke: rgba(0, 0, 0, 1); fill: rgba(255, 255, 255, 0.0); }\r\n                .treeSelectionBox:hover rect { stroke: rgba(0, 0, 0, 1); fill: rgba(255, 255, 255, 0.5); cursor: pointer; }\r\n                ')
-					])),
+						$elm$core$String$fromInt(
+						$elm$core$Basics$floor(-(rootWidth / 2))),
+						'px'
+					]));
+		}
+	}();
+	var widthString = function () {
+		if (maybeFilterType.$ === 'Just') {
+			switch (maybeFilterType.a.$) {
+				case 'Region':
+					var _v2 = maybeFilterType.a;
+					return $elm$core$String$concat(
+						_List_fromArray(
+							[
+								$elm$core$String$fromInt(regionWidth),
+								'px'
+							]));
+				case 'Country':
+					var _v3 = maybeFilterType.a;
+					return $elm$core$String$concat(
+						_List_fromArray(
+							[
+								$elm$core$String$fromInt(countryWidth),
+								'px'
+							]));
+				default:
+					var _v4 = maybeFilterType.a;
+					return $elm$core$String$concat(
+						_List_fromArray(
+							[
+								$elm$core$String$fromInt(locationWidth),
+								'px'
+							]));
+			}
+		} else {
+			return $elm$core$String$concat(
+				_List_fromArray(
+					[
+						$elm$core$String$fromInt(rootWidth),
+						'px'
+					]));
+		}
+	}();
+	return A2(
+		$elm$svg$Svg$g,
+		_List_fromArray(
+			[
+				$elm$svg$Svg$Attributes$class('treeNodeBox')
+			]),
+		_List_fromArray(
+			[
 				A2(
 				$elm$svg$Svg$text_,
 				_List_fromArray(
@@ -8880,10 +8956,11 @@ var $author$project$Tree$drawNode = function (_v0) {
 				_List_fromArray(
 					[
 						$elm$svg$Svg$Attributes$height('20px'),
-						$elm$svg$Svg$Attributes$width('100px'),
+						$elm$svg$Svg$Attributes$width(widthString),
+						$elm$svg$Svg$Attributes$x(offsetString),
+						$elm$svg$Svg$Attributes$y('-10px'),
 						$elm$html$Html$Events$onClick(
-						A2($author$project$Model$UpdateActiveFilter, maybeFilterType, name)),
-						$elm$html$Html$Attributes$class('treeSelectionBox')
+						A2($author$project$Model$UpdateActiveFilter, maybeFilterType, name))
 					]),
 				_List_Nil)
 			]));
@@ -9146,13 +9223,6 @@ var $author$project$Scatterplot$scatterplot = function (filteredConflicts) {
 			]),
 		_List_fromArray(
 			[
-				A2(
-				$elm_community$typed_svg$TypedSvg$style,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$elm_community$typed_svg$TypedSvg$Core$text('\r\n                .point circle { stroke: rgba(0, 0, 0, 0.4); fill: rgba(255, 255, 255,0.3); }\r\n                .yearSelection rect { stroke: rgba(0, 0, 0, 0); fill: rgba(255, 255, 255, 0.0); }\r\n                .yearSelection:hover rect { stroke: rgba(0, 0, 0, 1); fill: rgba(255, 255, 255, 0.5); cursor: pointer; }\r\n                .yearSelection text { display: none; }\r\n                .yearSelection:hover text { display: inline; font-size: calc(1em - 5px); font-weight: 400; line-height: 1.5; cursor: pointer; }\r\n                .yearSelection:hover .textBox { fill: rgba(255, 255, 255, 1); }\r\n                ')
-					])),
 				A2(
 				$elm_community$typed_svg$TypedSvg$g,
 				_List_fromArray(

@@ -76,12 +76,32 @@ drawLine ( targetX, targetY ) =
 
 drawNode : (Maybe FilterType, String) -> Svg Msg
 drawNode (maybeFilterType, name) =
+    let
+        rootWidth = 60
+        regionWidth = 100
+        countryWidth = 80
+        locationWidth = 80
+        widthString =
+            case maybeFilterType of
+                Just Region -> String.concat [ (String.fromInt regionWidth), "px" ]
+                Just Country -> String.concat [ (String.fromInt countryWidth), "px" ]
+                Just Location -> String.concat [ (String.fromInt locationWidth), "px" ]
+                Nothing -> String.concat [ (String.fromInt rootWidth), "px" ]
+        offsetString =
+            case maybeFilterType of
+                Just Region -> String.concat [ (String.fromInt (floor (negate (regionWidth/2)))), "px" ]
+                Just Country -> String.concat [ (String.fromInt (floor (negate (countryWidth/2)))), "px" ]
+                Just Location -> String.concat [ (String.fromInt (floor (negate (locationWidth/2)))), "px" ]
+                Nothing -> String.concat [ (String.fromInt (floor (negate (rootWidth/2)))), "px" ]
+    in
     g
-        []
+        [ Svg.Attributes.class "treeNodeBox" ]
         [ text_ [ textAnchor "middle", transform "translate(0,5) rotate(0 0 0)" ] [ Html.text name ]
         , rect
             [ Svg.Attributes.height "20px"
-            , Svg.Attributes.width "100px"
+            , Svg.Attributes.width widthString
+            , Svg.Attributes.x offsetString
+            , Svg.Attributes.y "-10px"
             , Html.Events.onClick (UpdateActiveFilter maybeFilterType name)
             ] []
         ]

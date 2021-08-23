@@ -50,17 +50,7 @@ scatterplot filteredConflicts =
             }
     in
     svg [ viewBox 0 0 w h, TypedSvg.Attributes.width <| TypedSvg.Types.Percent 100, TypedSvg.Attributes.height <| TypedSvg.Types.Percent 100 ]
-        [ style []
-            [ TypedSvg.Core.text """
-                .point circle { stroke: rgba(0, 0, 0, 0.4); fill: rgba(255, 255, 255,0.3); }
-                .yearSelection rect { stroke: rgba(0, 0, 0, 0); fill: rgba(255, 255, 255, 0.0); }
-                .yearSelection:hover rect { stroke: rgba(0, 0, 0, 1); fill: rgba(255, 255, 255, 0.5); cursor: pointer; }
-                .yearSelection text { display: none; }
-                .yearSelection:hover text { display: inline; font-size: calc(1em - 5px); font-weight: 400; line-height: 1.5; cursor: pointer; }
-                .yearSelection:hover .textBox { fill: rgba(255, 255, 255, 1); }
-                """
-            ]
-        , g [ transform [ Translate (padding - 1) (h - padding) ] 
+        [ g [ transform [ Translate (padding - 1) (h - padding) ]
             , fontSize <| Px 15.0
             , fontFamily [ "sans-serif" ]
             ]
