@@ -7997,6 +7997,614 @@ var $author$project$Main$renderCountryCheckboxes = F2(
 			},
 			countries);
 	});
+var $alex_tan$elm_tree_diagram$TreeDiagram$Node = F2(
+	function (a, b) {
+		return {$: 'Node', a: a, b: b};
+	});
+var $alex_tan$elm_tree_diagram$TreeDiagram$node = F2(
+	function (val, children) {
+		return A2($alex_tan$elm_tree_diagram$TreeDiagram$Node, val, children);
+	});
+var $author$project$Tree$buildTree = F2(
+	function (root, nodes) {
+		return A2(
+			$alex_tan$elm_tree_diagram$TreeDiagram$node,
+			root,
+			A2(
+				$elm$core$List$map,
+				function (n) {
+					return A2($alex_tan$elm_tree_diagram$TreeDiagram$node, n, _List_Nil);
+				},
+				nodes));
+	});
+var $alex_tan$elm_tree_diagram$TreeDiagram$TopToBottom = {$: 'TopToBottom'};
+var $alex_tan$elm_tree_diagram$TreeDiagram$defaultTreeLayout = {levelHeight: 100, orientation: $alex_tan$elm_tree_diagram$TreeDiagram$TopToBottom, padding: 40, siblingDistance: 50, subtreeDistance: 80};
+var $elm$core$List$concatMap = F2(
+	function (f, list) {
+		return $elm$core$List$concat(
+			A2($elm$core$List$map, f, list));
+	});
+var $alex_tan$elm_tree_diagram$TreeDiagram$drawInternal = F6(
+	function (width, height, drawer, drawNode, drawLine, _v0) {
+		var _v1 = _v0.a;
+		var v = _v1.a;
+		var rootCoord = _v1.b;
+		var subtrees = _v0.b;
+		var transRootCoord = A3(drawer.transform, width, height, rootCoord);
+		var subtreePositions = A2(
+			$elm$core$List$map,
+			function (_v4) {
+				var _v5 = _v4.a;
+				var coord = _v5.b;
+				return coord;
+			},
+			subtrees);
+		var transSubtreePositions = A2(
+			$elm$core$List$map,
+			A2(drawer.transform, width, height),
+			subtreePositions);
+		var rootDrawing = A2(
+			drawer.position,
+			transRootCoord,
+			drawNode(v));
+		var _v2 = transRootCoord;
+		var transRootX = _v2.a;
+		var transRootY = _v2.b;
+		var subtreeOffsetsFromRoot = A2(
+			$elm$core$List$map,
+			function (_v3) {
+				var transSubtreeX = _v3.a;
+				var transSubtreeY = _v3.b;
+				return _Utils_Tuple2(transSubtreeX - transRootX, transSubtreeY - transRootY);
+			},
+			transSubtreePositions);
+		var edgeDrawings = A2(
+			$elm$core$List$map,
+			function (coord) {
+				return A2(
+					drawer.position,
+					transRootCoord,
+					drawLine(coord));
+			},
+			subtreeOffsetsFromRoot);
+		return A2(
+			$elm$core$List$append,
+			A2(
+				$elm$core$List$append,
+				edgeDrawings,
+				_List_fromArray(
+					[rootDrawing])),
+			A2(
+				$elm$core$List$concatMap,
+				A5($alex_tan$elm_tree_diagram$TreeDiagram$drawInternal, width, height, drawer, drawNode, drawLine),
+				subtrees));
+	});
+var $elm$core$List$maximum = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(
+			A3($elm$core$List$foldl, $elm$core$Basics$max, x, xs));
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $elm$core$Basics$min = F2(
+	function (x, y) {
+		return (_Utils_cmp(x, y) < 0) ? x : y;
+	});
+var $elm$core$List$minimum = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(
+			A3($elm$core$List$foldl, $elm$core$Basics$min, x, xs));
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $elm$core$List$unzip = function (pairs) {
+	var step = F2(
+		function (_v0, _v1) {
+			var x = _v0.a;
+			var y = _v0.b;
+			var xs = _v1.a;
+			var ys = _v1.b;
+			return _Utils_Tuple2(
+				A2($elm$core$List$cons, x, xs),
+				A2($elm$core$List$cons, y, ys));
+		});
+	return A3(
+		$elm$core$List$foldr,
+		step,
+		_Utils_Tuple2(_List_Nil, _List_Nil),
+		pairs);
+};
+var $alex_tan$elm_tree_diagram$TreeDiagram$treeExtrema = function (_v0) {
+	var _v1 = _v0.a;
+	var _v2 = _v1.b;
+	var x = _v2.a;
+	var y = _v2.b;
+	var subtrees = _v0.b;
+	var extrema = A2($elm$core$List$map, $alex_tan$elm_tree_diagram$TreeDiagram$treeExtrema, subtrees);
+	var _v3 = $elm$core$List$unzip(extrema);
+	var xExtrema = _v3.a;
+	var yExtrema = _v3.b;
+	var _v4 = $elm$core$List$unzip(yExtrema);
+	var minYs = _v4.a;
+	var maxYs = _v4.b;
+	var maxY = A2(
+		$elm$core$Basics$max,
+		y,
+		A2(
+			$elm$core$Maybe$withDefault,
+			y,
+			$elm$core$List$maximum(maxYs)));
+	var minY = A2(
+		$elm$core$Basics$min,
+		y,
+		A2(
+			$elm$core$Maybe$withDefault,
+			y,
+			$elm$core$List$minimum(minYs)));
+	var _v5 = $elm$core$List$unzip(xExtrema);
+	var minXs = _v5.a;
+	var maxXs = _v5.b;
+	var maxX = A2(
+		$elm$core$Basics$max,
+		x,
+		A2(
+			$elm$core$Maybe$withDefault,
+			x,
+			$elm$core$List$maximum(maxXs)));
+	var minX = A2(
+		$elm$core$Basics$min,
+		x,
+		A2(
+			$elm$core$Maybe$withDefault,
+			x,
+			$elm$core$List$minimum(minXs)));
+	return _Utils_Tuple2(
+		_Utils_Tuple2(minX, maxX),
+		_Utils_Tuple2(minY, maxY));
+};
+var $alex_tan$elm_tree_diagram$TreeDiagram$treeBoundingBox = function (tree) {
+	var _v0 = $alex_tan$elm_tree_diagram$TreeDiagram$treeExtrema(tree);
+	var _v1 = _v0.a;
+	var minX = _v1.a;
+	var maxX = _v1.b;
+	var _v2 = _v0.b;
+	var minY = _v2.a;
+	var maxY = _v2.b;
+	return _Utils_Tuple2(maxX - minX, maxY - minY);
+};
+var $alex_tan$elm_tree_diagram$TreeDiagram$drawPositioned = F5(
+	function (drawer, padding, drawNode, drawLine, positionedTree) {
+		var _v0 = $alex_tan$elm_tree_diagram$TreeDiagram$treeBoundingBox(positionedTree);
+		var width = _v0.a;
+		var height = _v0.b;
+		var totalHeight = $elm$core$Basics$round(height) + (2 * padding);
+		var totalWidth = $elm$core$Basics$round(width) + (2 * padding);
+		return A3(
+			drawer.compose,
+			totalWidth,
+			totalHeight,
+			A6($alex_tan$elm_tree_diagram$TreeDiagram$drawInternal, totalWidth, totalHeight, drawer, drawNode, drawLine, positionedTree));
+	});
+var $alex_tan$elm_tree_diagram$TreeDiagram$final = F4(
+	function (level, levelHeight, lOffset, _v0) {
+		var _v1 = _v0.a;
+		var v = _v1.a;
+		var prelimPosition = _v1.b;
+		var subtrees = _v0.b;
+		var subtreePrelimPositions = A2(
+			$elm$core$List$map,
+			function (_v2) {
+				var _v3 = _v2.a;
+				var prelimPosition_ = _v3.b;
+				return prelimPosition_;
+			},
+			subtrees);
+		var visited = A3(
+			$elm$core$List$map2,
+			F2(
+				function (prelimPos, subtree) {
+					return A4($alex_tan$elm_tree_diagram$TreeDiagram$final, level + 1, levelHeight, lOffset + prelimPos.subtreeOffset, subtree);
+				}),
+			subtreePrelimPositions,
+			subtrees);
+		var finalPosition = _Utils_Tuple2(lOffset + prelimPosition.rootOffset, level * levelHeight);
+		return A2(
+			$alex_tan$elm_tree_diagram$TreeDiagram$Node,
+			_Utils_Tuple2(v, finalPosition),
+			visited);
+	});
+var $alex_tan$elm_tree_diagram$TreeDiagram$buildContour = F3(
+	function (lContour, rContour, rContourOffset) {
+		var rLength = $elm$core$List$length(rContour);
+		var lLength = $elm$core$List$length(lContour);
+		var combinedContour = A3(
+			$elm$core$List$map2,
+			F2(
+				function (_v1, _v2) {
+					var lFrom = _v1.a;
+					var lTo = _v1.b;
+					var rFrom = _v2.a;
+					var rTo = _v2.b;
+					return _Utils_Tuple2(lFrom, rTo + rContourOffset);
+				}),
+			lContour,
+			rContour);
+		return (_Utils_cmp(lLength, rLength) > 0) ? A2(
+			$elm$core$List$append,
+			combinedContour,
+			A2($elm$core$List$drop, rLength, lContour)) : A2(
+			$elm$core$List$append,
+			combinedContour,
+			A2(
+				$elm$core$List$map,
+				function (_v0) {
+					var from = _v0.a;
+					var to = _v0.b;
+					return _Utils_Tuple2(from + rContourOffset, to + rContourOffset);
+				},
+				A2($elm$core$List$drop, lLength, rContour)));
+	});
+var $elm$core$Maybe$map2 = F3(
+	function (func, ma, mb) {
+		if (ma.$ === 'Nothing') {
+			return $elm$core$Maybe$Nothing;
+		} else {
+			var a = ma.a;
+			if (mb.$ === 'Nothing') {
+				return $elm$core$Maybe$Nothing;
+			} else {
+				var b = mb.a;
+				return $elm$core$Maybe$Just(
+					A2(func, a, b));
+			}
+		}
+	});
+var $alex_tan$elm_tree_diagram$TreeDiagram$ends = function (list) {
+	var last = $elm$core$List$head(
+		$elm$core$List$reverse(list));
+	var first = $elm$core$List$head(list);
+	return A3(
+		$elm$core$Maybe$map2,
+		F2(
+			function (a, b) {
+				return _Utils_Tuple2(a, b);
+			}),
+		first,
+		last);
+};
+var $alex_tan$elm_tree_diagram$TreeDiagram$rootOffset = F2(
+	function (lPrelimPosition, rPrelimPosition) {
+		return ((((lPrelimPosition.subtreeOffset + rPrelimPosition.subtreeOffset) + lPrelimPosition.rootOffset) + rPrelimPosition.rootOffset) / 2) | 0;
+	});
+var $alex_tan$elm_tree_diagram$TreeDiagram$pairwiseSubtreeOffset = F4(
+	function (siblingDistance, subtreeDistance, lContour, rContour) {
+		var levelDistances = A3(
+			$elm$core$List$map2,
+			F2(
+				function (_v1, _v2) {
+					var lTo = _v1.b;
+					var rFrom = _v2.a;
+					return lTo - rFrom;
+				}),
+			lContour,
+			rContour);
+		var _v0 = $elm$core$List$maximum(levelDistances);
+		if (_v0.$ === 'Just') {
+			var separatingDistance = _v0.a;
+			var minDistance = (($elm$core$List$length(lContour) === 1) || ($elm$core$List$length(rContour) === 1)) ? siblingDistance : subtreeDistance;
+			return separatingDistance + minDistance;
+		} else {
+			return 0;
+		}
+	});
+var $alex_tan$elm_tree_diagram$TreeDiagram$scanl = F3(
+	function (f, b, xs) {
+		var scan1 = F2(
+			function (x, accAcc) {
+				if (accAcc.b) {
+					var acc = accAcc.a;
+					return A2(
+						$elm$core$List$cons,
+						A2(f, x, acc),
+						accAcc);
+				} else {
+					return _List_Nil;
+				}
+			});
+		return $elm$core$List$reverse(
+			A3(
+				$elm$core$List$foldl,
+				scan1,
+				_List_fromArray(
+					[b]),
+				xs));
+	});
+var $alex_tan$elm_tree_diagram$TreeDiagram$subtreeOffsets = F3(
+	function (siblingDistance, subtreeDistance, contours) {
+		var _v0 = $elm$core$List$head(contours);
+		if (_v0.$ === 'Just') {
+			var c0 = _v0.a;
+			var cumulativeContours = A3(
+				$alex_tan$elm_tree_diagram$TreeDiagram$scanl,
+				F2(
+					function (c, _v2) {
+						var aggContour = _v2.a;
+						var offset = A4($alex_tan$elm_tree_diagram$TreeDiagram$pairwiseSubtreeOffset, siblingDistance, subtreeDistance, aggContour, c);
+						return _Utils_Tuple2(
+							A3($alex_tan$elm_tree_diagram$TreeDiagram$buildContour, aggContour, c, offset),
+							offset);
+					}),
+				_Utils_Tuple2(c0, 0),
+				A2($elm$core$List$drop, 1, contours));
+			return A2(
+				$elm$core$List$map,
+				function (_v1) {
+					var runningOffset = _v1.b;
+					return runningOffset;
+				},
+				cumulativeContours);
+		} else {
+			return _List_Nil;
+		}
+	});
+var $alex_tan$elm_tree_diagram$TreeDiagram$prelim = F3(
+	function (siblingDistance, subtreeDistance, _v0) {
+		var val = _v0.a;
+		var children = _v0.b;
+		var visited = A2(
+			$elm$core$List$map,
+			A2($alex_tan$elm_tree_diagram$TreeDiagram$prelim, siblingDistance, subtreeDistance),
+			children);
+		var _v1 = $elm$core$List$unzip(visited);
+		var subtrees = _v1.a;
+		var childContours = _v1.b;
+		var offsets = A3($alex_tan$elm_tree_diagram$TreeDiagram$subtreeOffsets, siblingDistance, subtreeDistance, childContours);
+		var updatedChildren = A3(
+			$elm$core$List$map2,
+			F2(
+				function (_v10, offset) {
+					var _v11 = _v10.a;
+					var v = _v11.a;
+					var prelimPosition = _v11.b;
+					var children_ = _v10.b;
+					return A2(
+						$alex_tan$elm_tree_diagram$TreeDiagram$Node,
+						_Utils_Tuple2(
+							v,
+							_Utils_update(
+								prelimPosition,
+								{subtreeOffset: offset})),
+						children_);
+				}),
+			subtrees,
+			offsets);
+		var _v2 = $alex_tan$elm_tree_diagram$TreeDiagram$ends(
+			A3(
+				$elm$core$List$map2,
+				F2(
+					function (a, b) {
+						return _Utils_Tuple2(a, b);
+					}),
+				updatedChildren,
+				childContours));
+		if (_v2.$ === 'Just') {
+			var _v3 = _v2.a;
+			var _v4 = _v3.a;
+			var lSubtree = _v4.a;
+			var lSubtreeContour = _v4.b;
+			var _v5 = _v3.b;
+			var rSubtree = _v5.a;
+			var rSubtreeContour = _v5.b;
+			var _v6 = rSubtree;
+			var _v7 = _v6.a;
+			var rPrelimPos = _v7.b;
+			var _v8 = lSubtree;
+			var _v9 = _v8.a;
+			var lPrelimPos = _v9.b;
+			var prelimPos = {
+				rootOffset: A2($alex_tan$elm_tree_diagram$TreeDiagram$rootOffset, lPrelimPos, rPrelimPos),
+				subtreeOffset: 0
+			};
+			var rootContour = _Utils_Tuple2(prelimPos.rootOffset, prelimPos.rootOffset);
+			var treeContour = A2(
+				$elm$core$List$cons,
+				rootContour,
+				A3($alex_tan$elm_tree_diagram$TreeDiagram$buildContour, lSubtreeContour, rSubtreeContour, rPrelimPos.subtreeOffset));
+			return _Utils_Tuple2(
+				A2(
+					$alex_tan$elm_tree_diagram$TreeDiagram$Node,
+					_Utils_Tuple2(val, prelimPos),
+					updatedChildren),
+				treeContour);
+		} else {
+			return _Utils_Tuple2(
+				A2(
+					$alex_tan$elm_tree_diagram$TreeDiagram$Node,
+					_Utils_Tuple2(
+						val,
+						{rootOffset: 0, subtreeOffset: 0}),
+					updatedChildren),
+				_List_fromArray(
+					[
+						_Utils_Tuple2(0, 0)
+					]));
+		}
+	});
+var $alex_tan$elm_tree_diagram$TreeDiagram$treeMap = F2(
+	function (fn, _v0) {
+		var v = _v0.a;
+		var children = _v0.b;
+		return A2(
+			$alex_tan$elm_tree_diagram$TreeDiagram$Node,
+			fn(v),
+			A2(
+				$elm$core$List$map,
+				$alex_tan$elm_tree_diagram$TreeDiagram$treeMap(fn),
+				children));
+	});
+var $alex_tan$elm_tree_diagram$TreeDiagram$position = F5(
+	function (siblingDistance, subtreeDistance, levelHeight, layout, tree) {
+		var _v0 = A3($alex_tan$elm_tree_diagram$TreeDiagram$prelim, siblingDistance, subtreeDistance, tree);
+		var prelimTree = _v0.a;
+		var finalTree = A4($alex_tan$elm_tree_diagram$TreeDiagram$final, 0, levelHeight, 0, prelimTree);
+		var _v1 = $alex_tan$elm_tree_diagram$TreeDiagram$treeBoundingBox(finalTree);
+		var width = _v1.a;
+		var height = _v1.b;
+		var transform = function (_v3) {
+			var x = _v3.a;
+			var y = _v3.b;
+			switch (layout.$) {
+				case 'LeftToRight':
+					return _Utils_Tuple2(y - (height / 2), x - (width / 2));
+				case 'RightToLeft':
+					return _Utils_Tuple2((-y) + (height / 2), x - (width / 2));
+				case 'BottomToTop':
+					return _Utils_Tuple2(x - (width / 2), y - (height / 2));
+				default:
+					return _Utils_Tuple2(x - (width / 2), (-y) + (height / 2));
+			}
+		};
+		return A2(
+			$alex_tan$elm_tree_diagram$TreeDiagram$treeMap,
+			function (_v2) {
+				var v = _v2.a;
+				var coord = _v2.b;
+				return _Utils_Tuple2(
+					v,
+					transform(coord));
+			},
+			finalTree);
+	});
+var $alex_tan$elm_tree_diagram$TreeDiagram$draw_ = F5(
+	function (drawer, layout, drawNode, drawLine, tree) {
+		var positionedTree = A5($alex_tan$elm_tree_diagram$TreeDiagram$position, layout.siblingDistance, layout.subtreeDistance, layout.levelHeight, layout.orientation, tree);
+		return A5($alex_tan$elm_tree_diagram$TreeDiagram$drawPositioned, drawer, layout.padding, drawNode, drawLine, positionedTree);
+	});
+var $alex_tan$elm_tree_diagram$TreeDiagram$Drawable = F3(
+	function (position, compose, transform) {
+		return {compose: compose, position: position, transform: transform};
+	});
+var $elm$svg$Svg$Attributes$height = _VirtualDom_attribute('height');
+var $elm$svg$Svg$svg = $elm$svg$Svg$trustedNode('svg');
+var $elm$svg$Svg$Attributes$width = _VirtualDom_attribute('width');
+var $alex_tan$elm_tree_diagram$TreeDiagram$Svg$svgCompose = F3(
+	function (width, height, svgs) {
+		return A2(
+			$elm$svg$Svg$svg,
+			_List_fromArray(
+				[
+					$elm$svg$Svg$Attributes$width(
+					$elm$core$String$fromInt(width)),
+					$elm$svg$Svg$Attributes$height(
+					$elm$core$String$fromInt(height))
+				]),
+			_List_fromArray(
+				[
+					A2($elm$svg$Svg$g, _List_Nil, svgs)
+				]));
+	});
+var $alex_tan$elm_tree_diagram$TreeDiagram$Svg$svgPosition = F2(
+	function (_v0, svg) {
+		var x = _v0.a;
+		var y = _v0.b;
+		return A2(
+			$elm$svg$Svg$g,
+			_List_fromArray(
+				[
+					$elm$svg$Svg$Attributes$transform(
+					'translate(' + ($elm$core$String$fromFloat(x) + (' ' + ($elm$core$String$fromFloat(y) + ')'))))
+				]),
+			_List_fromArray(
+				[svg]));
+	});
+var $alex_tan$elm_tree_diagram$TreeDiagram$Svg$svgTransform = F3(
+	function (width, height, coord) {
+		var _v0 = coord;
+		var x = _v0.a;
+		var y = _v0.b;
+		var svgX = x + (width / 2);
+		var svgY = (height / 2) - y;
+		return _Utils_Tuple2(svgX, svgY);
+	});
+var $alex_tan$elm_tree_diagram$TreeDiagram$Svg$svgDrawable = A3($alex_tan$elm_tree_diagram$TreeDiagram$Drawable, $alex_tan$elm_tree_diagram$TreeDiagram$Svg$svgPosition, $alex_tan$elm_tree_diagram$TreeDiagram$Svg$svgCompose, $alex_tan$elm_tree_diagram$TreeDiagram$Svg$svgTransform);
+var $alex_tan$elm_tree_diagram$TreeDiagram$Svg$draw = F4(
+	function (layout, drawNode, drawLine, tree) {
+		return A5($alex_tan$elm_tree_diagram$TreeDiagram$draw_, $alex_tan$elm_tree_diagram$TreeDiagram$Svg$svgDrawable, layout, drawNode, drawLine, tree);
+	});
+var $author$project$Tree$toString = F2(
+	function (prop, value) {
+		return prop(
+			$elm$core$String$fromFloat(value));
+	});
+var $author$project$Tree$drawLine = function (_v0) {
+	var targetX = _v0.a;
+	var targetY = _v0.b;
+	return A2(
+		$elm$svg$Svg$line,
+		_List_fromArray(
+			[
+				A2($author$project$Tree$toString, $elm$svg$Svg$Attributes$x1, 0),
+				A2($author$project$Tree$toString, $elm$svg$Svg$Attributes$y1, 0),
+				A2($author$project$Tree$toString, $elm$svg$Svg$Attributes$x2, targetX),
+				A2($author$project$Tree$toString, $elm$svg$Svg$Attributes$y2, targetY),
+				$elm$svg$Svg$Attributes$stroke('black')
+			]),
+		_List_Nil);
+};
+var $elm$svg$Svg$circle = $elm$svg$Svg$trustedNode('circle');
+var $elm$svg$Svg$Attributes$cx = _VirtualDom_attribute('cx');
+var $elm$svg$Svg$Attributes$cy = _VirtualDom_attribute('cy');
+var $elm$svg$Svg$Attributes$r = _VirtualDom_attribute('r');
+var $author$project$Tree$drawNode = function (n) {
+	return A2(
+		$elm$svg$Svg$g,
+		_List_Nil,
+		_List_fromArray(
+			[
+				A2(
+				$elm$svg$Svg$circle,
+				_List_fromArray(
+					[
+						$elm$svg$Svg$Attributes$r('16'),
+						$elm$svg$Svg$Attributes$stroke('black'),
+						$elm$svg$Svg$Attributes$fill('white'),
+						$elm$svg$Svg$Attributes$cx('0'),
+						$elm$svg$Svg$Attributes$cy('0')
+					]),
+				_List_Nil),
+				A2(
+				$elm$svg$Svg$text_,
+				_List_fromArray(
+					[
+						$elm$svg$Svg$Attributes$textAnchor('middle'),
+						$elm$svg$Svg$Attributes$transform('translate(0,5) rotate(90 0 0)')
+					]),
+				_List_fromArray(
+					[
+						$elm$html$Html$text(n)
+					]))
+			]));
+};
+var $alex_tan$elm_tree_diagram$TreeDiagram$LeftToRight = {$: 'LeftToRight'};
+var $alex_tan$elm_tree_diagram$TreeDiagram$leftToRight = $alex_tan$elm_tree_diagram$TreeDiagram$LeftToRight;
+var $author$project$Tree$renderTree = F2(
+	function (root, nodes) {
+		var tree = A2($author$project$Tree$buildTree, root, nodes);
+		return A4(
+			$alex_tan$elm_tree_diagram$TreeDiagram$Svg$draw,
+			_Utils_update(
+				$alex_tan$elm_tree_diagram$TreeDiagram$defaultTreeLayout,
+				{orientation: $alex_tan$elm_tree_diagram$TreeDiagram$leftToRight}),
+			$author$project$Tree$drawNode,
+			$author$project$Tree$drawLine,
+			tree);
+	});
 var $author$project$Scatterplot$h = 450;
 var $author$project$Scatterplot$padding = 60;
 var $elm_community$typed_svg$TypedSvg$circle = $elm_community$typed_svg$TypedSvg$Core$node('circle');
@@ -8524,18 +9132,10 @@ var $author$project$Main$view = function (model) {
 							[
 								conflictView,
 								A2(
-								$elm$html$Html$ul,
-								_List_Nil,
-								A2(
-									$author$project$Main$renderCountryCheckboxes,
-									$elm_community$list_extra$List$Extra$unique(
-										A2(
-											$elm$core$List$map,
-											function ($) {
-												return $.location;
-											},
-											model.conflicts)),
-									_List_Nil))
+								$author$project$Tree$renderTree,
+								'root',
+								_List_fromArray(
+									['t1', 'test2', 'teeeeest3', 't4', 'teeeest5', 'test6']))
 							])),
 						A2(
 						$elm$html$Html$div,
