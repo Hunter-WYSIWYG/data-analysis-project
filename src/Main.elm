@@ -11,7 +11,7 @@ import Scatterplot
 import ParallelCoordinates
 import Tree
 import Html.Events
-import Model exposing (Msg(..), Model, MainViewType(..), FilterViewType(..), Filter, init)
+import Model exposing (Msg(..), Model, MainViewType(..), FilterType(..), Filter, init)
 import Model exposing (GeoTree)
 import Dict
 
@@ -44,8 +44,12 @@ update msg model =
         ChangeFilterView newFilterView ->
             ( { model | filterViewType = newFilterView }, Cmd.none )
 
-        UpdateActiveFilter filterViewType geoLocation ->
-            ( { model | activeFilter = (newFilter model.activeFilter filterViewType geoLocation) }, Cmd.none)
+        UpdateActiveFilter maybeNewFilterType geoLocation ->
+            case maybeNewFilterType of
+                Just newFilterType ->
+                    ( { model | activeFilter = (newFilter model.activeFilter newFilterType geoLocation) }, Cmd.none)
+                Nothing ->
+                    ( model, Cmd.none )
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =
@@ -195,7 +199,7 @@ newCountries oldCountries newCountry =
     else
         newCountry::oldCountries
 
-newFilter : Filter -> FilterViewType -> String -> Filter
+newFilter : Filter -> FilterType -> String -> Filter
 newFilter oldFilter typeOfNewFilter newGeoLocation =
     case typeOfNewFilter of
         Region ->

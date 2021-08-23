@@ -6265,6 +6265,41 @@ var $author$project$Main$newCountries = F2(
 	function (oldCountries, newCountry) {
 		return A2($elm$core$List$member, newCountry, oldCountries) ? A2($elm_community$list_extra$List$Extra$remove, newCountry, oldCountries) : A2($elm$core$List$cons, newCountry, oldCountries);
 	});
+var $author$project$Main$newFilter = F3(
+	function (oldFilter, typeOfNewFilter, newGeoLocation) {
+		switch (typeOfNewFilter.$) {
+			case 'Region':
+				return A2($elm$core$List$member, newGeoLocation, oldFilter.regions) ? _Utils_update(
+					oldFilter,
+					{
+						regions: A2($elm_community$list_extra$List$Extra$remove, newGeoLocation, oldFilter.regions)
+					}) : _Utils_update(
+					oldFilter,
+					{
+						regions: A2($elm$core$List$cons, newGeoLocation, oldFilter.regions)
+					});
+			case 'Country':
+				return A2($elm$core$List$member, newGeoLocation, oldFilter.countries) ? _Utils_update(
+					oldFilter,
+					{
+						countries: A2($elm_community$list_extra$List$Extra$remove, newGeoLocation, oldFilter.countries)
+					}) : _Utils_update(
+					oldFilter,
+					{
+						countries: A2($elm$core$List$cons, newGeoLocation, oldFilter.countries)
+					});
+			default:
+				return A2($elm$core$List$member, newGeoLocation, oldFilter.locations) ? _Utils_update(
+					oldFilter,
+					{
+						locations: A2($elm_community$list_extra$List$Extra$remove, newGeoLocation, oldFilter.locations)
+					}) : _Utils_update(
+					oldFilter,
+					{
+						locations: A2($elm$core$List$cons, newGeoLocation, oldFilter.locations)
+					});
+		}
+	});
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
 var $author$project$Main$update = F2(
 	function (msg, model) {
@@ -6301,13 +6336,28 @@ var $author$project$Main$update = F2(
 						model,
 						{mainViewType: newViewType}),
 					$elm$core$Platform$Cmd$none);
-			default:
+			case 'ChangeFilterView':
 				var newFilterView = msg.a;
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
 						{filterViewType: newFilterView}),
 					$elm$core$Platform$Cmd$none);
+			default:
+				var maybeNewFilterType = msg.a;
+				var geoLocation = msg.b;
+				if (maybeNewFilterType.$ === 'Just') {
+					var newFilterType = maybeNewFilterType.a;
+					return _Utils_Tuple2(
+						_Utils_update(
+							model,
+							{
+								activeFilter: A3($author$project$Main$newFilter, model.activeFilter, newFilterType, geoLocation)
+							}),
+						$elm$core$Platform$Cmd$none);
+				} else {
+					return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
+				}
 		}
 	});
 var $author$project$Model$ChangeFilterView = function (a) {
@@ -8202,7 +8252,12 @@ var $author$project$Tree$buildTree = function (geoTree) {
 				return A2(
 					$elm$core$List$map,
 					function (locName) {
-						return A2($alex_tan$elm_tree_diagram$TreeDiagram$node, locName, _List_Nil);
+						return A2(
+							$alex_tan$elm_tree_diagram$TreeDiagram$node,
+							_Utils_Tuple2(
+								$elm$core$Maybe$Just($author$project$Model$Location),
+								locName),
+							_List_Nil);
 					},
 					locNames);
 			}),
@@ -8217,7 +8272,9 @@ var $author$project$Tree$buildTree = function (geoTree) {
 					function (countryName) {
 						return A2(
 							$alex_tan$elm_tree_diagram$TreeDiagram$node,
-							countryName,
+							_Utils_Tuple2(
+								$elm$core$Maybe$Just($author$project$Model$Country),
+								countryName),
 							A2(
 								$elm$core$Maybe$withDefault,
 								_List_Nil,
@@ -8231,14 +8288,19 @@ var $author$project$Tree$buildTree = function (geoTree) {
 		function (r) {
 			return A2(
 				$alex_tan$elm_tree_diagram$TreeDiagram$node,
-				r,
+				_Utils_Tuple2(
+					$elm$core$Maybe$Just($author$project$Model$Region),
+					r),
 				A2(
 					$elm$core$Maybe$withDefault,
 					_List_Nil,
 					A2($elm$core$Dict$get, r, countryNodes)));
 		},
 		regions);
-	return A2($alex_tan$elm_tree_diagram$TreeDiagram$node, 'Africa', regionNodes);
+	return A2(
+		$alex_tan$elm_tree_diagram$TreeDiagram$node,
+		_Utils_Tuple2($elm$core$Maybe$Nothing, 'Africa'),
+		regionNodes);
 };
 var $alex_tan$elm_tree_diagram$TreeDiagram$TopToBottom = {$: 'TopToBottom'};
 var $alex_tan$elm_tree_diagram$TreeDiagram$defaultTreeLayout = {levelHeight: 100, orientation: $alex_tan$elm_tree_diagram$TreeDiagram$TopToBottom, padding: 40, siblingDistance: 50, subtreeDistance: 80};
@@ -8780,27 +8842,28 @@ var $author$project$Tree$drawLine = function (_v0) {
 			]),
 		_List_Nil);
 };
-var $elm$svg$Svg$circle = $elm$svg$Svg$trustedNode('circle');
-var $elm$svg$Svg$Attributes$cx = _VirtualDom_attribute('cx');
-var $elm$svg$Svg$Attributes$cy = _VirtualDom_attribute('cy');
-var $elm$svg$Svg$Attributes$r = _VirtualDom_attribute('r');
-var $author$project$Tree$drawNode = function (n) {
+var $author$project$Model$UpdateActiveFilter = F2(
+	function (a, b) {
+		return {$: 'UpdateActiveFilter', a: a, b: b};
+	});
+var $elm$svg$Svg$rect = $elm$svg$Svg$trustedNode('rect');
+var $elm_community$typed_svg$TypedSvg$style = $elm_community$typed_svg$TypedSvg$Core$node('style');
+var $elm_community$typed_svg$TypedSvg$Core$text = $elm$virtual_dom$VirtualDom$text;
+var $author$project$Tree$drawNode = function (_v0) {
+	var maybeFilterType = _v0.a;
+	var name = _v0.b;
 	return A2(
 		$elm$svg$Svg$g,
 		_List_Nil,
 		_List_fromArray(
 			[
 				A2(
-				$elm$svg$Svg$circle,
+				$elm_community$typed_svg$TypedSvg$style,
+				_List_Nil,
 				_List_fromArray(
 					[
-						$elm$svg$Svg$Attributes$r('16'),
-						$elm$svg$Svg$Attributes$stroke('black'),
-						$elm$svg$Svg$Attributes$fill('white'),
-						$elm$svg$Svg$Attributes$cx('0'),
-						$elm$svg$Svg$Attributes$cy('0')
-					]),
-				_List_Nil),
+						$elm_community$typed_svg$TypedSvg$Core$text('\r\n                .treeSelectionBox rect { stroke: rgba(0, 0, 0, 1); fill: rgba(255, 255, 255, 0.0); }\r\n                .treeSelectionBox:hover rect { stroke: rgba(0, 0, 0, 1); fill: rgba(255, 255, 255, 0.5); cursor: pointer; }\r\n                ')
+					])),
 				A2(
 				$elm$svg$Svg$text_,
 				_List_fromArray(
@@ -8810,8 +8873,19 @@ var $author$project$Tree$drawNode = function (n) {
 					]),
 				_List_fromArray(
 					[
-						$elm$html$Html$text(n)
-					]))
+						$elm$html$Html$text(name)
+					])),
+				A2(
+				$elm$svg$Svg$rect,
+				_List_fromArray(
+					[
+						$elm$svg$Svg$Attributes$height('20px'),
+						$elm$svg$Svg$Attributes$width('100px'),
+						$elm$html$Html$Events$onClick(
+						A2($author$project$Model$UpdateActiveFilter, maybeFilterType, name)),
+						$elm$html$Html$Attributes$class('treeSelectionBox')
+					]),
+				_List_Nil)
 			]));
 };
 var $alex_tan$elm_tree_diagram$TreeDiagram$LeftToRight = {$: 'LeftToRight'};
@@ -8902,8 +8976,6 @@ var $author$project$Scatterplot$point = F3(
 					_List_Nil)
 				]));
 	});
-var $elm_community$typed_svg$TypedSvg$style = $elm_community$typed_svg$TypedSvg$Core$node('style');
-var $elm_community$typed_svg$TypedSvg$Core$text = $elm$virtual_dom$VirtualDom$text;
 var $author$project$Scatterplot$w = 900;
 var $author$project$Scatterplot$defaultExtent = _Utils_Tuple2(0, 100);
 var $author$project$Scatterplot$tickCount = 5;

@@ -1,15 +1,18 @@
 module Tree exposing (..)
 
 import Html
+import Html.Events
+import Html.Attributes
 import Svg exposing (Svg, line, circle, text_, g)
-import Svg.Attributes exposing (..)
+import Svg.Attributes exposing (x1, y1, x2, y2, stroke, textAnchor, transform)
+import TypedSvg exposing (style)
 import TreeDiagram exposing (node, Tree, defaultTreeLayout, leftToRight)
 import TreeDiagram.Svg exposing (draw)
 
-import Model exposing (Msg(..))
-import Model exposing (GeoTree)
-import Dict
+import Model exposing (Msg(..), FilterType(..), GeoTree)
 import Dict exposing (Dict)
+import Svg exposing (rect)
+import TypedSvg.Core
 
 renderTree : GeoTree -> Svg Msg
 renderTree geoTree =
@@ -18,7 +21,7 @@ renderTree geoTree =
     in
     draw { defaultTreeLayout | orientation = leftToRight } drawNode drawLine tree
 
-buildTree : GeoTree -> Tree String
+buildTree : GeoTree -> Tree (Maybe FilterType, String)
 buildTree geoTree =
     let
         regions = geoTree.regions
@@ -29,7 +32,9 @@ buildTree geoTree =
                 (\key locNames ->
                     List.map
                         (\locName ->
-                            node locName []
+                            node
+                                (Just Location, locName)
+                                []
                         )
                         locNames
                 )
@@ -40,7 +45,7 @@ buildTree geoTree =
                     List.map
                         (\countryName ->
                             node
-                                countryName
+                                (Just Country, countryName)
                                 (Maybe.withDefault [] (Dict.get countryName locationNodes))
                         )
                         countryNames
@@ -50,13 +55,13 @@ buildTree geoTree =
             List.map
                 (\r ->
                     node
-                        r
+                        (Just Region, r)
                         (Maybe.withDefault [] (Dict.get r countryNodes))
                 )
                 regions
     in
     node
-        "Africa"
+        (Nothing, "Africa")
         regionNodes
 
 toString : (String -> a) -> Float -> a
@@ -69,17 +74,14 @@ drawLine ( targetX, targetY ) =
         [ toString x1 0, toString y1 0, (toString x2 targetX), toString y2 targetY, stroke "black" ]
         []
 
-drawNode : String -> Svg msg
-drawNode n =
+drawNode : (Maybe FilterType, String) -> Svg Msg
+drawNode (maybeFilterType, name) =
     g
         []
-        [ circle
-            [ r "16"
-            , stroke "black"
-            , fill "white"
-            , cx "0"
-            , cy "0"
-            , Html.Events.onClick 
+        [ text_ [ textAnchor "middle", transform "translate(0,5) rotate(0 0 0)" ] [ Html.text name ]
+        , rect
+            [ Svg.Attributes.height "20px"
+            , Svg.Attributes.width "100px"
+            , Html.Events.onClick (UpdateActiveFilter maybeFilterType name)
             ] []
-        , text_ [ textAnchor "middle", transform "translate(0,5) rotate(0 0 0)" ] [ Html.text n ]
         ]
