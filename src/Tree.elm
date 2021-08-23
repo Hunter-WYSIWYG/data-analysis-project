@@ -1,6 +1,7 @@
 module Tree exposing (..)
 
-import Svg exposing (Svg, line)
+import Html
+import Svg exposing (Svg, line, circle, text_, g)
 import Svg.Attributes exposing (..)
 
 toString prop value =
@@ -11,3 +12,11 @@ drawLine ( targetX, targetY ) =
     line
         [ toString x1 0, toString y1 0, (toString x2 targetX), toString y2 targetY, stroke "black" ]
         []
+
+drawNode : String -> Svg msg
+drawNode n =
+    g
+        []
+        [ circle [ r "16", stroke "black", fill "white", cx "0", cy "0" ] []
+        , text_ [ textAnchor "middle", transform "translate(0,5) rotate(90 0 0)" ] [ Html.text n ]
+        ]
