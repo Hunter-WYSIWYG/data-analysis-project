@@ -131,3 +131,4 @@ renderCountryCheckboxes countries activeCountries =
                 ]
         )
         countries
+
