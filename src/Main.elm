@@ -12,6 +12,7 @@ import ParallelCoordinates
 import Tree
 import Html.Events
 import Model exposing (Msg(..), Model, MainViewType(..), FilterViewType(..), init)
+import Model exposing (GeoTree)
 
 main : Program () Model Msg
 main =
@@ -122,6 +123,25 @@ view model =
             ]
         ]
     }
+
+getTreeData : Model -> GeoTree
+getTreeData model =
+    case model.filterViewType of
+        Region ->
+            { regions = List.Extra.unique (List.map (.region) model.conflicts)
+            , countries = []
+            , locations = []
+            }
+        Country ->
+            { regions = model.activeFilter.regions
+            , countries = List.Extra.unique (List.map (.country) model.conflicts)
+            , locations = []
+            }
+        Country ->
+            { regions = model.activeFilter.regions
+            , countries = model.activeFilter.countries
+            , locations = List.Extra.unique (List.map (.location) model.conflicts)
+            }
 
 filterConflictsByCountries : List Conflict.Conflict -> List String -> List Conflict.Conflict
 filterConflictsByCountries conflicts countries =
