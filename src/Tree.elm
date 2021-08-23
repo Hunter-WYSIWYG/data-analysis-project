@@ -22,10 +22,34 @@ buildTree geoTree =
         regions = geoTree.regions
         countries = geoTree.countries
         locations = geoTree.locations
-        locationNodes = List.map (\l -> (node l [])) locations
-        countryNodes = List.map (\l -> (node l [])) locations
+        locationNodes =
+            List.map
+                (\(key, locNames) ->
+                    ( key
+                    , List.map
+                        (\locName ->
+                            node locName []
+                        )
+                        locNames
+                    )
+                )
+                locations
+        countryNodes =
+            List.map
+                (\(key, countryNames) ->
+                    ( key
+                    , List.map
+                        (\countryName ->
+                            
+                        )
+                        countryNames
+                    )
+                )
+                countries
     in
-    node "" [] --WIP
+    node
+        "Africa"
+        []
 
 toString prop value =
     prop (String.fromFloat value)
