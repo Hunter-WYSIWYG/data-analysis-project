@@ -35,3 +35,8 @@
     stroke: rgba(0, 0, 0, 1);
     fill: rgba(255, 255, 255, 0.5); cursor: pointer;
 }
+
+.rootNodeBox rect {
+    stroke: rgba(0, 0, 0, 1);
+    fill: rgba(255, 255, 255, 0.0);
+}

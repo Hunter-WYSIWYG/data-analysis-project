@@ -8847,11 +8847,42 @@ var $author$project$Model$UpdateActiveFilter = F2(
 		return {$: 'UpdateActiveFilter', a: a, b: b};
 	});
 var $elm$svg$Svg$rect = $elm$svg$Svg$trustedNode('rect');
+var $author$project$Tree$shortenRegionName = function (name) {
+	switch (name) {
+		case 'Western Africa':
+			return 'West';
+		case 'Eastern Africa':
+			return 'East';
+		case 'Southern Africa':
+			return 'South';
+		case 'Northern Africa':
+			return 'North';
+		case 'Middle Africa':
+			return 'Middle';
+		default:
+			return 'undefined';
+	}
+};
 var $author$project$Tree$drawNode = function (_v0) {
 	var maybeFilterType = _v0.a;
 	var name = _v0.b;
 	var rootWidth = 60;
-	var regionWidth = 100;
+	var regionWidth = 60;
+	var nodeName = function () {
+		if ((maybeFilterType.$ === 'Just') && (maybeFilterType.a.$ === 'Region')) {
+			var _v11 = maybeFilterType.a;
+			return $author$project$Tree$shortenRegionName(name);
+		} else {
+			return name;
+		}
+	}();
+	var nodeClass = function () {
+		if (maybeFilterType.$ === 'Just') {
+			return 'treeNodeBox';
+		} else {
+			return 'rootNodeBox';
+		}
+	}();
 	var locationWidth = 80;
 	var countryWidth = 80;
 	var offsetString = function () {
@@ -8936,7 +8967,7 @@ var $author$project$Tree$drawNode = function (_v0) {
 		$elm$svg$Svg$g,
 		_List_fromArray(
 			[
-				$elm$svg$Svg$Attributes$class('treeNodeBox')
+				$elm$svg$Svg$Attributes$class(nodeClass)
 			]),
 		_List_fromArray(
 			[
@@ -8949,7 +8980,7 @@ var $author$project$Tree$drawNode = function (_v0) {
 					]),
 				_List_fromArray(
 					[
-						$elm$html$Html$text(name)
+						$elm$html$Html$text(nodeName)
 					])),
 				A2(
 				$elm$svg$Svg$rect,

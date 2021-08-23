@@ -78,7 +78,7 @@ drawNode : (Maybe FilterType, String) -> Svg Msg
 drawNode (maybeFilterType, name) =
     let
         rootWidth = 60
-        regionWidth = 100
+        regionWidth = 60
         countryWidth = 80
         locationWidth = 80
         widthString =
@@ -93,10 +93,18 @@ drawNode (maybeFilterType, name) =
                 Just Country -> String.concat [ (String.fromInt (floor (negate (countryWidth/2)))), "px" ]
                 Just Location -> String.concat [ (String.fromInt (floor (negate (locationWidth/2)))), "px" ]
                 Nothing -> String.concat [ (String.fromInt (floor (negate (rootWidth/2)))), "px" ]
+        nodeName =
+            case maybeFilterType of
+                Just Region -> (shortenRegionName name)
+                _ -> name
+        nodeClass =
+            case maybeFilterType of
+                Just _ -> "treeNodeBox"
+                Nothing -> "rootNodeBox"
     in
     g
-        [ Svg.Attributes.class "treeNodeBox" ]
-        [ text_ [ textAnchor "middle", transform "translate(0,5) rotate(0 0 0)" ] [ Html.text name ]
+        [ Svg.Attributes.class nodeClass ]
+        [ text_ [ textAnchor "middle", transform "translate(0,5) rotate(0 0 0)" ] [ Html.text nodeName ]
         , rect
             [ Svg.Attributes.height "20px"
             , Svg.Attributes.width widthString
@@ -105,3 +113,13 @@ drawNode (maybeFilterType, name) =
             , Html.Events.onClick (UpdateActiveFilter maybeFilterType name)
             ] []
         ]
+
+shortenRegionName : String -> String
+shortenRegionName name =
+    case name of
+        "Western Africa" -> "West"
+        "Eastern Africa" -> "East"
+        "Southern Africa" -> "South"
+        "Northern Africa" -> "North"
+        "Middle Africa" -> "Middle"
+        _ -> "undefined"
