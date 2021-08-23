@@ -92,7 +92,27 @@ view model =
                     , Html.Attributes.style "top" "50%"
                     , Html.Attributes.style "transform" "translate(0, -50%)"
                     ]
-                    [ Html.h4 [ Html.Attributes.class "title is-4" ] [ Html.text "Comparable Countries:" ]
+                    [ Html.h4 [ Html.Attributes.class "title is-4" ] [ Html.text "Geographical Filter:" ]
+                    , Html.nav
+                        [ Html.Attributes.class "breadcrumb has-arrow-separator", Html.Attributes.attribute "aria-label" "breadcrumbs" ]
+                        [ Html.ul []
+                            [ Html.li []
+                                [ Html.a
+                                    []
+                                    [ Html.text "Filter Region" ]
+                                ]
+                            , Html.li []
+                                [ Html.a
+                                    []
+                                    [ Html.text "Filter Country" ]
+                                ]
+                            , Html.li []
+                                [ Html.a
+                                    []
+                                    [ Html.text "Filter Location" ]
+                                ]
+                            ]
+                        ]
                     , Html.ul [] (renderCountryCheckboxes (List.sort (List.Extra.unique (List.map (.country) model.conflicts))) model.activeCountries)
                     ]
                 ]

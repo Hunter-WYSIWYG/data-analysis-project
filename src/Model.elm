@@ -37,4 +37,9 @@ type Msg
 type ViewType
     = ScatterplotView
     | ParallelCoordinatesView Int
-    | TreeView
+    | TreeView 
+
+type TreeViewType
+    = Region
+    | Country
+    | Location
