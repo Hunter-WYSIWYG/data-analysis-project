@@ -96,7 +96,8 @@ view model =
             [ Html.div [ Html.Attributes.class "column is-1 has-background-info" ]
                 []
             , Html.div [ Html.Attributes.class "column is-7", Html.Attributes.style "padding" "30px" ]
-                [ conflictView
+                [ Html.h3 [ Html.Attributes.class "title is-3" ] [ Html.text "Africa Conflict 1997-2021" ]
+                , conflictView
                 ]
             , Html.div
                 [ Html.Attributes.class "column is-3"

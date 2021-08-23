@@ -6274,10 +6274,6 @@ var $elm_community$list_extra$List$Extra$remove = F2(
 				A2($elm_community$list_extra$List$Extra$remove, x, ys));
 		}
 	});
-var $author$project$Main$newCountries = F2(
-	function (oldCountries, newCountry) {
-		return A2($elm$core$List$member, newCountry, oldCountries) ? A2($elm_community$list_extra$List$Extra$remove, newCountry, oldCountries) : A2($elm$core$List$cons, newCountry, oldCountries);
-	});
 var $author$project$Main$newFilter = F3(
 	function (oldFilter, typeOfNewFilter, newGeoLocation) {
 		switch (typeOfNewFilter.$) {
@@ -6333,15 +6329,6 @@ var $author$project$Main$update = F2(
 							{conflicts: _List_Nil}),
 						$elm$core$Platform$Cmd$none);
 				}
-			case 'UpdateSelectedCountries':
-				var country = msg.a;
-				return _Utils_Tuple2(
-					_Utils_update(
-						model,
-						{
-							activeCountries: A2($author$project$Main$newCountries, model.activeCountries, country)
-						}),
-					$elm$core$Platform$Cmd$none);
 			case 'ChangeMainView':
 				var newViewType = msg.a;
 				return _Utils_Tuple2(
@@ -6590,6 +6577,7 @@ var $author$project$Main$getTreeData = function (model) {
 			};
 	}
 };
+var $elm$html$Html$h3 = _VirtualDom_node('h3');
 var $elm$html$Html$h4 = _VirtualDom_node('h4');
 var $elm$html$Html$li = _VirtualDom_node('li');
 var $elm$html$Html$nav = _VirtualDom_node('nav');
@@ -9402,7 +9390,19 @@ var $author$project$Main$view = function (model) {
 								A2($elm$html$Html$Attributes$style, 'padding', '30px')
 							]),
 						_List_fromArray(
-							[conflictView])),
+							[
+								A2(
+								$elm$html$Html$h3,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('title is-3')
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Africa Conflict 1997-2021')
+									])),
+								conflictView
+							])),
 						A2(
 						$elm$html$Html$div,
 						_List_fromArray(
