@@ -3,6 +3,19 @@ module Tree exposing (..)
 import Html
 import Svg exposing (Svg, line, circle, text_, g)
 import Svg.Attributes exposing (..)
+import TreeDiagram exposing (node, Tree, defaultTreeLayout, leftToRight)
+import TreeDiagram.Svg exposing (draw)
+
+import Model exposing (Msg(..))
+
+buildTree : String -> List String -> Tree String
+buildTree root nodes =
+    node
+        root
+        (List.map
+            (\n -> (node n []))
+            nodes
+        )
 
 toString prop value =
     prop (String.fromFloat value)
