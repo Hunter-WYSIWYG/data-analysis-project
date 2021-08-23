@@ -13,13 +13,14 @@ import Model exposing (Msg(..), FilterType(..), GeoTree)
 import Dict exposing (Dict)
 import Svg exposing (rect)
 import TypedSvg.Core
+import Model exposing (Filter)
 
-renderTree : GeoTree -> Svg Msg
-renderTree geoTree =
+renderTree : GeoTree -> Filter -> Svg Msg
+renderTree geoTree activeFilter =
     let
         tree = buildTree geoTree
     in
-    draw { defaultTreeLayout | orientation = leftToRight } drawNode drawLine tree
+    draw { defaultTreeLayout | orientation = leftToRight } (drawNode activeFilter) drawLine tree
 
 buildTree : GeoTree -> Tree (Maybe FilterType, String)
 buildTree geoTree =
@@ -71,39 +72,36 @@ toString prop value =
 drawLine : ( Float, Float ) -> Svg msg
 drawLine ( targetX, targetY ) =
     line
-        [ toString x1 0, toString y1 0, (toString x2 targetX), toString y2 targetY, stroke "black" ]
+        [ toString x1 (0+(nodeWidth/2)), toString y1 0, (toString x2 (targetX-(nodeWidth/2))), toString y2 targetY, stroke "black" ]
         []
 
-drawNode : (Maybe FilterType, String) -> Svg Msg
-drawNode (maybeFilterType, name) =
+nodeWidth = 80
+
+drawNode : Filter -> (Maybe FilterType, String) -> Svg Msg
+drawNode activeFilter (maybeFilterType, name) =
     let
-        rootWidth = 60
-        regionWidth = 60
-        countryWidth = 80
-        locationWidth = 80
-        widthString =
-            case maybeFilterType of
-                Just Region -> String.concat [ (String.fromInt regionWidth), "px" ]
-                Just Country -> String.concat [ (String.fromInt countryWidth), "px" ]
-                Just Location -> String.concat [ (String.fromInt locationWidth), "px" ]
-                Nothing -> String.concat [ (String.fromInt rootWidth), "px" ]
-        offsetString =
-            case maybeFilterType of
-                Just Region -> String.concat [ (String.fromInt (floor (negate (regionWidth/2)))), "px" ]
-                Just Country -> String.concat [ (String.fromInt (floor (negate (countryWidth/2)))), "px" ]
-                Just Location -> String.concat [ (String.fromInt (floor (negate (locationWidth/2)))), "px" ]
-                Nothing -> String.concat [ (String.fromInt (floor (negate (rootWidth/2)))), "px" ]
+        widthString = String.concat [ (String.fromInt nodeWidth), "px" ]
+        offsetString = String.concat [ (String.fromInt (floor (negate (nodeWidth/2)))), "px" ]
         nodeName =
             case maybeFilterType of
                 Just Region -> (shortenRegionName name)
-                _ -> name
+                _ -> (checkAndShortenName name)
         nodeClass =
             case maybeFilterType of
                 Just _ -> "treeNodeBox"
                 Nothing -> "rootNodeBox"
+        isActiveClass =
+            case maybeFilterType of
+                Just Region ->
+                    if (List.member name activeFilter.regions) then "activeNodeBox" else ""
+                Just Country ->
+                    if (List.member name activeFilter.countries) then "activeNodeBox" else ""
+                Just Location ->
+                    if (List.member name activeFilter.locations) then "activeNodeBox" else ""
+                Nothing -> ""
     in
     g
-        [ Svg.Attributes.class nodeClass ]
+        [ Svg.Attributes.class (String.concat [nodeClass," ",isActiveClass]) ]
         [ text_ [ textAnchor "middle", transform "translate(0,5) rotate(0 0 0)" ] [ Html.text nodeName ]
         , rect
             [ Svg.Attributes.height "20px"
@@ -123,3 +121,19 @@ shortenRegionName name =
         "Northern Africa" -> "North"
         "Middle Africa" -> "Middle"
         _ -> "undefined"
+
+checkAndShortenName : String -> String
+checkAndShortenName name =
+    let
+        shortName =
+            String.concat
+                (List.map
+                    (\s ->
+                        String.append (String.left 1 s) ". "
+                    )
+                    (String.split " " name)
+                )
+    in
+    if (String.length name)>9
+    then shortName
+    else name

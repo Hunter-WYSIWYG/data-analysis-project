@@ -123,8 +123,8 @@ view model =
                                 ]
                             ]
                         ]
-                    , Tree.renderTree (getTreeData model)
-                    , Html.ul [] (renderCountryCheckboxes (List.sort (List.Extra.unique (List.map (.country) model.conflicts))) model.activeCountries)
+                    , Tree.renderTree (getTreeData model) model.activeFilter
+                    --, Html.ul [] (renderCountryCheckboxes (List.sort (List.Extra.unique (List.map (.country) model.conflicts))) model.activeCountries)
                     ]
                 ]
             , Html.div [ Html.Attributes.class "column is-1 has-background-info" ]

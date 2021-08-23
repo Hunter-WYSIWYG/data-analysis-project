@@ -8172,49 +8172,6 @@ var $author$project$ParallelCoordinates$parallelCoordinates = F2(
 					_List_fromArray(
 						[description]))));
 	});
-var $author$project$Model$UpdateSelectedCountries = function (a) {
-	return {$: 'UpdateSelectedCountries', a: a};
-};
-var $elm$html$Html$Attributes$checked = $elm$html$Html$Attributes$boolProperty('checked');
-var $elm$html$Html$input = _VirtualDom_node('input');
-var $elm$html$Html$label = _VirtualDom_node('label');
-var $elm$html$Html$Attributes$type_ = $elm$html$Html$Attributes$stringProperty('type');
-var $author$project$Main$renderCountryCheckboxes = F2(
-	function (countries, activeCountries) {
-		return A2(
-			$elm$core$List$map,
-			function (c) {
-				var isActive = A2($elm$core$List$member, c, activeCountries);
-				return A2(
-					$elm$html$Html$li,
-					_List_Nil,
-					_List_fromArray(
-						[
-							A2(
-							$elm$html$Html$label,
-							_List_fromArray(
-								[
-									$elm$html$Html$Attributes$class('checkbox'),
-									$elm$html$Html$Events$onClick(
-									$author$project$Model$UpdateSelectedCountries(c))
-								]),
-							_List_fromArray(
-								[
-									A2(
-									$elm$html$Html$input,
-									_List_fromArray(
-										[
-											$elm$html$Html$Attributes$type_('checkbox'),
-											A2($elm$html$Html$Attributes$style, 'margin-right', '5px'),
-											$elm$html$Html$Attributes$checked(isActive)
-										]),
-									_List_Nil)
-								])),
-							$elm$html$Html$text(c)
-						]));
-			},
-			countries);
-	});
 var $elm$core$Dict$map = F2(
 	function (func, dict) {
 		if (dict.$ === 'RBEmpty_elm_builtin') {
@@ -8822,6 +8779,7 @@ var $alex_tan$elm_tree_diagram$TreeDiagram$Svg$draw = F4(
 	function (layout, drawNode, drawLine, tree) {
 		return A5($alex_tan$elm_tree_diagram$TreeDiagram$draw_, $alex_tan$elm_tree_diagram$TreeDiagram$Svg$svgDrawable, layout, drawNode, drawLine, tree);
 	});
+var $author$project$Tree$nodeWidth = 80;
 var $author$project$Tree$toString = F2(
 	function (prop, value) {
 		return prop(
@@ -8834,9 +8792,9 @@ var $author$project$Tree$drawLine = function (_v0) {
 		$elm$svg$Svg$line,
 		_List_fromArray(
 			[
-				A2($author$project$Tree$toString, $elm$svg$Svg$Attributes$x1, 0),
+				A2($author$project$Tree$toString, $elm$svg$Svg$Attributes$x1, 0 + ($author$project$Tree$nodeWidth / 2)),
 				A2($author$project$Tree$toString, $elm$svg$Svg$Attributes$y1, 0),
-				A2($author$project$Tree$toString, $elm$svg$Svg$Attributes$x2, targetX),
+				A2($author$project$Tree$toString, $elm$svg$Svg$Attributes$x2, targetX - ($author$project$Tree$nodeWidth / 2)),
 				A2($author$project$Tree$toString, $elm$svg$Svg$Attributes$y2, targetY),
 				$elm$svg$Svg$Attributes$stroke('black')
 			]),
@@ -8846,6 +8804,20 @@ var $author$project$Model$UpdateActiveFilter = F2(
 	function (a, b) {
 		return {$: 'UpdateActiveFilter', a: a, b: b};
 	});
+var $elm$core$String$append = _String_append;
+var $author$project$Tree$checkAndShortenName = function (name) {
+	var shortName = $elm$core$String$concat(
+		A2(
+			$elm$core$List$map,
+			function (s) {
+				return A2(
+					$elm$core$String$append,
+					A2($elm$core$String$left, 1, s),
+					'. ');
+			},
+			A2($elm$core$String$split, ' ', name)));
+	return ($elm$core$String$length(name) > 9) ? shortName : name;
+};
 var $elm$svg$Svg$rect = $elm$svg$Svg$trustedNode('rect');
 var $author$project$Tree$shortenRegionName = function (name) {
 	switch (name) {
@@ -8863,152 +8835,105 @@ var $author$project$Tree$shortenRegionName = function (name) {
 			return 'undefined';
 	}
 };
-var $author$project$Tree$drawNode = function (_v0) {
-	var maybeFilterType = _v0.a;
-	var name = _v0.b;
-	var rootWidth = 60;
-	var regionWidth = 60;
-	var nodeName = function () {
-		if ((maybeFilterType.$ === 'Just') && (maybeFilterType.a.$ === 'Region')) {
-			var _v11 = maybeFilterType.a;
-			return $author$project$Tree$shortenRegionName(name);
-		} else {
-			return name;
-		}
-	}();
-	var nodeClass = function () {
-		if (maybeFilterType.$ === 'Just') {
-			return 'treeNodeBox';
-		} else {
-			return 'rootNodeBox';
-		}
-	}();
-	var locationWidth = 80;
-	var countryWidth = 80;
-	var offsetString = function () {
-		if (maybeFilterType.$ === 'Just') {
-			switch (maybeFilterType.a.$) {
-				case 'Region':
-					var _v6 = maybeFilterType.a;
-					return $elm$core$String$concat(
-						_List_fromArray(
-							[
-								$elm$core$String$fromInt(
-								$elm$core$Basics$floor(-(regionWidth / 2))),
-								'px'
-							]));
-				case 'Country':
-					var _v7 = maybeFilterType.a;
-					return $elm$core$String$concat(
-						_List_fromArray(
-							[
-								$elm$core$String$fromInt(
-								$elm$core$Basics$floor(-(countryWidth / 2))),
-								'px'
-							]));
-				default:
-					var _v8 = maybeFilterType.a;
-					return $elm$core$String$concat(
-						_List_fromArray(
-							[
-								$elm$core$String$fromInt(
-								$elm$core$Basics$floor(-(locationWidth / 2))),
-								'px'
-							]));
+var $author$project$Tree$drawNode = F2(
+	function (activeFilter, _v0) {
+		var maybeFilterType = _v0.a;
+		var name = _v0.b;
+		var widthString = $elm$core$String$concat(
+			_List_fromArray(
+				[
+					$elm$core$String$fromInt($author$project$Tree$nodeWidth),
+					'px'
+				]));
+		var offsetString = $elm$core$String$concat(
+			_List_fromArray(
+				[
+					$elm$core$String$fromInt(
+					$elm$core$Basics$floor(-($author$project$Tree$nodeWidth / 2))),
+					'px'
+				]));
+		var nodeName = function () {
+			if ((maybeFilterType.$ === 'Just') && (maybeFilterType.a.$ === 'Region')) {
+				var _v7 = maybeFilterType.a;
+				return $author$project$Tree$shortenRegionName(name);
+			} else {
+				return $author$project$Tree$checkAndShortenName(name);
 			}
-		} else {
-			return $elm$core$String$concat(
-				_List_fromArray(
-					[
-						$elm$core$String$fromInt(
-						$elm$core$Basics$floor(-(rootWidth / 2))),
-						'px'
-					]));
-		}
-	}();
-	var widthString = function () {
-		if (maybeFilterType.$ === 'Just') {
-			switch (maybeFilterType.a.$) {
-				case 'Region':
-					var _v2 = maybeFilterType.a;
-					return $elm$core$String$concat(
-						_List_fromArray(
-							[
-								$elm$core$String$fromInt(regionWidth),
-								'px'
-							]));
-				case 'Country':
-					var _v3 = maybeFilterType.a;
-					return $elm$core$String$concat(
-						_List_fromArray(
-							[
-								$elm$core$String$fromInt(countryWidth),
-								'px'
-							]));
-				default:
-					var _v4 = maybeFilterType.a;
-					return $elm$core$String$concat(
-						_List_fromArray(
-							[
-								$elm$core$String$fromInt(locationWidth),
-								'px'
-							]));
+		}();
+		var nodeClass = function () {
+			if (maybeFilterType.$ === 'Just') {
+				return 'treeNodeBox';
+			} else {
+				return 'rootNodeBox';
 			}
-		} else {
-			return $elm$core$String$concat(
-				_List_fromArray(
-					[
-						$elm$core$String$fromInt(rootWidth),
-						'px'
-					]));
-		}
-	}();
-	return A2(
-		$elm$svg$Svg$g,
-		_List_fromArray(
-			[
-				$elm$svg$Svg$Attributes$class(nodeClass)
-			]),
-		_List_fromArray(
-			[
-				A2(
-				$elm$svg$Svg$text_,
-				_List_fromArray(
-					[
-						$elm$svg$Svg$Attributes$textAnchor('middle'),
-						$elm$svg$Svg$Attributes$transform('translate(0,5) rotate(0 0 0)')
-					]),
-				_List_fromArray(
-					[
-						$elm$html$Html$text(nodeName)
-					])),
-				A2(
-				$elm$svg$Svg$rect,
-				_List_fromArray(
-					[
-						$elm$svg$Svg$Attributes$height('20px'),
-						$elm$svg$Svg$Attributes$width(widthString),
-						$elm$svg$Svg$Attributes$x(offsetString),
-						$elm$svg$Svg$Attributes$y('-10px'),
-						$elm$html$Html$Events$onClick(
-						A2($author$project$Model$UpdateActiveFilter, maybeFilterType, name))
-					]),
-				_List_Nil)
-			]));
-};
+		}();
+		var isActiveClass = function () {
+			if (maybeFilterType.$ === 'Just') {
+				switch (maybeFilterType.a.$) {
+					case 'Region':
+						var _v2 = maybeFilterType.a;
+						return A2($elm$core$List$member, name, activeFilter.regions) ? 'activeNodeBox' : '';
+					case 'Country':
+						var _v3 = maybeFilterType.a;
+						return A2($elm$core$List$member, name, activeFilter.countries) ? 'activeNodeBox' : '';
+					default:
+						var _v4 = maybeFilterType.a;
+						return A2($elm$core$List$member, name, activeFilter.locations) ? 'activeNodeBox' : '';
+				}
+			} else {
+				return '';
+			}
+		}();
+		return A2(
+			$elm$svg$Svg$g,
+			_List_fromArray(
+				[
+					$elm$svg$Svg$Attributes$class(
+					$elm$core$String$concat(
+						_List_fromArray(
+							[nodeClass, ' ', isActiveClass])))
+				]),
+			_List_fromArray(
+				[
+					A2(
+					$elm$svg$Svg$text_,
+					_List_fromArray(
+						[
+							$elm$svg$Svg$Attributes$textAnchor('middle'),
+							$elm$svg$Svg$Attributes$transform('translate(0,5) rotate(0 0 0)')
+						]),
+					_List_fromArray(
+						[
+							$elm$html$Html$text(nodeName)
+						])),
+					A2(
+					$elm$svg$Svg$rect,
+					_List_fromArray(
+						[
+							$elm$svg$Svg$Attributes$height('20px'),
+							$elm$svg$Svg$Attributes$width(widthString),
+							$elm$svg$Svg$Attributes$x(offsetString),
+							$elm$svg$Svg$Attributes$y('-10px'),
+							$elm$html$Html$Events$onClick(
+							A2($author$project$Model$UpdateActiveFilter, maybeFilterType, name))
+						]),
+					_List_Nil)
+				]));
+	});
 var $alex_tan$elm_tree_diagram$TreeDiagram$LeftToRight = {$: 'LeftToRight'};
 var $alex_tan$elm_tree_diagram$TreeDiagram$leftToRight = $alex_tan$elm_tree_diagram$TreeDiagram$LeftToRight;
-var $author$project$Tree$renderTree = function (geoTree) {
-	var tree = $author$project$Tree$buildTree(geoTree);
-	return A4(
-		$alex_tan$elm_tree_diagram$TreeDiagram$Svg$draw,
-		_Utils_update(
-			$alex_tan$elm_tree_diagram$TreeDiagram$defaultTreeLayout,
-			{orientation: $alex_tan$elm_tree_diagram$TreeDiagram$leftToRight}),
-		$author$project$Tree$drawNode,
-		$author$project$Tree$drawLine,
-		tree);
-};
+var $author$project$Tree$renderTree = F2(
+	function (geoTree, activeFilter) {
+		var tree = $author$project$Tree$buildTree(geoTree);
+		return A4(
+			$alex_tan$elm_tree_diagram$TreeDiagram$Svg$draw,
+			_Utils_update(
+				$alex_tan$elm_tree_diagram$TreeDiagram$defaultTreeLayout,
+				{orientation: $alex_tan$elm_tree_diagram$TreeDiagram$leftToRight}),
+			$author$project$Tree$drawNode(activeFilter),
+			$author$project$Tree$drawLine,
+			tree);
+	});
 var $author$project$Scatterplot$h = 450;
 var $author$project$Scatterplot$padding = 60;
 var $elm_community$typed_svg$TypedSvg$circle = $elm_community$typed_svg$TypedSvg$Core$node('circle');
@@ -9354,10 +9279,6 @@ var $author$project$Scatterplot$scatterplot = function (filteredConflicts) {
 							filteredConflicts))))
 			]));
 };
-var $elm$core$List$sortBy = _List_sortBy;
-var $elm$core$List$sort = function (xs) {
-	return A2($elm$core$List$sortBy, $elm$core$Basics$identity, xs);
-};
 var $elm$html$Html$ul = _VirtualDom_node('ul');
 var $author$project$Main$view = function (model) {
 	var eventTypeList = $elm_community$list_extra$List$Extra$unique(
@@ -9566,22 +9487,10 @@ var $author$project$Main$view = function (model) {
 															]))
 													]))
 											])),
-										$author$project$Tree$renderTree(
-										$author$project$Main$getTreeData(model)),
 										A2(
-										$elm$html$Html$ul,
-										_List_Nil,
-										A2(
-											$author$project$Main$renderCountryCheckboxes,
-											$elm$core$List$sort(
-												$elm_community$list_extra$List$Extra$unique(
-													A2(
-														$elm$core$List$map,
-														function ($) {
-															return $.country;
-														},
-														model.conflicts))),
-											model.activeCountries))
+										$author$project$Tree$renderTree,
+										$author$project$Main$getTreeData(model),
+										model.activeFilter)
 									]))
 							])),
 						A2(
