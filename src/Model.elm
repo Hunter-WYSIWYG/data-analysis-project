@@ -2,6 +2,7 @@ module Model exposing (..)
 
 import Conflict
 import Http
+import TypedSvg.Types exposing (Filter)
 
 init : () -> ( Model, Cmd Msg )
 init flags =
@@ -9,9 +10,11 @@ init flags =
 
 initModel : Model
 initModel =
-    { viewType = ScatterplotView
+    { mainViewType = ScatterplotView
+    , filterViewType = Region
     , conflicts = []
     , activeCountries = [ "Algeria" ]
+    , activeFilter = emptyFilter
     }
 
 initCmd : Cmd Msg
@@ -24,15 +27,30 @@ initCmd =
         ]
 
 type alias Model =
-    { viewType : MainViewType
+    { mainViewType : MainViewType
+    , filterViewType : FilterViewType
     , conflicts : List Conflict.Conflict
     , activeCountries : List String
+    , activeFilter : Filter
+    }
+
+type alias Filter =
+    { activeRegions : List String
+    , activeCountries : List String
+    , activeLocations : List String
+    }
+
+emptyFilter =
+    { activeRegions = []
+    , activeCountries = []
+    , activeLocations = []
     }
 
 type Msg
     = GotData (Result Http.Error (List (Conflict.Conflict)))
     | UpdateSelectedCountries String
-    | ChangeView MainViewType
+    | ChangeMainView MainViewType
+    | ChangeFilterView FilterViewType
 
 type MainViewType
     = ScatterplotView

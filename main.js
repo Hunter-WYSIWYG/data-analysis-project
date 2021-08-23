@@ -6199,12 +6199,14 @@ var $author$project$Model$initCmd = $elm$core$Platform$Cmd$batch(
 				url: 'data/Africa-Conflict_1997-2020.json'
 			})
 		]));
+var $author$project$Model$Region = {$: 'Region'};
 var $author$project$Model$ScatterplotView = {$: 'ScatterplotView'};
 var $author$project$Model$initModel = {
 	activeCountries: _List_fromArray(
 		['Algeria']),
 	conflicts: _List_Nil,
-	viewType: $author$project$Model$ScatterplotView
+	filterViewType: $author$project$Model$Region,
+	mainViewType: $author$project$Model$ScatterplotView
 };
 var $author$project$Model$init = function (flags) {
 	return _Utils_Tuple2($author$project$Model$initModel, $author$project$Model$initCmd);
@@ -6290,18 +6292,30 @@ var $author$project$Main$update = F2(
 							activeCountries: A2($author$project$Main$newCountries, model.activeCountries, country)
 						}),
 					$elm$core$Platform$Cmd$none);
-			default:
+			case 'ChangeMainView':
 				var newViewType = msg.a;
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{viewType: newViewType}),
+						{mainViewType: newViewType}),
+					$elm$core$Platform$Cmd$none);
+			default:
+				var newFilterView = msg.a;
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{filterViewType: newFilterView}),
 					$elm$core$Platform$Cmd$none);
 		}
 	});
-var $author$project$Model$ChangeView = function (a) {
-	return {$: 'ChangeView', a: a};
+var $author$project$Model$ChangeFilterView = function (a) {
+	return {$: 'ChangeFilterView', a: a};
 };
+var $author$project$Model$ChangeMainView = function (a) {
+	return {$: 'ChangeMainView', a: a};
+};
+var $author$project$Model$Country = {$: 'Country'};
+var $author$project$Model$Location = {$: 'Location'};
 var $author$project$Model$ParallelCoordinatesView = function (a) {
 	return {$: 'ParallelCoordinatesView', a: a};
 };
@@ -8235,7 +8249,7 @@ var $author$project$Scatterplot$yearSelectionBox = F3(
 							$elm_community$typed_svg$TypedSvg$Attributes$InPx$height(330.5),
 							$elm_community$typed_svg$TypedSvg$Attributes$InPx$width(27),
 							$elm$html$Html$Events$onClick(
-							$author$project$Model$ChangeView(
+							$author$project$Model$ChangeMainView(
 								$author$project$Model$ParallelCoordinatesView(conflictYear)))
 						]),
 					_List_Nil),
@@ -8251,7 +8265,7 @@ var $author$project$Scatterplot$yearSelectionBox = F3(
 							$elm_community$typed_svg$TypedSvg$Attributes$InPx$height(15),
 							$elm_community$typed_svg$TypedSvg$Attributes$InPx$width(27),
 							$elm$html$Html$Events$onClick(
-							$author$project$Model$ChangeView(
+							$author$project$Model$ChangeMainView(
 								$author$project$Model$ParallelCoordinatesView(conflictYear)))
 						]),
 					_List_Nil),
@@ -8262,7 +8276,7 @@ var $author$project$Scatterplot$yearSelectionBox = F3(
 							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(2),
 							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(346.5),
 							$elm$html$Html$Events$onClick(
-							$author$project$Model$ChangeView(
+							$author$project$Model$ChangeMainView(
 								$author$project$Model$ParallelCoordinatesView(conflictYear)))
 						]),
 					_List_fromArray(
@@ -8429,72 +8443,69 @@ var $author$project$Main$view = function (model) {
 			},
 			model.conflicts));
 	var conflictView = function () {
-		var _v0 = model.viewType;
-		switch (_v0.$) {
-			case 'ScatterplotView':
-				return $author$project$Scatterplot$scatterplot(
-					A2($author$project$Main$filterConflictsByCountries, model.conflicts, model.activeCountries));
-			case 'ParallelCoordinatesView':
-				var year = _v0.a;
-				var previousDisabled = year === 1997;
-				var nextDisabled = year === 2021;
-				return A2(
-					$elm$html$Html$div,
-					_List_fromArray(
-						[
-							A2($elm$html$Html$Attributes$style, 'width', '100%'),
-							A2($elm$html$Html$Attributes$style, 'height', '100%')
-						]),
-					_List_fromArray(
-						[
-							A2(
-							$elm$html$Html$button,
-							_List_fromArray(
-								[
-									$elm$html$Html$Attributes$class('button'),
-									$elm$html$Html$Events$onClick(
-									$author$project$Model$ChangeView($author$project$Model$ScatterplotView)),
-									A2($elm$html$Html$Attributes$style, 'margin-right', '10px')
-								]),
-							_List_fromArray(
-								[
-									$elm$html$Html$text('Back')
-								])),
-							A2(
-							$elm$html$Html$button,
-							_List_fromArray(
-								[
-									$elm$html$Html$Attributes$class('button'),
-									$elm$html$Html$Events$onClick(
-									$author$project$Model$ChangeView(
-										$author$project$Model$ParallelCoordinatesView(year - 1))),
-									$elm$html$Html$Attributes$disabled(previousDisabled)
-								]),
-							_List_fromArray(
-								[
-									$elm$html$Html$text('Previous Year')
-								])),
-							A2(
-							$elm$html$Html$button,
-							_List_fromArray(
-								[
-									$elm$html$Html$Attributes$class('button'),
-									$elm$html$Html$Events$onClick(
-									$author$project$Model$ChangeView(
-										$author$project$Model$ParallelCoordinatesView(year + 1))),
-									$elm$html$Html$Attributes$disabled(nextDisabled)
-								]),
-							_List_fromArray(
-								[
-									$elm$html$Html$text('Next Year')
-								])),
-							A2(
-							$author$project$ParallelCoordinates$parallelCoordinates,
-							A2($author$project$Main$filterConflictsByCountries, model.conflicts, model.activeCountries),
-							year)
-						]));
-			default:
-				return A2($elm$html$Html$div, _List_Nil, _List_Nil);
+		var _v0 = model.mainViewType;
+		if (_v0.$ === 'ScatterplotView') {
+			return $author$project$Scatterplot$scatterplot(
+				A2($author$project$Main$filterConflictsByCountries, model.conflicts, model.activeCountries));
+		} else {
+			var year = _v0.a;
+			var previousDisabled = year === 1997;
+			var nextDisabled = year === 2021;
+			return A2(
+				$elm$html$Html$div,
+				_List_fromArray(
+					[
+						A2($elm$html$Html$Attributes$style, 'width', '100%'),
+						A2($elm$html$Html$Attributes$style, 'height', '100%')
+					]),
+				_List_fromArray(
+					[
+						A2(
+						$elm$html$Html$button,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('button'),
+								$elm$html$Html$Events$onClick(
+								$author$project$Model$ChangeMainView($author$project$Model$ScatterplotView)),
+								A2($elm$html$Html$Attributes$style, 'margin-right', '10px')
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text('Back')
+							])),
+						A2(
+						$elm$html$Html$button,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('button'),
+								$elm$html$Html$Events$onClick(
+								$author$project$Model$ChangeMainView(
+									$author$project$Model$ParallelCoordinatesView(year - 1))),
+								$elm$html$Html$Attributes$disabled(previousDisabled)
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text('Previous Year')
+							])),
+						A2(
+						$elm$html$Html$button,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('button'),
+								$elm$html$Html$Events$onClick(
+								$author$project$Model$ChangeMainView(
+									$author$project$Model$ParallelCoordinatesView(year + 1))),
+								$elm$html$Html$Attributes$disabled(nextDisabled)
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text('Next Year')
+							])),
+						A2(
+						$author$project$ParallelCoordinates$parallelCoordinates,
+						A2($author$project$Main$filterConflictsByCountries, model.conflicts, model.activeCountries),
+						year)
+					]));
 		}
 	}();
 	return {
@@ -8576,7 +8587,11 @@ var $author$project$Main$view = function (model) {
 															[
 																A2(
 																$elm$html$Html$a,
-																_List_Nil,
+																_List_fromArray(
+																	[
+																		$elm$html$Html$Events$onClick(
+																		$author$project$Model$ChangeFilterView($author$project$Model$Region))
+																	]),
 																_List_fromArray(
 																	[
 																		$elm$html$Html$text('Filter Region')
@@ -8589,7 +8604,11 @@ var $author$project$Main$view = function (model) {
 															[
 																A2(
 																$elm$html$Html$a,
-																_List_Nil,
+																_List_fromArray(
+																	[
+																		$elm$html$Html$Events$onClick(
+																		$author$project$Model$ChangeFilterView($author$project$Model$Country))
+																	]),
 																_List_fromArray(
 																	[
 																		$elm$html$Html$text('Filter Country')
@@ -8602,7 +8621,11 @@ var $author$project$Main$view = function (model) {
 															[
 																A2(
 																$elm$html$Html$a,
-																_List_Nil,
+																_List_fromArray(
+																	[
+																		$elm$html$Html$Events$onClick(
+																		$author$project$Model$ChangeFilterView($author$project$Model$Location))
+																	]),
 																_List_fromArray(
 																	[
 																		$elm$html$Html$text('Filter Location')

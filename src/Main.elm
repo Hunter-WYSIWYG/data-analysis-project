@@ -11,7 +11,7 @@ import Scatterplot
 import ParallelCoordinates
 import Tree
 import Html.Events
-import Model exposing (Msg(..), Model, ViewType(..), init)
+import Model exposing (Msg(..), Model, MainViewType(..), FilterViewType(..), init)
 
 main : Program () Model Msg
 main =
@@ -36,8 +36,11 @@ update msg model =
         UpdateSelectedCountries country ->
             ( { model | activeCountries = (newCountries model.activeCountries country) }, Cmd.none)
 
-        ChangeView newViewType ->
-            ( { model | viewType = newViewType }, Cmd.none )
+        ChangeMainView newViewType ->
+            ( { model | mainViewType = newViewType }, Cmd.none )
+
+        ChangeFilterView newFilterView ->
+            ( { model | filterViewType = newFilterView }, Cmd.none )
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =
@@ -47,7 +50,7 @@ view : Model -> Browser.Document Msg
 view model =
     let
         conflictView =
-            case model.viewType of
+            case model.mainViewType of
                 ScatterplotView ->
                     Scatterplot.scatterplot (filterConflictsByCountries model.conflicts model.activeCountries)
                 ParallelCoordinatesView year ->
@@ -58,23 +61,21 @@ view model =
                     Html.div [ Html.Attributes.style "width" "100%", Html.Attributes.style "height" "100%" ]
                         [ Html.button
                             [ Html.Attributes.class "button"
-                            , Html.Events.onClick (ChangeView ScatterplotView)
+                            , Html.Events.onClick (ChangeMainView ScatterplotView)
                             , Html.Attributes.style "margin-right" "10px"
                             ] [ Html.text "Back" ]
                         , Html.button
                             [ Html.Attributes.class "button"
-                            , Html.Events.onClick (ChangeView (ParallelCoordinatesView (year-1)))
+                            , Html.Events.onClick (ChangeMainView (ParallelCoordinatesView (year-1)))
                             , Html.Attributes.disabled previousDisabled
                             ] [ Html.text "Previous Year" ]
                         , Html.button
                             [ Html.Attributes.class "button"
-                            , Html.Events.onClick (ChangeView (ParallelCoordinatesView (year+1)))
+                            , Html.Events.onClick (ChangeMainView (ParallelCoordinatesView (year+1)))
                             , Html.Attributes.disabled nextDisabled
                             ] [ Html.text "Next Year" ]
                         , ParallelCoordinates.parallelCoordinates (filterConflictsByCountries model.conflicts model.activeCountries) year
                         ]
-                TreeView ->
-                    Html.div [] []
         eventTypeList = List.Extra.unique (List.map (.event_type) model.conflicts)
     in
     { title = "IRuV-Project"
@@ -98,17 +99,17 @@ view model =
                         [ Html.ul []
                             [ Html.li []
                                 [ Html.a
-                                    []
+                                    [ Html.Events.onClick (ChangeFilterView Region) ]
                                     [ Html.text "Filter Region" ]
                                 ]
                             , Html.li []
                                 [ Html.a
-                                    []
+                                    [ Html.Events.onClick (ChangeFilterView Country) ]
                                     [ Html.text "Filter Country" ]
                                 ]
                             , Html.li []
                                 [ Html.a
-                                    []
+                                    [ Html.Events.onClick (ChangeFilterView Location) ]
                                     [ Html.text "Filter Location" ]
                                 ]
                             ]

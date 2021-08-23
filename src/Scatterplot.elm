@@ -93,7 +93,7 @@ yearSelectionBox scaleX scaleY conflictYear =
         [ rect
             [ TypedSvg.Attributes.InPx.height 330.5
             , TypedSvg.Attributes.InPx.width 27
-            , Html.Events.onClick (ChangeView (ParallelCoordinatesView conflictYear))
+            , Html.Events.onClick (ChangeMainView (ParallelCoordinatesView conflictYear))
             ]
             []
         , rect
@@ -102,13 +102,13 @@ yearSelectionBox scaleX scaleY conflictYear =
             , y 335
             , TypedSvg.Attributes.InPx.height 15
             , TypedSvg.Attributes.InPx.width 27
-            , Html.Events.onClick (ChangeView (ParallelCoordinatesView conflictYear))
+            , Html.Events.onClick (ChangeMainView (ParallelCoordinatesView conflictYear))
             ]
             []
         , text_
             [ x 2
             , y 346.5
-            , Html.Events.onClick (ChangeView (ParallelCoordinatesView conflictYear))
+            , Html.Events.onClick (ChangeMainView (ParallelCoordinatesView conflictYear))
             ]
             [ Html.text (String.fromInt conflictYear) ]
         ]
