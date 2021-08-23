@@ -6201,11 +6201,17 @@ var $author$project$Model$initCmd = $elm$core$Platform$Cmd$batch(
 		]));
 var $author$project$Model$Region = {$: 'Region'};
 var $author$project$Model$ScatterplotView = {$: 'ScatterplotView'};
-var $author$project$Model$emptyFilter = {countries: _List_Nil, locations: _List_Nil, regions: _List_Nil};
+var $author$project$Model$initFilter = {
+	countries: _List_fromArray(
+		['Algeria']),
+	locations: _List_Nil,
+	regions: _List_fromArray(
+		['Northern Africa'])
+};
 var $author$project$Model$initModel = {
 	activeCountries: _List_fromArray(
 		['Algeria']),
-	activeFilter: $author$project$Model$emptyFilter,
+	activeFilter: $author$project$Model$initFilter,
 	conflicts: _List_Nil,
 	filterViewType: $author$project$Model$Region,
 	mainViewType: $author$project$Model$ScatterplotView
@@ -6423,12 +6429,22 @@ var $elm$core$List$filter = F2(
 			_List_Nil,
 			list);
 	});
-var $author$project$Main$filterConflictsByCountries = F2(
-	function (conflicts, countries) {
-		return A2(
+var $author$project$Main$filterConflicts = F2(
+	function (activeFilter, conflicts) {
+		return $elm$core$List$isEmpty(activeFilter.locations) ? ($elm$core$List$isEmpty(activeFilter.countries) ? ($elm$core$List$isEmpty(activeFilter.regions) ? _List_Nil : A2(
 			$elm$core$List$filter,
 			function (conflict) {
-				return A2($elm$core$List$member, conflict.country, countries);
+				return A2($elm$core$List$member, conflict.region, activeFilter.regions);
+			},
+			conflicts)) : A2(
+			$elm$core$List$filter,
+			function (conflict) {
+				return A2($elm$core$List$member, conflict.country, activeFilter.countries);
+			},
+			conflicts)) : A2(
+			$elm$core$List$filter,
+			function (conflict) {
+				return A2($elm$core$List$member, conflict.location, activeFilter.locations);
 			},
 			conflicts);
 	});
@@ -9297,7 +9313,7 @@ var $author$project$Main$view = function (model) {
 		var _v0 = model.mainViewType;
 		if (_v0.$ === 'ScatterplotView') {
 			return $author$project$Scatterplot$scatterplot(
-				A2($author$project$Main$filterConflictsByCountries, model.conflicts, model.activeCountries));
+				A2($author$project$Main$filterConflicts, model.activeFilter, model.conflicts));
 		} else {
 			var year = _v0.a;
 			var previousDisabled = year === 1997;
@@ -9354,7 +9370,7 @@ var $author$project$Main$view = function (model) {
 							])),
 						A2(
 						$author$project$ParallelCoordinates$parallelCoordinates,
-						A2($author$project$Main$filterConflictsByCountries, model.conflicts, model.activeCountries),
+						A2($author$project$Main$filterConflicts, model.activeFilter, model.conflicts),
 						year)
 					]));
 		}

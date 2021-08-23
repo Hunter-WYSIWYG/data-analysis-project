@@ -15,7 +15,7 @@ initModel =
     , filterViewType = Region
     , conflicts = []
     , activeCountries = [ "Algeria" ]
-    , activeFilter = emptyFilter
+    , activeFilter = initFilter
     }
 
 initCmd : Cmd Msg
@@ -47,16 +47,15 @@ type alias GeoTree =
     , locations : Dict String (List String) --Key (Country) and Values (Locations)
     }
 
-emptyFilter : Filter
-emptyFilter =
-    { regions = []
-    , countries = []
+initFilter : Filter
+initFilter =
+    { regions = [ "Northern Africa" ]
+    , countries = [ "Algeria" ]
     , locations = []
     }
 
 type Msg
     = GotData (Result Http.Error (List (Conflict.Conflict)))
-    | UpdateSelectedCountries String
     | ChangeMainView MainViewType
     | ChangeFilterView FilterType
     | UpdateActiveFilter (Maybe FilterType) String

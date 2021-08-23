@@ -35,9 +35,6 @@ update msg model =
                 Err _ ->
                     ( { model | conflicts = [] }, Cmd.none)
 
-        UpdateSelectedCountries country ->
-            ( { model | activeCountries = (newCountries model.activeCountries country) }, Cmd.none)
-
         ChangeMainView newViewType ->
             ( { model | mainViewType = newViewType }, Cmd.none )
 
@@ -66,7 +63,7 @@ view model =
         conflictView =
             case model.mainViewType of
                 ScatterplotView ->
-                    Scatterplot.scatterplot (filterConflictsByCountries model.conflicts model.activeCountries)
+                    Scatterplot.scatterplot (filterConflicts model.activeFilter model.conflicts)
                 ParallelCoordinatesView year ->
                     let
                         previousDisabled = year==1997
@@ -88,7 +85,7 @@ view model =
                             , Html.Events.onClick (ChangeMainView (ParallelCoordinatesView (year+1)))
                             , Html.Attributes.disabled nextDisabled
                             ] [ Html.text "Next Year" ]
-                        , ParallelCoordinates.parallelCoordinates (filterConflictsByCountries model.conflicts model.activeCountries) year
+                        , ParallelCoordinates.parallelCoordinates (filterConflicts model.activeFilter model.conflicts) year
                         ]
         eventTypeList = List.Extra.unique (List.map (.event_type) model.conflicts)
     in
@@ -194,16 +191,18 @@ getTreeData model =
             , locations = Dict.fromList locationNodes
             }
 
-filterConflictsByCountries : List Conflict.Conflict -> List String -> List Conflict.Conflict
-filterConflictsByCountries conflicts countries =
-    List.filter (\conflict -> (List.member conflict.country countries)) conflicts
-
-newCountries : List String -> String -> List String
-newCountries oldCountries newCountry =
-    if (List.member newCountry oldCountries) then
-        List.Extra.remove newCountry oldCountries
+filterConflicts : Filter -> List Conflict.Conflict -> List Conflict.Conflict
+filterConflicts activeFilter conflicts =
+    if (List.isEmpty activeFilter.locations) then
+        if (List.isEmpty activeFilter.countries) then
+            if (List.isEmpty activeFilter.regions) then
+                []
+            else
+                List.filter (\conflict -> (List.member conflict.region activeFilter.regions)) conflicts
+        else
+            List.filter (\conflict -> (List.member conflict.country activeFilter.countries)) conflicts
     else
-        newCountry::oldCountries
+        List.filter (\conflict -> (List.member conflict.location activeFilter.locations)) conflicts
 
 newFilter : Filter -> FilterType -> String -> Filter
 newFilter oldFilter typeOfNewFilter newGeoLocation =
@@ -223,24 +222,4 @@ newFilter oldFilter typeOfNewFilter newGeoLocation =
                 { oldFilter | locations = List.Extra.remove newGeoLocation oldFilter.locations }
             else
                 { oldFilter | locations = newGeoLocation::oldFilter.locations }
-
-renderCountryCheckboxes : List String -> List String -> List (Html.Html Msg)
-renderCountryCheckboxes countries activeCountries =
-    List.map
-        (\c ->
-            let
-                isActive = List.member c activeCountries
-            in
-            Html.li []
-                [ Html.label [ Html.Attributes.class "checkbox", Html.Events.onClick (UpdateSelectedCountries c) ]
-                    [ Html.input
-                        [ Html.Attributes.type_ "checkbox"
-                        , Html.Attributes.style "margin-right" "5px"
-                        , Html.Attributes.checked isActive
-                        ] []
-                    ]
-                , Html.text c
-                ]
-        )
-        countries
 
