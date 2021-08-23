@@ -171,13 +171,13 @@ getTreeData model =
             }
         Country ->
             { regions = activeRegions
-            , countries = countryNodes
+            , countries = Dict.fromList countryNodes
             , locations = []
             }
         Location ->
             { regions = activeRegions
-            , countries = countryNodes
-            , locations = locationNodes
+            , countries = Dict.fromList countryNodes
+            , locations = Dict.fromList locationNodes
             }
 
 filterConflictsByCountries : List Conflict.Conflict -> List String -> List Conflict.Conflict

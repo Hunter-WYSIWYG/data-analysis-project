@@ -3,6 +3,7 @@ module Model exposing (..)
 import Conflict
 import Http
 import TypedSvg.Types exposing (Filter)
+import Dict exposing (Dict)
 
 init : () -> ( Model, Cmd Msg )
 init flags =
@@ -42,10 +43,11 @@ type alias Filter =
 
 type alias GeoTree =
     { regions : List String --no Key necessary -> root is "Afrika"
-    , countries : List (String, List String) --Key (Region) and Values (Countries)
-    , locations : List (String, List String) --Key (Country) and Values (Locations)
+    , countries : Dict String (List String) --Key (Region) and Values (Countries)
+    , locations : Dict String (List String) --Key (Country) and Values (Locations)
     }
 
+emptyFilter : Filter
 emptyFilter =
     { regions = []
     , countries = []
