@@ -8,6 +8,8 @@ import TreeDiagram.Svg exposing (draw)
 
 import Model exposing (Msg(..))
 import Model exposing (GeoTree)
+import Dict
+import Dict exposing (Dict)
 
 renderTree : GeoTree -> Svg Msg
 renderTree geoTree =
@@ -23,34 +25,41 @@ buildTree geoTree =
         countries = geoTree.countries
         locations = geoTree.locations
         locationNodes =
-            List.map
-                (\(key, locNames) ->
-                    ( key
-                    , List.map
+            Dict.map
+                (\key locNames ->
+                    List.map
                         (\locName ->
                             node locName []
                         )
                         locNames
-                    )
                 )
                 locations
         countryNodes =
-            List.map
-                (\(key, countryNames) ->
-                    ( key
-                    , List.map
+            Dict.map
+                (\key countryNames ->
+                    List.map
                         (\countryName ->
-                            
+                            node
+                                countryName
+                                (Maybe.withDefault [] (Dict.get countryName locationNodes))
                         )
                         countryNames
-                    )
                 )
                 countries
+        regionNodes =
+            List.map
+                (\r ->
+                    node
+                        r
+                        (Maybe.withDefault [] (Dict.get r countryNodes))
+                )
+                regions
     in
     node
         "Africa"
-        []
+        regionNodes
 
+toString : (String -> a) -> Float -> a
 toString prop value =
     prop (String.fromFloat value)
 
