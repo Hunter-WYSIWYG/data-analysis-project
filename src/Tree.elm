@@ -74,5 +74,5 @@ drawNode n =
     g
         []
         [ circle [ r "16", stroke "black", fill "white", cx "0", cy "0" ] []
-        , text_ [ textAnchor "middle", transform "translate(0,5) rotate(90 0 0)" ] [ Html.text n ]
+        , text_ [ textAnchor "middle", transform "translate(0,5) rotate(0 0 0)" ] [ Html.text n ]
         ]

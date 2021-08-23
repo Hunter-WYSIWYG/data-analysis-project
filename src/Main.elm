@@ -13,6 +13,7 @@ import Tree
 import Html.Events
 import Model exposing (Msg(..), Model, MainViewType(..), FilterViewType(..), init)
 import Model exposing (GeoTree)
+import Dict
 
 main : Program () Model Msg
 main =
@@ -166,13 +167,13 @@ getTreeData model =
     case model.filterViewType of
         Region ->
             { regions = List.Extra.unique (List.map (.region) model.conflicts)
-            , countries = []
-            , locations = []
+            , countries = Dict.empty
+            , locations = Dict.empty
             }
         Country ->
             { regions = activeRegions
             , countries = Dict.fromList countryNodes
-            , locations = []
+            , locations = Dict.empty
             }
         Location ->
             { regions = activeRegions
