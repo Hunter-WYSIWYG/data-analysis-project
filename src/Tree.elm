@@ -7,22 +7,25 @@ import TreeDiagram exposing (node, Tree, defaultTreeLayout, leftToRight)
 import TreeDiagram.Svg exposing (draw)
 
 import Model exposing (Msg(..))
+import Model exposing (GeoTree)
 
-renderTree : String -> List String -> Svg Msg
-renderTree root nodes =
+renderTree : GeoTree -> Svg Msg
+renderTree geoTree =
     let
-        tree = buildTree root nodes
+        tree = buildTree geoTree
     in
     draw { defaultTreeLayout | orientation = leftToRight } drawNode drawLine tree
 
-buildTree : String -> List String -> Tree String
-buildTree root nodes =
-    node
-        root
-        (List.map
-            (\n -> (node n []))
-            nodes
-        )
+buildTree : GeoTree -> Tree String
+buildTree geoTree =
+    let
+        regions = geoTree.regions
+        countries = geoTree.countries
+        locations = geoTree.locations
+        locationNodes = List.map (\l -> (node l [])) locations
+        countryNodes = List.map (\l -> (node l [])) locations
+    in
+    node "" [] --WIP
 
 toString prop value =
     prop (String.fromFloat value)

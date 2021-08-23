@@ -115,6 +115,7 @@ view model =
                                 ]
                             ]
                         ]
+                    , Tree.renderTree (getTreeData model)
                     , Html.ul [] (renderCountryCheckboxes (List.sort (List.Extra.unique (List.map (.country) model.conflicts))) model.activeCountries)
                     ]
                 ]
@@ -126,6 +127,42 @@ view model =
 
 getTreeData : Model -> GeoTree
 getTreeData model =
+    let
+        activeRegions = model.activeFilter.regions
+        activeCountries = model.activeFilter.countries
+        countryNodes = --find for every active region all existing contained countries
+            List.map
+                (\aR ->
+                    (aR
+                    , List.Extra.unique
+                        (List.map
+                            (.country)
+                            (List.filter
+                                (\c -> c.region==aR)
+                                model.conflicts
+                            )
+                        )
+                    )
+                )
+                activeRegions
+        locationNodes = --find for every active country all existing contained locations
+            List.map
+                (\aC ->
+                    (aC
+                    , List.Extra.unique
+                        (List.map
+                            (.location)
+                            (List.filter
+                                (\c -> c.country==aC)
+                                model.conflicts
+                            )
+                        )
+                    )
+                )
+                activeCountries
+
+
+    in
     case model.filterViewType of
         Region ->
             { regions = List.Extra.unique (List.map (.region) model.conflicts)
@@ -133,14 +170,14 @@ getTreeData model =
             , locations = []
             }
         Country ->
-            { regions = model.activeFilter.regions
-            , countries = List.Extra.unique (List.map (.country) model.conflicts)
+            { regions = activeRegions
+            , countries = countryNodes
             , locations = []
             }
-        Country ->
-            { regions = model.activeFilter.regions
-            , countries = model.activeFilter.countries
-            , locations = List.Extra.unique (List.map (.location) model.conflicts)
+        Location ->
+            { regions = activeRegions
+            , countries = countryNodes
+            , locations = locationNodes
             }
 
 filterConflictsByCountries : List Conflict.Conflict -> List String -> List Conflict.Conflict

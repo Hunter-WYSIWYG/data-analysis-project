@@ -14,7 +14,7 @@ initModel =
     , filterViewType = Region
     , conflicts = []
     , activeCountries = [ "Algeria" ]
-    , activeFilter = emptyGeoTree
+    , activeFilter = emptyFilter
     }
 
 initCmd : Cmd Msg
@@ -31,16 +31,22 @@ type alias Model =
     , filterViewType : FilterViewType
     , conflicts : List Conflict.Conflict
     , activeCountries : List String
-    , activeFilter : GeoTree
+    , activeFilter : Filter
     }
 
-type alias GeoTree =
+type alias Filter =
     { regions : List String
     , countries : List String
     , locations : List String
     }
 
-emptyGeoTree =
+type alias GeoTree =
+    { regions : List String --no Key necessary -> root is "Afrika"
+    , countries : List (String, List String) --Key (Region) and Values (Countries)
+    , locations : List (String, List String) --Key (Country) and Values (Locations)
+    }
+
+emptyFilter =
     { regions = []
     , countries = []
     , locations = []
