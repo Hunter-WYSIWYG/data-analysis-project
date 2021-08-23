@@ -11,7 +11,7 @@ import Scatterplot
 import ParallelCoordinates
 import Tree
 import Html.Events
-import Model exposing (Msg(..), Model, MainViewType(..), FilterViewType(..), init)
+import Model exposing (Msg(..), Model, MainViewType(..), FilterViewType(..), Filter, init)
 import Model exposing (GeoTree)
 import Dict
 
@@ -43,6 +43,9 @@ update msg model =
 
         ChangeFilterView newFilterView ->
             ( { model | filterViewType = newFilterView }, Cmd.none )
+
+        UpdateActiveFilter filterViewType geoLocation ->
+            ( { model | activeFilter = (newFilter model.activeFilter filterViewType geoLocation) }, Cmd.none)
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =
@@ -191,6 +194,25 @@ newCountries oldCountries newCountry =
         List.Extra.remove newCountry oldCountries
     else
         newCountry::oldCountries
+
+newFilter : Filter -> FilterViewType -> String -> Filter
+newFilter oldFilter typeOfNewFilter newGeoLocation =
+    case typeOfNewFilter of
+        Region ->
+            if (List.member newGeoLocation oldFilter.regions) then
+                { oldFilter | regions = List.Extra.remove newGeoLocation oldFilter.regions }
+            else
+                { oldFilter | regions = newGeoLocation::oldFilter.regions }
+        Country ->
+            if (List.member newGeoLocation oldFilter.countries) then
+                { oldFilter | countries = List.Extra.remove newGeoLocation oldFilter.countries }
+            else
+                { oldFilter | countries = newGeoLocation::oldFilter.countries }
+        Location ->
+            if (List.member newGeoLocation oldFilter.locations) then
+                { oldFilter | locations = List.Extra.remove newGeoLocation oldFilter.locations }
+            else
+                { oldFilter | locations = newGeoLocation::oldFilter.locations }
 
 renderCountryCheckboxes : List String -> List String -> List (Html.Html Msg)
 renderCountryCheckboxes countries activeCountries =

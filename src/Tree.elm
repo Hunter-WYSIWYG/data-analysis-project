@@ -73,6 +73,13 @@ drawNode : String -> Svg msg
 drawNode n =
     g
         []
-        [ circle [ r "16", stroke "black", fill "white", cx "0", cy "0" ] []
+        [ circle
+            [ r "16"
+            , stroke "black"
+            , fill "white"
+            , cx "0"
+            , cy "0"
+            , Html.Events.onClick 
+            ] []
         , text_ [ textAnchor "middle", transform "translate(0,5) rotate(0 0 0)" ] [ Html.text n ]
         ]

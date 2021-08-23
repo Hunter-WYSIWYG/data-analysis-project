@@ -59,6 +59,7 @@ type Msg
     | UpdateSelectedCountries String
     | ChangeMainView MainViewType
     | ChangeFilterView FilterViewType
+    | UpdateActiveFilter FilterViewType String
 
 type MainViewType
     = ScatterplotView
