@@ -21,7 +21,7 @@ initCmd : Cmd Msg
 initCmd =
     Cmd.batch
         [ Http.get
-            { url = "data/Africa-Conflict_1997-2020.json" --"https://cors-anywhere.herokuapp.com/https://cloud.uzi.uni-halle.de/owncloud/index.php/s/jOcq5Jcf2E8zVhJ/download"
+            { url = "data/Africa-Conflict_1997-2020.json"
             , expect = Http.expectJson GotData (Conflict.listDecoder Conflict.decodeConflict)
             }
         ]
