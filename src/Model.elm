@@ -14,6 +14,7 @@ initModel =
     { mainViewType = ScatterplotView
     , conflicts = []
     , activeFilter = initFilter
+    , showGeoLocationName = " "
     }
 
 initCmd : Cmd Msg
@@ -29,6 +30,7 @@ type alias Model =
     { mainViewType : MainViewType
     , conflicts : List Conflict.Conflict
     , activeFilter : Filter
+    , showGeoLocationName : String
     }
 
 type alias Filter =
@@ -51,6 +53,7 @@ type Msg
     = GotData (Result Http.Error (List (Conflict.Conflict)))
     | ChangeMainView MainViewType
     | UpdateActiveFilter (Maybe GeoLocationType) String
+    | ShowGeoLocationName String
 
 type MainViewType
     = ScatterplotView

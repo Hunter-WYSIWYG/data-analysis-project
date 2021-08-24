@@ -1,6 +1,6 @@
 .point circle {
-    stroke: rgba(0, 0, 0, 0.05);
-    fill: rgba(0, 0, 0, 0.01);
+    stroke: rgba(0, 0, 0, 0.1);
+    fill: rgba(255, 46, 46, 0.01);
     stroke-width: 3px;
 }
 

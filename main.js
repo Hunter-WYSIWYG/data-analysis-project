@@ -6201,15 +6201,9 @@ var $author$project$Model$initFilter = {
 	countries: _List_fromArray(
 		['Ghana']),
 	regions: _List_fromArray(
-		['Western Africa'])
+		['Western Africa', 'Southern Afrika'])
 };
-var $author$project$Model$initModel = {
-	activeCountries: _List_fromArray(
-		['Algeria']),
-	activeFilter: $author$project$Model$initFilter,
-	conflicts: _List_Nil,
-	mainViewType: $author$project$Model$ScatterplotView
-};
+var $author$project$Model$initModel = {activeFilter: $author$project$Model$initFilter, conflicts: _List_Nil, mainViewType: $author$project$Model$ScatterplotView, showGeoLocationName: ' '};
 var $author$project$Model$init = function (flags) {
 	return _Utils_Tuple2($author$project$Model$initModel, $author$project$Model$initCmd);
 };
@@ -6405,7 +6399,7 @@ var $author$project$Main$update = F2(
 						model,
 						{mainViewType: newViewType}),
 					$elm$core$Platform$Cmd$none);
-			default:
+			case 'UpdateActiveFilter':
 				var maybeNewGeoLocationType = msg.a;
 				var geoLocation = msg.b;
 				if (maybeNewGeoLocationType.$ === 'Just') {
@@ -6422,6 +6416,13 @@ var $author$project$Main$update = F2(
 				} else {
 					return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
 				}
+			default:
+				var name = msg.a;
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{showGeoLocationName: name}),
+					$elm$core$Platform$Cmd$none);
 		}
 	});
 var $author$project$Model$ChangeMainView = function (a) {
@@ -6620,6 +6621,7 @@ var $author$project$Main$getTreeData = function (model) {
 };
 var $elm$html$Html$h3 = _VirtualDom_node('h3');
 var $elm$html$Html$h4 = _VirtualDom_node('h4');
+var $elm$html$Html$h6 = _VirtualDom_node('h6');
 var $elm$virtual_dom$VirtualDom$Normal = function (a) {
 	return {$: 'Normal', a: a};
 };
@@ -8825,6 +8827,9 @@ var $author$project$Tree$drawLine = function (_v0) {
 			]),
 		_List_Nil);
 };
+var $author$project$Model$ShowGeoLocationName = function (a) {
+	return {$: 'ShowGeoLocationName', a: a};
+};
 var $author$project$Model$UpdateActiveFilter = F2(
 	function (a, b) {
 		return {$: 'UpdateActiveFilter', a: a, b: b};
@@ -8842,6 +8847,18 @@ var $author$project$Tree$checkAndShortenName = function (name) {
 			},
 			A2($elm$core$String$split, ' ', name)));
 	return ($elm$core$String$length(name) > 9) ? shortName : name;
+};
+var $elm$html$Html$Events$onMouseEnter = function (msg) {
+	return A2(
+		$elm$html$Html$Events$on,
+		'mouseenter',
+		$elm$json$Json$Decode$succeed(msg));
+};
+var $elm$html$Html$Events$onMouseLeave = function (msg) {
+	return A2(
+		$elm$html$Html$Events$on,
+		'mouseleave',
+		$elm$json$Json$Decode$succeed(msg));
 };
 var $elm$svg$Svg$rect = $elm$svg$Svg$trustedNode('rect');
 var $author$project$Tree$shortenRegionName = function (name) {
@@ -8936,7 +8953,11 @@ var $author$project$Tree$drawNode = F2(
 							$elm$svg$Svg$Attributes$x(offsetString),
 							$elm$svg$Svg$Attributes$y('-10px'),
 							$elm$html$Html$Events$onClick(
-							A2($author$project$Model$UpdateActiveFilter, maybeFilterType, name))
+							A2($author$project$Model$UpdateActiveFilter, maybeFilterType, name)),
+							$elm$html$Html$Events$onMouseEnter(
+							$author$project$Model$ShowGeoLocationName(name)),
+							$elm$html$Html$Events$onMouseLeave(
+							$author$project$Model$ShowGeoLocationName(' '))
 						]),
 					_List_Nil)
 				]));
@@ -9446,6 +9467,18 @@ var $author$project$Main$view = function (model) {
 										_List_fromArray(
 											[
 												$elm$html$Html$text('Geographical Filter:')
+											])),
+										A2(
+										$elm$html$Html$h6,
+										_List_fromArray(
+											[
+												$elm$html$Html$Attributes$class('title is-6'),
+												A2($elm$html$Html$Attributes$style, 'height', '30px'),
+												A2($elm$html$Html$Attributes$style, 'margin', '0px')
+											]),
+										_List_fromArray(
+											[
+												$elm$html$Html$text(model.showGeoLocationName)
 											])),
 										A2(
 										$author$project$Tree$renderTree,

@@ -51,6 +51,9 @@ update msg model =
                 Nothing ->
                     ( model, Cmd.none )
 
+        ShowGeoLocationName name ->
+            ( { model | showGeoLocationName = name }, Cmd.none )
+
 subscriptions : Model -> Sub Msg
 subscriptions _ =
   Sub.none
@@ -106,6 +109,12 @@ view model =
                 ]
                 [ Html.div []
                     [ Html.h4 [ Html.Attributes.class "title is-4" ] [ Html.text "Geographical Filter:" ]
+                    , Html.h6
+                        [ Html.Attributes.class "title is-6"
+                        , Html.Attributes.style "height" "30px"
+                        , Html.Attributes.style "margin" "0px"
+                        ]
+                        [ Html.text model.showGeoLocationName ]
                     , Tree.renderTree (getTreeData model) model.activeFilter
                     ]
                 ]

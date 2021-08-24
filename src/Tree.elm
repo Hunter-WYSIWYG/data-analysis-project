@@ -94,6 +94,8 @@ drawNode activeFilter (maybeFilterType, name) =
             , Svg.Attributes.x offsetString
             , Svg.Attributes.y "-10px"
             , Html.Events.onClick (UpdateActiveFilter maybeFilterType name)
+            , Html.Events.onMouseEnter (ShowGeoLocationName name)
+            , Html.Events.onMouseLeave (ShowGeoLocationName " ")
             ] []
         ]
 
