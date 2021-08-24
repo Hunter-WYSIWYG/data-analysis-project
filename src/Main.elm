@@ -107,7 +107,6 @@ view model =
                 [ Html.div []
                     [ Html.h4 [ Html.Attributes.class "title is-4" ] [ Html.text "Geographical Filter:" ]
                     , Tree.renderTree (getTreeData model) model.activeFilter
-                    --, Html.ul [] (renderCountryCheckboxes (List.sort (List.Extra.unique (List.map (.country) model.conflicts))) model.activeCountries)
                     ]
                 ]
             , Html.div [ Html.Attributes.class "column is-1 has-background-info" ]

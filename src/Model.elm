@@ -13,7 +13,6 @@ initModel : Model
 initModel =
     { mainViewType = ScatterplotView
     , conflicts = []
-    , activeCountries = [ "Algeria" ]
     , activeFilter = initFilter
     }
 
@@ -29,7 +28,6 @@ initCmd =
 type alias Model =
     { mainViewType : MainViewType
     , conflicts : List Conflict.Conflict
-    , activeCountries : List String
     , activeFilter : Filter
     }
 
@@ -45,7 +43,7 @@ type alias GeoTree =
 
 initFilter : Filter
 initFilter =
-    { regions = [ "Western Africa" ]
+    { regions = [ "Western Africa", "Southern Afrika" ]
     , countries = [ "Ghana" ]
     }
 
