@@ -6193,7 +6193,7 @@ var $author$project$Model$initCmd = $elm$core$Platform$Cmd$batch(
 					$elm$http$Http$expectJson,
 					$author$project$Model$GotData,
 					$author$project$Conflict$listDecoder($author$project$Conflict$decodeConflict)),
-				url: 'data/Africa-Conflict_1997-2020.json'
+				url: 'Africa-Conflict_1997-2020.json'
 			})
 		]));
 var $author$project$Model$ScatterplotView = {$: 'ScatterplotView'};

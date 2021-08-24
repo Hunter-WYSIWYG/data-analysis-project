@@ -21,7 +21,7 @@ initCmd : Cmd Msg
 initCmd =
     Cmd.batch
         [ Http.get
-            { url = "data/Africa-Conflict_1997-2020.json"
+            { url = "Africa-Conflict_1997-2020.json"
             , expect = Http.expectJson GotData (Conflict.listDecoder Conflict.decodeConflict)
             }
         ]
