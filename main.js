@@ -5360,9 +5360,9 @@ var $author$project$Model$GotData = function (a) {
 	return {$: 'GotData', a: a};
 };
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
-var $author$project$Conflict$Conflict = F9(
-	function (event_id_no_cnty, year, event_date, event_type, fatalities, notes, country, region, location) {
-		return {country: country, event_date: event_date, event_id_no_cnty: event_id_no_cnty, event_type: event_type, fatalities: fatalities, location: location, notes: notes, region: region, year: year};
+var $author$project$Conflict$Conflict = F8(
+	function (event_id_no_cnty, year, event_date, event_type, fatalities, notes, country, region) {
+		return {country: country, event_date: event_date, event_id_no_cnty: event_id_no_cnty, event_type: event_type, fatalities: fatalities, notes: notes, region: region, year: year};
 	});
 var $elm_community$json_extra$Json$Decode$Extra$andMap = $elm$json$Json$Decode$map2($elm$core$Basics$apR);
 var $elm$json$Json$Decode$field = _Json_decodeField;
@@ -5370,32 +5370,29 @@ var $elm$json$Json$Decode$int = _Json_decodeInt;
 var $elm$json$Json$Decode$string = _Json_decodeString;
 var $author$project$Conflict$decodeConflict = A2(
 	$elm_community$json_extra$Json$Decode$Extra$andMap,
-	A2($elm$json$Json$Decode$field, 'LOCATION', $elm$json$Json$Decode$string),
+	A2($elm$json$Json$Decode$field, 'REGION', $elm$json$Json$Decode$string),
 	A2(
 		$elm_community$json_extra$Json$Decode$Extra$andMap,
-		A2($elm$json$Json$Decode$field, 'REGION', $elm$json$Json$Decode$string),
+		A2($elm$json$Json$Decode$field, 'COUNTRY', $elm$json$Json$Decode$string),
 		A2(
 			$elm_community$json_extra$Json$Decode$Extra$andMap,
-			A2($elm$json$Json$Decode$field, 'COUNTRY', $elm$json$Json$Decode$string),
+			A2($elm$json$Json$Decode$field, 'NOTES', $elm$json$Json$Decode$string),
 			A2(
 				$elm_community$json_extra$Json$Decode$Extra$andMap,
-				A2($elm$json$Json$Decode$field, 'NOTES', $elm$json$Json$Decode$string),
+				A2($elm$json$Json$Decode$field, 'FATALITIES', $elm$json$Json$Decode$int),
 				A2(
 					$elm_community$json_extra$Json$Decode$Extra$andMap,
-					A2($elm$json$Json$Decode$field, 'FATALITIES', $elm$json$Json$Decode$int),
+					A2($elm$json$Json$Decode$field, 'EVENT_TYPE', $elm$json$Json$Decode$string),
 					A2(
 						$elm_community$json_extra$Json$Decode$Extra$andMap,
-						A2($elm$json$Json$Decode$field, 'EVENT_TYPE', $elm$json$Json$Decode$string),
+						A2($elm$json$Json$Decode$field, 'EVENT_DATE', $elm$json$Json$Decode$string),
 						A2(
 							$elm_community$json_extra$Json$Decode$Extra$andMap,
-							A2($elm$json$Json$Decode$field, 'EVENT_DATE', $elm$json$Json$Decode$string),
+							A2($elm$json$Json$Decode$field, 'YEAR', $elm$json$Json$Decode$int),
 							A2(
 								$elm_community$json_extra$Json$Decode$Extra$andMap,
-								A2($elm$json$Json$Decode$field, 'YEAR', $elm$json$Json$Decode$int),
-								A2(
-									$elm_community$json_extra$Json$Decode$Extra$andMap,
-									A2($elm$json$Json$Decode$field, 'EVENT_ID_NO_CNTY', $elm$json$Json$Decode$int),
-									$elm$json$Json$Decode$succeed($author$project$Conflict$Conflict))))))))));
+								A2($elm$json$Json$Decode$field, 'EVENT_ID_NO_CNTY', $elm$json$Json$Decode$int),
+								$elm$json$Json$Decode$succeed($author$project$Conflict$Conflict)))))))));
 var $elm$json$Json$Decode$decodeString = _Json_runOnString;
 var $elm$http$Http$BadStatus_ = F2(
 	function (a, b) {
@@ -6199,21 +6196,18 @@ var $author$project$Model$initCmd = $elm$core$Platform$Cmd$batch(
 				url: 'data/Africa-Conflict_1997-2020.json'
 			})
 		]));
-var $author$project$Model$Region = {$: 'Region'};
 var $author$project$Model$ScatterplotView = {$: 'ScatterplotView'};
 var $author$project$Model$initFilter = {
 	countries: _List_fromArray(
-		['Algeria']),
-	locations: _List_Nil,
+		['Ghana']),
 	regions: _List_fromArray(
-		['Northern Africa'])
+		['Western Africa'])
 };
 var $author$project$Model$initModel = {
 	activeCountries: _List_fromArray(
 		['Algeria']),
 	activeFilter: $author$project$Model$initFilter,
 	conflicts: _List_Nil,
-	filterViewType: $author$project$Model$Region,
 	mainViewType: $author$project$Model$ScatterplotView
 };
 var $author$project$Model$init = function (flags) {
@@ -6230,6 +6224,73 @@ var $elm$core$List$isEmpty = function (xs) {
 	} else {
 		return false;
 	}
+};
+var $elm$core$Set$Set_elm_builtin = function (a) {
+	return {$: 'Set_elm_builtin', a: a};
+};
+var $elm$core$Dict$foldl = F3(
+	function (func, acc, dict) {
+		foldl:
+		while (true) {
+			if (dict.$ === 'RBEmpty_elm_builtin') {
+				return acc;
+			} else {
+				var key = dict.b;
+				var value = dict.c;
+				var left = dict.d;
+				var right = dict.e;
+				var $temp$func = func,
+					$temp$acc = A3(
+					func,
+					key,
+					value,
+					A3($elm$core$Dict$foldl, func, acc, left)),
+					$temp$dict = right;
+				func = $temp$func;
+				acc = $temp$acc;
+				dict = $temp$dict;
+				continue foldl;
+			}
+		}
+	});
+var $elm$core$Dict$diff = F2(
+	function (t1, t2) {
+		return A3(
+			$elm$core$Dict$foldl,
+			F3(
+				function (k, v, t) {
+					return A2($elm$core$Dict$remove, k, t);
+				}),
+			t1,
+			t2);
+	});
+var $elm$core$Set$diff = F2(
+	function (_v0, _v1) {
+		var dict1 = _v0.a;
+		var dict2 = _v1.a;
+		return $elm$core$Set$Set_elm_builtin(
+			A2($elm$core$Dict$diff, dict1, dict2));
+	});
+var $elm$core$List$filter = F2(
+	function (isGood, list) {
+		return A3(
+			$elm$core$List$foldr,
+			F2(
+				function (x, xs) {
+					return isGood(x) ? A2($elm$core$List$cons, x, xs) : xs;
+				}),
+			_List_Nil,
+			list);
+	});
+var $elm$core$Set$empty = $elm$core$Set$Set_elm_builtin($elm$core$Dict$empty);
+var $elm$core$Set$insert = F2(
+	function (key, _v0) {
+		var dict = _v0.a;
+		return $elm$core$Set$Set_elm_builtin(
+			A3($elm$core$Dict$insert, key, _Utils_Tuple0, dict));
+	});
+var $elm$core$Set$fromList = function (list) {
+	return A3($elm$core$List$foldl, $elm$core$Set$insert, $elm$core$Set$empty, list);
 };
 var $elm$core$List$any = F2(
 	function (isOkay, list) {
@@ -6274,39 +6335,47 @@ var $elm_community$list_extra$List$Extra$remove = F2(
 				A2($elm_community$list_extra$List$Extra$remove, x, ys));
 		}
 	});
-var $author$project$Main$newFilter = F3(
-	function (oldFilter, typeOfNewFilter, newGeoLocation) {
-		switch (typeOfNewFilter.$) {
-			case 'Region':
-				return A2($elm$core$List$member, newGeoLocation, oldFilter.regions) ? _Utils_update(
+var $author$project$Main$newFilter = F4(
+	function (oldFilter, conflicts, typeOfNewFilter, newGeoLocation) {
+		if (typeOfNewFilter.$ === 'Region') {
+			if (A2($elm$core$List$member, newGeoLocation, oldFilter.regions)) {
+				var regionalCountries = $elm$core$Set$fromList(
+					A2(
+						$elm$core$List$map,
+						function ($) {
+							return $.country;
+						},
+						A2(
+							$elm$core$List$filter,
+							function (c) {
+								return _Utils_eq(c.region, newGeoLocation);
+							},
+							conflicts)));
+				var activeCountries = $elm$core$Set$fromList(oldFilter.countries);
+				return _Utils_update(
 					oldFilter,
 					{
+						countries: $elm$core$Set$toList(
+							A2($elm$core$Set$diff, activeCountries, regionalCountries)),
 						regions: A2($elm_community$list_extra$List$Extra$remove, newGeoLocation, oldFilter.regions)
-					}) : _Utils_update(
+					});
+			} else {
+				return _Utils_update(
 					oldFilter,
 					{
 						regions: A2($elm$core$List$cons, newGeoLocation, oldFilter.regions)
 					});
-			case 'Country':
-				return A2($elm$core$List$member, newGeoLocation, oldFilter.countries) ? _Utils_update(
-					oldFilter,
-					{
-						countries: A2($elm_community$list_extra$List$Extra$remove, newGeoLocation, oldFilter.countries)
-					}) : _Utils_update(
-					oldFilter,
-					{
-						countries: A2($elm$core$List$cons, newGeoLocation, oldFilter.countries)
-					});
-			default:
-				return A2($elm$core$List$member, newGeoLocation, oldFilter.locations) ? _Utils_update(
-					oldFilter,
-					{
-						locations: A2($elm_community$list_extra$List$Extra$remove, newGeoLocation, oldFilter.locations)
-					}) : _Utils_update(
-					oldFilter,
-					{
-						locations: A2($elm$core$List$cons, newGeoLocation, oldFilter.locations)
-					});
+			}
+		} else {
+			return A2($elm$core$List$member, newGeoLocation, oldFilter.countries) ? _Utils_update(
+				oldFilter,
+				{
+					countries: A2($elm_community$list_extra$List$Extra$remove, newGeoLocation, oldFilter.countries)
+				}) : _Utils_update(
+				oldFilter,
+				{
+					countries: A2($elm$core$List$cons, newGeoLocation, oldFilter.countries)
+				});
 		}
 	});
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
@@ -6336,55 +6405,31 @@ var $author$project$Main$update = F2(
 						model,
 						{mainViewType: newViewType}),
 					$elm$core$Platform$Cmd$none);
-			case 'ChangeFilterView':
-				var newFilterType = msg.a;
-				return _Utils_Tuple2(
-					_Utils_update(
-						model,
-						{filterViewType: newFilterType}),
-					$elm$core$Platform$Cmd$none);
 			default:
-				var maybeNewFilterType = msg.a;
+				var maybeNewGeoLocationType = msg.a;
 				var geoLocation = msg.b;
-				if (maybeNewFilterType.$ === 'Just') {
-					var newFilterType = maybeNewFilterType.a;
-					var newActiveFilter1 = A3($author$project$Main$newFilter, model.activeFilter, newFilterType, geoLocation);
-					var newActiveFilter2 = $elm$core$List$isEmpty(newActiveFilter1.countries) ? _Utils_update(
+				if (maybeNewGeoLocationType.$ === 'Just') {
+					var newGeoLocationType = maybeNewGeoLocationType.a;
+					var newActiveFilter1 = A4($author$project$Main$newFilter, model.activeFilter, model.conflicts, newGeoLocationType, geoLocation);
+					var newActiveFilter2 = $elm$core$List$isEmpty(newActiveFilter1.regions) ? _Utils_update(
 						newActiveFilter1,
-						{locations: _List_Nil}) : newActiveFilter1;
-					var newActiveFilter3 = $elm$core$List$isEmpty(newActiveFilter2.regions) ? _Utils_update(
-						newActiveFilter2,
-						{countries: _List_Nil, locations: _List_Nil}) : newActiveFilter2;
+						{countries: _List_Nil}) : newActiveFilter1;
 					return _Utils_Tuple2(
 						_Utils_update(
 							model,
-							{activeFilter: newActiveFilter3, filterViewType: newFilterType}),
+							{activeFilter: newActiveFilter2}),
 						$elm$core$Platform$Cmd$none);
 				} else {
 					return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
 				}
 		}
 	});
-var $author$project$Model$ChangeFilterView = function (a) {
-	return {$: 'ChangeFilterView', a: a};
-};
 var $author$project$Model$ChangeMainView = function (a) {
 	return {$: 'ChangeMainView', a: a};
 };
-var $author$project$Model$Country = {$: 'Country'};
-var $author$project$Model$Location = {$: 'Location'};
 var $author$project$Model$ParallelCoordinatesView = function (a) {
 	return {$: 'ParallelCoordinatesView', a: a};
 };
-var $elm$html$Html$a = _VirtualDom_node('a');
-var $elm$virtual_dom$VirtualDom$attribute = F2(
-	function (key, value) {
-		return A2(
-			_VirtualDom_attribute,
-			_VirtualDom_noOnOrFormAction(key),
-			_VirtualDom_noJavaScriptOrHtmlUri(value));
-	});
-var $elm$html$Html$Attributes$attribute = $elm$virtual_dom$VirtualDom$attribute;
 var $elm$html$Html$button = _VirtualDom_node('button');
 var $elm$json$Json$Encode$string = _Json_wrap;
 var $elm$html$Html$Attributes$stringProperty = F2(
@@ -6405,57 +6450,27 @@ var $elm$html$Html$Attributes$boolProperty = F2(
 	});
 var $elm$html$Html$Attributes$disabled = $elm$html$Html$Attributes$boolProperty('disabled');
 var $elm$html$Html$div = _VirtualDom_node('div');
-var $elm$core$List$filter = F2(
-	function (isGood, list) {
+var $elm$core$List$append = F2(
+	function (xs, ys) {
+		if (!ys.b) {
+			return xs;
+		} else {
+			return A3($elm$core$List$foldr, $elm$core$List$cons, ys, xs);
+		}
+	});
+var $elm$core$List$concat = function (lists) {
+	return A3($elm$core$List$foldr, $elm$core$List$append, _List_Nil, lists);
+};
+var $elm$core$Dict$filter = F2(
+	function (isGood, dict) {
 		return A3(
-			$elm$core$List$foldr,
-			F2(
-				function (x, xs) {
-					return isGood(x) ? A2($elm$core$List$cons, x, xs) : xs;
+			$elm$core$Dict$foldl,
+			F3(
+				function (k, v, d) {
+					return A2(isGood, k, v) ? A3($elm$core$Dict$insert, k, v, d) : d;
 				}),
-			_List_Nil,
-			list);
-	});
-var $author$project$Main$filterConflicts = F2(
-	function (activeFilter, conflicts) {
-		return $elm$core$List$isEmpty(activeFilter.locations) ? ($elm$core$List$isEmpty(activeFilter.countries) ? ($elm$core$List$isEmpty(activeFilter.regions) ? _List_Nil : A2(
-			$elm$core$List$filter,
-			function (conflict) {
-				return A2($elm$core$List$member, conflict.region, activeFilter.regions);
-			},
-			conflicts)) : A2(
-			$elm$core$List$filter,
-			function (conflict) {
-				return A2($elm$core$List$member, conflict.country, activeFilter.countries);
-			},
-			conflicts)) : A2(
-			$elm$core$List$filter,
-			function (conflict) {
-				return A2($elm$core$List$member, conflict.location, activeFilter.locations);
-			},
-			conflicts);
-	});
-var $elm$core$Dict$fromList = function (assocs) {
-	return A3(
-		$elm$core$List$foldl,
-		F2(
-			function (_v0, dict) {
-				var key = _v0.a;
-				var value = _v0.b;
-				return A3($elm$core$Dict$insert, key, value, dict);
-			}),
-		$elm$core$Dict$empty,
-		assocs);
-};
-var $elm$core$Set$Set_elm_builtin = function (a) {
-	return {$: 'Set_elm_builtin', a: a};
-};
-var $elm$core$Set$empty = $elm$core$Set$Set_elm_builtin($elm$core$Dict$empty);
-var $elm$core$Set$insert = F2(
-	function (key, _v0) {
-		var dict = _v0.a;
-		return $elm$core$Set$Set_elm_builtin(
-			A3($elm$core$Dict$insert, key, _Utils_Tuple0, dict));
+			$elm$core$Dict$empty,
+			dict);
 	});
 var $elm$core$Dict$member = F2(
 	function (key, dict) {
@@ -6465,6 +6480,23 @@ var $elm$core$Dict$member = F2(
 		} else {
 			return false;
 		}
+	});
+var $elm$core$Dict$intersect = F2(
+	function (t1, t2) {
+		return A2(
+			$elm$core$Dict$filter,
+			F2(
+				function (k, _v0) {
+					return A2($elm$core$Dict$member, k, t2);
+				}),
+			t1);
+	});
+var $elm$core$Set$intersect = F2(
+	function (_v0, _v1) {
+		var dict1 = _v0.a;
+		var dict2 = _v1.a;
+		return $elm$core$Set$Set_elm_builtin(
+			A2($elm$core$Dict$intersect, dict1, dict2));
 	});
 var $elm$core$Set$member = F2(
 	function (key, _v0) {
@@ -6508,7 +6540,58 @@ var $elm_community$list_extra$List$Extra$uniqueHelp = F4(
 var $elm_community$list_extra$List$Extra$unique = function (list) {
 	return A4($elm_community$list_extra$List$Extra$uniqueHelp, $elm$core$Basics$identity, $elm$core$Set$empty, list, _List_Nil);
 };
+var $author$project$Main$filterConflicts = F3(
+	function (regions, activeFilter, conflicts) {
+		var countriesToShow = $elm_community$list_extra$List$Extra$unique(
+			$elm$core$List$concat(
+				A2(
+					$elm$core$List$map,
+					function (r) {
+						var regionalCountries = $elm$core$Set$fromList(
+							A2(
+								$elm$core$List$map,
+								function ($) {
+									return $.country;
+								},
+								A2(
+									$elm$core$List$filter,
+									function (c) {
+										return _Utils_eq(c.region, r);
+									},
+									conflicts)));
+						var activeCountries = $elm$core$Set$fromList(activeFilter.countries);
+						var regionalActiveCountries = $elm$core$Set$toList(
+							A2($elm$core$Set$intersect, regionalCountries, activeCountries));
+						return $elm$core$List$isEmpty(regionalActiveCountries) ? (A2($elm$core$List$member, r, activeFilter.regions) ? $elm$core$Set$toList(regionalCountries) : _List_Nil) : regionalActiveCountries;
+					},
+					regions)));
+		return A2(
+			$elm$core$List$filter,
+			function (conflict) {
+				return A2($elm$core$List$member, conflict.country, countriesToShow);
+			},
+			conflicts);
+	});
+var $elm$core$Dict$fromList = function (assocs) {
+	return A3(
+		$elm$core$List$foldl,
+		F2(
+			function (_v0, dict) {
+				var key = _v0.a;
+				var value = _v0.b;
+				return A3($elm$core$Dict$insert, key, value, dict);
+			}),
+		$elm$core$Dict$empty,
+		assocs);
+};
 var $author$project$Main$getTreeData = function (model) {
+	var regions = $elm_community$list_extra$List$Extra$unique(
+		A2(
+			$elm$core$List$map,
+			function ($) {
+				return $.region;
+			},
+			model.conflicts));
 	var activeRegions = model.activeFilter.regions;
 	var countryNodes = A2(
 		$elm$core$List$map,
@@ -6530,57 +6613,13 @@ var $author$project$Main$getTreeData = function (model) {
 		},
 		activeRegions);
 	var activeCountries = model.activeFilter.countries;
-	var locationNodes = A2(
-		$elm$core$List$map,
-		function (aC) {
-			return _Utils_Tuple2(
-				aC,
-				$elm_community$list_extra$List$Extra$unique(
-					A2(
-						$elm$core$List$map,
-						function ($) {
-							return $.location;
-						},
-						A2(
-							$elm$core$List$filter,
-							function (c) {
-								return _Utils_eq(c.country, aC);
-							},
-							model.conflicts))));
-		},
-		activeCountries);
-	var _v0 = model.filterViewType;
-	switch (_v0.$) {
-		case 'Region':
-			return {
-				countries: $elm$core$Dict$empty,
-				locations: $elm$core$Dict$empty,
-				regions: $elm_community$list_extra$List$Extra$unique(
-					A2(
-						$elm$core$List$map,
-						function ($) {
-							return $.region;
-						},
-						model.conflicts))
-			};
-		case 'Country':
-			return {
-				countries: $elm$core$Dict$fromList(countryNodes),
-				locations: $elm$core$Dict$empty,
-				regions: activeRegions
-			};
-		default:
-			return {
-				countries: $elm$core$Dict$fromList(countryNodes),
-				locations: $elm$core$Dict$fromList(locationNodes),
-				regions: activeRegions
-			};
-	}
+	return {
+		countries: $elm$core$Dict$fromList(countryNodes),
+		regions: regions
+	};
 };
 var $elm$html$Html$h3 = _VirtualDom_node('h3');
 var $elm$html$Html$h4 = _VirtualDom_node('h4');
-var $elm$html$Html$li = _VirtualDom_node('li');
-var $elm$html$Html$nav = _VirtualDom_node('nav');
 var $elm$virtual_dom$VirtualDom$Normal = function (a) {
 	return {$: 'Normal', a: a};
 };
@@ -6614,17 +6653,6 @@ var $elm$core$String$concat = function (strings) {
 };
 var $author$project$ParallelCoordinates$dimensionNames = _List_fromArray(
 	['Month', 'Fatalities', 'Event type']);
-var $elm$core$List$append = F2(
-	function (xs, ys) {
-		if (!ys.b) {
-			return xs;
-		} else {
-			return A3($elm$core$List$foldr, $elm$core$List$cons, ys, xs);
-		}
-	});
-var $elm$core$List$concat = function (lists) {
-	return A3($elm$core$List$foldr, $elm$core$List$append, _List_Nil, lists);
-};
 var $elm_community$typed_svg$TypedSvg$Types$Paint = function (a) {
 	return {$: 'Paint', a: a};
 };
@@ -6649,6 +6677,13 @@ var $avh4$elm_color$Color$rgba = F4(
 		return A4($avh4$elm_color$Color$RgbaSpace, r, g, b, a);
 	});
 var $author$project$ParallelCoordinates$segmentDistance = 200;
+var $elm$virtual_dom$VirtualDom$attribute = F2(
+	function (key, value) {
+		return A2(
+			_VirtualDom_attribute,
+			_VirtualDom_noOnOrFormAction(key),
+			_VirtualDom_noJavaScriptOrHtmlUri(value));
+	});
 var $elm_community$typed_svg$TypedSvg$Core$attribute = $elm$virtual_dom$VirtualDom$attribute;
 var $elm$core$Basics$composeL = F3(
 	function (g, f, x) {
@@ -8181,6 +8216,8 @@ var $author$project$ParallelCoordinates$parallelCoordinates = F2(
 					_List_fromArray(
 						[description]))));
 	});
+var $author$project$Model$Country = {$: 'Country'};
+var $author$project$Model$Region = {$: 'Region'};
 var $elm$core$Dict$map = F2(
 	function (func, dict) {
 		if (dict.$ === 'RBEmpty_elm_builtin') {
@@ -8210,24 +8247,6 @@ var $alex_tan$elm_tree_diagram$TreeDiagram$node = F2(
 	});
 var $author$project$Tree$buildTree = function (geoTree) {
 	var regions = geoTree.regions;
-	var locations = geoTree.locations;
-	var locationNodes = A2(
-		$elm$core$Dict$map,
-		F2(
-			function (key, locNames) {
-				return A2(
-					$elm$core$List$map,
-					function (locName) {
-						return A2(
-							$alex_tan$elm_tree_diagram$TreeDiagram$node,
-							_Utils_Tuple2(
-								$elm$core$Maybe$Just($author$project$Model$Location),
-								locName),
-							_List_Nil);
-					},
-					locNames);
-			}),
-		locations);
 	var countries = geoTree.countries;
 	var countryNodes = A2(
 		$elm$core$Dict$map,
@@ -8241,10 +8260,7 @@ var $author$project$Tree$buildTree = function (geoTree) {
 							_Utils_Tuple2(
 								$elm$core$Maybe$Just($author$project$Model$Country),
 								countryName),
-							A2(
-								$elm$core$Maybe$withDefault,
-								_List_Nil,
-								A2($elm$core$Dict$get, countryName, locationNodes)));
+							_List_Nil);
 					},
 					countryNames);
 			}),
@@ -8863,7 +8879,7 @@ var $author$project$Tree$drawNode = F2(
 				]));
 		var nodeName = function () {
 			if ((maybeFilterType.$ === 'Just') && (maybeFilterType.a.$ === 'Region')) {
-				var _v7 = maybeFilterType.a;
+				var _v6 = maybeFilterType.a;
 				return $author$project$Tree$shortenRegionName(name);
 			} else {
 				return $author$project$Tree$checkAndShortenName(name);
@@ -8878,16 +8894,12 @@ var $author$project$Tree$drawNode = F2(
 		}();
 		var isActiveClass = function () {
 			if (maybeFilterType.$ === 'Just') {
-				switch (maybeFilterType.a.$) {
-					case 'Region':
-						var _v2 = maybeFilterType.a;
-						return A2($elm$core$List$member, name, activeFilter.regions) ? 'activeNodeBox' : '';
-					case 'Country':
-						var _v3 = maybeFilterType.a;
-						return A2($elm$core$List$member, name, activeFilter.countries) ? 'activeNodeBox' : '';
-					default:
-						var _v4 = maybeFilterType.a;
-						return A2($elm$core$List$member, name, activeFilter.locations) ? 'activeNodeBox' : '';
+				if (maybeFilterType.a.$ === 'Region') {
+					var _v2 = maybeFilterType.a;
+					return A2($elm$core$List$member, name, activeFilter.regions) ? 'activeNodeBox' : '';
+				} else {
+					var _v3 = maybeFilterType.a;
+					return A2($elm$core$List$member, name, activeFilter.countries) ? 'activeNodeBox' : '';
 				}
 			} else {
 				return '';
@@ -9288,8 +9300,14 @@ var $author$project$Scatterplot$scatterplot = function (filteredConflicts) {
 							filteredConflicts))))
 			]));
 };
-var $elm$html$Html$ul = _VirtualDom_node('ul');
 var $author$project$Main$view = function (model) {
+	var regions = $elm_community$list_extra$List$Extra$unique(
+		A2(
+			$elm$core$List$map,
+			function ($) {
+				return $.region;
+			},
+			model.conflicts));
 	var eventTypeList = $elm_community$list_extra$List$Extra$unique(
 		A2(
 			$elm$core$List$map,
@@ -9301,7 +9319,7 @@ var $author$project$Main$view = function (model) {
 		var _v0 = model.mainViewType;
 		if (_v0.$ === 'ScatterplotView') {
 			return $author$project$Scatterplot$scatterplot(
-				A2($author$project$Main$filterConflicts, model.activeFilter, model.conflicts));
+				A3($author$project$Main$filterConflicts, regions, model.activeFilter, model.conflicts));
 		} else {
 			var year = _v0.a;
 			var previousDisabled = year === 1997;
@@ -9358,7 +9376,7 @@ var $author$project$Main$view = function (model) {
 							])),
 						A2(
 						$author$project$ParallelCoordinates$parallelCoordinates,
-						A2($author$project$Main$filterConflicts, model.activeFilter, model.conflicts),
+						A3($author$project$Main$filterConflicts, regions, model.activeFilter, model.conflicts),
 						year)
 					]));
 		}
@@ -9428,81 +9446,6 @@ var $author$project$Main$view = function (model) {
 										_List_fromArray(
 											[
 												$elm$html$Html$text('Geographical Filter:')
-											])),
-										A2(
-										$elm$html$Html$nav,
-										_List_fromArray(
-											[
-												$elm$html$Html$Attributes$class('breadcrumb has-arrow-separator'),
-												A2($elm$html$Html$Attributes$attribute, 'aria-label', 'breadcrumbs')
-											]),
-										_List_fromArray(
-											[
-												A2(
-												$elm$html$Html$ul,
-												_List_Nil,
-												_List_fromArray(
-													[
-														A2(
-														$elm$html$Html$li,
-														_List_Nil,
-														_List_fromArray(
-															[
-																A2(
-																$elm$html$Html$a,
-																_List_fromArray(
-																	[
-																		$elm$html$Html$Events$onClick(
-																		$author$project$Model$ChangeFilterView($author$project$Model$Region))
-																	]),
-																_List_fromArray(
-																	[
-																		$elm$html$Html$text('Filter Region')
-																	]))
-															])),
-														A2(
-														$elm$html$Html$li,
-														_List_fromArray(
-															[
-																$elm$html$Html$Attributes$class(
-																$elm$core$List$isEmpty(model.activeFilter.regions) ? 'is-active' : '')
-															]),
-														_List_fromArray(
-															[
-																A2(
-																$elm$html$Html$a,
-																_List_fromArray(
-																	[
-																		$elm$html$Html$Events$onClick(
-																		$author$project$Model$ChangeFilterView($author$project$Model$Country))
-																	]),
-																_List_fromArray(
-																	[
-																		$elm$html$Html$text('Filter Country')
-																	]))
-															])),
-														A2(
-														$elm$html$Html$li,
-														_List_fromArray(
-															[
-																$elm$html$Html$Attributes$class(
-																$elm$core$List$isEmpty(model.activeFilter.countries) ? 'is-active' : '')
-															]),
-														_List_fromArray(
-															[
-																A2(
-																$elm$html$Html$a,
-																_List_fromArray(
-																	[
-																		$elm$html$Html$Events$onClick(
-																		$author$project$Model$ChangeFilterView($author$project$Model$Location))
-																	]),
-																_List_fromArray(
-																	[
-																		$elm$html$Html$text('Filter Location')
-																	]))
-															]))
-													]))
 											])),
 										A2(
 										$author$project$Tree$renderTree,

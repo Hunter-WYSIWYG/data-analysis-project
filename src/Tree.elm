@@ -9,7 +9,7 @@ import TypedSvg exposing (style)
 import TreeDiagram exposing (node, Tree, defaultTreeLayout, leftToRight)
 import TreeDiagram.Svg exposing (draw)
 
-import Model exposing (Msg(..), FilterType(..), GeoTree)
+import Model exposing (Msg(..), GeoLocationType(..), GeoTree)
 import Dict exposing (Dict)
 import Svg exposing (rect)
 import TypedSvg.Core
@@ -22,24 +22,11 @@ renderTree geoTree activeFilter =
     in
     draw { defaultTreeLayout | orientation = leftToRight } (drawNode activeFilter) drawLine tree
 
-buildTree : GeoTree -> Tree (Maybe FilterType, String)
+buildTree : GeoTree -> Tree (Maybe GeoLocationType, String)
 buildTree geoTree =
     let
         regions = geoTree.regions
         countries = geoTree.countries
-        locations = geoTree.locations
-        locationNodes =
-            Dict.map
-                (\key locNames ->
-                    List.map
-                        (\locName ->
-                            node
-                                (Just Location, locName)
-                                []
-                        )
-                        locNames
-                )
-                locations
         countryNodes =
             Dict.map
                 (\key countryNames ->
@@ -47,7 +34,7 @@ buildTree geoTree =
                         (\countryName ->
                             node
                                 (Just Country, countryName)
-                                (Maybe.withDefault [] (Dict.get countryName locationNodes))
+                                []
                         )
                         countryNames
                 )
@@ -72,12 +59,12 @@ toString prop value =
 drawLine : ( Float, Float ) -> Svg msg
 drawLine ( targetX, targetY ) =
     line
-        [ toString x1 (0+(nodeWidth/2)), toString y1 0, (toString x2 (targetX-(nodeWidth/2))), toString y2 targetY, stroke "black" ]
+        [ toString x1 (0+(nodeWidth/2)), toString y1 0, (toString x2 (targetX - (nodeWidth/2))), toString y2 targetY, stroke "black" ]
         []
 
 nodeWidth = 80
 
-drawNode : Filter -> (Maybe FilterType, String) -> Svg Msg
+drawNode : Filter -> (Maybe GeoLocationType, String) -> Svg Msg
 drawNode activeFilter (maybeFilterType, name) =
     let
         widthString = String.concat [ (String.fromInt nodeWidth), "px" ]
@@ -96,8 +83,6 @@ drawNode activeFilter (maybeFilterType, name) =
                     if (List.member name activeFilter.regions) then "activeNodeBox" else ""
                 Just Country ->
                     if (List.member name activeFilter.countries) then "activeNodeBox" else ""
-                Just Location ->
-                    if (List.member name activeFilter.locations) then "activeNodeBox" else ""
                 Nothing -> ""
     in
     g

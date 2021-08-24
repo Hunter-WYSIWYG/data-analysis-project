@@ -12,7 +12,6 @@ type alias Conflict =
     , notes : String
     , country : String
     , region : String
-    , location : String
     }
 
 listDecoder : Json.Decode.Decoder a -> Json.Decode.Decoder (List a)
@@ -30,4 +29,3 @@ decodeConflict =
         |> Json.Decode.Extra.andMap (Json.Decode.field "NOTES" Json.Decode.string)
         |> Json.Decode.Extra.andMap (Json.Decode.field "COUNTRY" Json.Decode.string)
         |> Json.Decode.Extra.andMap (Json.Decode.field "REGION" Json.Decode.string)
-        |> Json.Decode.Extra.andMap (Json.Decode.field "LOCATION" Json.Decode.string)

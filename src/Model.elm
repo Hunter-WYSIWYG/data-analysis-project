@@ -12,7 +12,6 @@ init flags =
 initModel : Model
 initModel =
     { mainViewType = ScatterplotView
-    , filterViewType = Region
     , conflicts = []
     , activeCountries = [ "Algeria" ]
     , activeFilter = initFilter
@@ -29,7 +28,6 @@ initCmd =
 
 type alias Model =
     { mainViewType : MainViewType
-    , filterViewType : FilterType
     , conflicts : List Conflict.Conflict
     , activeCountries : List String
     , activeFilter : Filter
@@ -38,33 +36,28 @@ type alias Model =
 type alias Filter =
     { regions : List String
     , countries : List String
-    , locations : List String
     }
 
 type alias GeoTree =
     { regions : List String --no Key necessary -> root is "Afrika"
     , countries : Dict String (List String) --Key (Region) and Values (Countries)
-    , locations : Dict String (List String) --Key (Country) and Values (Locations)
     }
 
 initFilter : Filter
 initFilter =
-    { regions = [ "Northern Africa" ]
-    , countries = [ "Algeria" ]
-    , locations = []
+    { regions = [ "Western Africa" ]
+    , countries = [ "Ghana" ]
     }
 
 type Msg
     = GotData (Result Http.Error (List (Conflict.Conflict)))
     | ChangeMainView MainViewType
-    | ChangeFilterView FilterType
-    | UpdateActiveFilter (Maybe FilterType) String
+    | UpdateActiveFilter (Maybe GeoLocationType) String
 
 type MainViewType
     = ScatterplotView
     | ParallelCoordinatesView Int
 
-type FilterType
+type GeoLocationType
     = Region
     | Country
-    | Location
