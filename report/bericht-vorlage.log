@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.25)  25 AUG 2021 19:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.25)  26 AUG 2021 14:14
 entering extended mode
 **./bericht-vorlage.tex
 (bericht-vorlage.tex
@@ -824,10 +824,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 32--33
 
 
 {C:/Users/marcu/AppData/Local/MiKTeX/pdftex/config/pdftex.map}] [2] [3]
+[4]
 
 LaTeX Warning: Empty bibliography on input line 91.
 
-[4] (bericht-vorlage.aux)
+[5] (bericht-vorlage.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -843,21 +844,21 @@ Package logreq Info: Writing requests to 'bericht-vorlage.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 19664 strings out of 478868
- 353947 string characters out of 2858700
- 1241938 words of memory out of 3000000
+ 19665 strings out of 478868
+ 353953 string characters out of 2858700
+ 1240910 words of memory out of 3000000
  37324 multiletter control sequences out of 15000+600000
  454947 words of font info for 70 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
- 108i,7n,108p,10639b,2241s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 108i,8n,108p,10639b,2241s stack positions out of 5000i,500n,10000p,200000b,80000s
 {D:/Verschiedenes/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}<D:/Verschiedenes/MiKTe
 X/fonts/type1/public/lm/lmbx12.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/
 lm/lmr10.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/lm/lmr12.pfb><D:/Versc
 hiedenes/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><D:/Verschiedenes/MiKTeX/fon
 ts/type1/public/lm/lmtt10.pfb>
-Output written on bericht-vorlage.pdf (4 pages, 163436 bytes).
+Output written on bericht-vorlage.pdf (5 pages, 164866 bytes).
 PDF statistics:
- 145 PDF objects out of 1000 (max. 8388607)
- 28 named destinations out of 1000 (max. 500000)
+ 149 PDF objects out of 1000 (max. 8388607)
+ 29 named destinations out of 1000 (max. 500000)
  177 words of extra memory for PDF output out of 10000 (max. 10000000)
 
