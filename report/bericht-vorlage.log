@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.25)  26 AUG 2021 15:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.25)  26 AUG 2021 19:19
 entering extended mode
 **./bericht-vorlage.tex
 (bericht-vorlage.tex
@@ -824,20 +824,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 32--33
 
 
 {C:/Users/marcu/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 39--40
+Underfull \hbox (badness 10000) in paragraph at lines 40--41
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 41--42
+Underfull \hbox (badness 10000) in paragraph at lines 42--43
 
  []
 
-[2] [3] [4]
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 47--48
 
-LaTeX Warning: Empty bibliography on input line 95.
+ []
 
-[5] (bericht-vorlage.aux)
+[3] [4] [5]
+
+LaTeX Warning: Empty bibliography on input line 120.
+
+[6] (bericht-vorlage.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -853,8 +858,8 @@ Package logreq Info: Writing requests to 'bericht-vorlage.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 19662 strings out of 478868
- 353917 string characters out of 2858700
+ 19663 strings out of 478868
+ 353923 string characters out of 2858700
  1240910 words of memory out of 3000000
  37321 multiletter control sequences out of 15000+600000
  454947 words of font info for 70 fonts, out of 8000000 for 9000
@@ -865,9 +870,9 @@ X/fonts/type1/public/lm/lmbx12.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/
 lm/lmr10.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/lm/lmr12.pfb><D:/Versc
 hiedenes/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><D:/Verschiedenes/MiKTeX/fon
 ts/type1/public/lm/lmtt10.pfb>
-Output written on bericht-vorlage.pdf (5 pages, 166011 bytes).
+Output written on bericht-vorlage.pdf (6 pages, 170403 bytes).
 PDF statistics:
- 149 PDF objects out of 1000 (max. 8388607)
- 29 named destinations out of 1000 (max. 500000)
+ 153 PDF objects out of 1000 (max. 8388607)
+ 30 named destinations out of 1000 (max. 500000)
  177 words of extra memory for PDF output out of 10000 (max. 10000000)
 

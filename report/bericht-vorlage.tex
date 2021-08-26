@@ -35,21 +35,45 @@ Aus diesem Problem ergibt sich die Fragestellung, ob der gewählte Datensatz hil
 
 \subsection{Anwendungshintergrund}
 Mithilfe der im Rahmen dieser Arbeit entwickelten Anwendung werden einzelne Konflikte für einen Gesamtüberblick über eine oder mehrere Regionen Afrikas zusammengefasst, sowie nach einzelnen Jahren sortiert und hierbei auch mehrdimensional visualisiert. Insgesamt umfasst das Programm zwei verschiedene Ansichten, welche jeweil eine Menge von Konflikten auf unterschiedliche Art und Weise darstellen. In der Hauptansicht, dem Scatterplot, ist es dem Nutzer möglich einen Überblick über die Konfliktdichte und die Opferzahlen zu unterschiedlichen Zeitpunkten seit Aufzeichnungsbeginn zu erhalten. Die Zweitansicht, welche sich der Technik paralleler Koordinaten bedient, zeigt immer eine Teilmenge der Konflikte der Hauptansicht in jeweils drei Dimensionen. Hier kann der Nutzer einen genaueren Einblick erhalten, in welchem Monat eines Jahres welche Art von Konflikt wie viele Todesopfer forderte. Die Basismenge an Konflikten, welche für die Visualisierungen verwendet wird, ergibt sich aus der Menge aller Konflikte des Datensatzes, welche mithilfe eines Regionenfilters gekürzt wird. Dieser Filter wird vom Nutzer über eine dritte Ansicht in Form eines interaktiven Baumes gesteuert. Hier können sowohl die Konflikte größerer Regionen als auch die Konflikte einzelner Länder Afrikas in die visualisierte Gesamtmenge aufgenommen werden.
+
 \subsection{Zielgruppen}
 Als Zielgruppe für die Visualisierungsanwendung kommen Personen in Frage, welche einen Überblick über die Konflikt- und Todesopferdichte zu verschiedenen Zeitpunkten und in verschiedenen Regionen des afrikanischen Kontinents erlangen wollen, sowie einen genaueren Einblick in die Art der Konflikte benötigen. Das Programm ist für einen schnellen Einstieg und einen groben Überblick in der Thematik der Afrikakonflikte konzipiert. Aus diesem Grund benötigen Zielgruppen in der Regel kaum Vorwissen um die Anwendung sinnvoll zu nutzen. Politisches und geografisches Vorwissen kann in manchen Anwendungsgebieten für das weitere Verständnis sinnvoll sein, ist aber keines Falls Voraussetzung um Erkenntnisse aus den Daten mithilfe der Anwendung zu gewinnen.\\
 
 Die Verwendung einer solchen Anwendung ist bei Hilfsorganisationen zur Planung zukünftiger Einsätze denkbar. Hiermit könnten zukünftig diejenigen Regionen Afrikas ermittelt werden, welche langfristig die größten Opfer zu beklagen haben und aufbauend auf diesen Fakt weitere Hilfsleistungen am dringensten benötigen. Weiterhin können Hilfskräfte leicht einen Eindruck von der Art der bisherigen Konflikte einer bestimmten Region bekommen und damit zukünftige Einsätze besser auf diese Art von Konflikten vorbereiten.\\
 
-Ein weiteres Anwendungsgebiet könnte die Risikoeinschätzung für Reisen durch das Auswärtige Amt darstellen. Hier bietet die Anwendung die Möglichkeit, die Gefahr für deutsche Reisende in Konfliktbelasteten Regionen Afrikas besser beurteilen zu können. Gäbe es in den letzten Jahren eine hohe Dichte an politischen Unruhen oder Todesopfer durch Kampfhandlungen, so können hierdurch Urlaubs- und Durchreisende rechtzeitig vor Gefahren gewarnt werden.
+Ein weiteres Anwendungsgebiet könnte die Risikoeinschätzung für Reisen durch das Auswärtige Amt (Link) darstellen. Hier bietet die Anwendung die Möglichkeit, die Gefahr für deutsche Reisende in Konfliktbelasteten Regionen Afrikas besser beurteilen zu können. Gäbe es in den letzten Jahren eine hohe Dichte an politischen Unruhen oder Todesopfer durch Kampfhandlungen, so können hierdurch Urlaubs- und Durchreisende rechtzeitig vor Gefahren gewarnt werden.
 
 \subsection{Überblick und Beiträge}
-In diesem Abschnitt geben sie einen kurzen Überblick über die Daten und verwendeten Visualisierungen. Dann benennen sie die Beiträge ihres Projekts. Diese Beiträge müssen sie in den hinteren Teilen des Berichts genauer ausführen und belegen.
+Dieses Projekt setzt sich zusammen aus dem Datensatz des ACLED-Projekts von 1997-2021 und drei unterschiedlichen Visualisierungstechniken, welche interaktiv miteinander verbunden wurden. Vom verwendete Datensatz werden insgesamt sechs Felder jedes Datenobjektes für die Umsetzung der Anwendung genutzt. Hierzu gehören das Jahr sowie das Datum des Konflikts, die Art des Konflikts, die Region sowie das Land in dem ein Konflikt vorgefallen ist und die Anzahl an Todesopfern, welche ein Konflikt forderte. Die in dem Programm verwendeten Visualisierungstechniken beschränken sich auf eine Hauptansicht mit einem Scatterplot und einer umschaltbaren Zweitansicht, welche parallele Koordinaten zur Umsetzung verwendet. Zusätzlich gibt es noch einen Regionsfilter, welcher mithilfe expliziter Bäume anschaulich umgesetzt wurde. Im Scatterplot findet weiterhin die sogenannte X-Ray-Technik Anwendung, welche dem Nutzer Überlagerungen von Punkten aufzeigen kann. \\
+
+Die Beiträge dieses Projekts belaufen sich auf die Auswahl, die Verarbeitung sowie die Visualisierung von Daten der Konflikte in Afrika in den Jahren 1997 bis 2021. Ganz konkret wird hierbei der Prototyp einer möglichen Anwendung diskutiert, welcher dem Nutzer die gewählten Daten und deren Zusammenhänge als interaktiv verbundenes System näher bringen soll. Hierbei werden die einzelnen Teile der Anwendung kritisch betrachtet, gelungene Ansätze hervorgehoben und Vorschläge zur weiteren Verbesserung geäußert.
 
 \section{Daten}
+-65535 Datenobjekte
+-je 29 Felder
+-30 MB csv getrennt mit ;
+-63 MB json
+-verwendete Felder + paar andere nennen
+-warum eignen sich die daten gut/schlecht für bearbeitung? -> gewählte oft int, gut zu verarbeiten, einheitlich -> nicht gewählte oft als code, zu uneinhetlich, zu komplex (auch ausgelassene gute, z.B. geodaten -> hilfreich aber nicht nötig für zielgruppe)
+-eignung für zielgruppen: gesamtüberblick vermittelbar -> ansatzweise gefahreneinschätzung möglich -> zu wenig um allein mit anwendung job zu machen (für HO und AA) vor allem weil es um sicherheit von reisenden und hilfskräften geht genauere einschätzungen notwendig
+-keine ergänzung durch andere datenquellen notwendig -> bei verwendung von geodaten wären polygondaten für eine interaktive karte denkbar | einige daten als numeric code -> übersetzungsdaten zusätzlich
+
 Beschreiben Sie vorhandenen Daten. Gehen sie kritisch darauf ein, in wie weit sich die Daten für die Bearbeitung der Fragestellungen und dem Erreichen von Lösungen für die oben beschriebene Zielgruppen eignen. Haben sie die Daten sinnvoll mit weiteren Datenquellen ergänzt? Wenn ja, wie?
 \subsection{Technische Bereitstellung der Daten}
+-von kaggle (link) und von acled (Link) bereitgestellt als csv
+-felder alle als string, int oder float (bsp) einlesbar -> genutzte felder alle string oder int (aufzählen)
+-einige daten nur als numerischer code angegeben -> bei nutzung übersetzung notwendig (einlesen oder als funktion)
+-geodaten als int, nicht als float -> erstmal uneindeutig
+-metadaten wie timestamp, geoprecision, timeprecision, etc ignoriert
+
 Wie sind die Daten zugänglich? Welche Formate werden genutzt. Gibt es Besonderheiten beim Lesen der Formate?
 \subsection{Datenvorverarbeitung}
+-einmalig umgewandelt in json datei -> lesbarkeit während der entwicklung, vorsortierte strukturen welche von elm beim einlesen direkt genutzt werden können
+-vorfilterung nach regionen, initial nach ghana -> filterConflicts erklären
+-datum auf monat reduziert -> ausreichend für visualisierung der parallelen Koordinaten -> jahr als intervall genauer aber schwer zu realisieren und übersteigt den nutzen
+-Regionsnamen komplett und ländernamen bei zu großer länge gekürzt um in baumknoten zu passen -> bei regionen kein afrika, bei ländern auf anfangsbuchstaben reduziert (hover anzeige für übersicht vorhanden)
+-Parallele k.: Konflikttyp auch mit subtyp bezeichenbar -> weggelassen für übersichtlichkeit da obertyp immernoch notwendig für gesamtverständnis -> sonst zu viel auf einmal angezeigt für schnellen überblick -> potenzial für höheren detailgrad
+
 Welche Datenvorverarbeitungsschritte sind notwendig? Beschreiben Sie die einzelnen Schritte und begründen sie sie, z.B. warum werden manche Daten weggelassen, über welche Mengen werden Durchschnitte berechnet, warum sind die so berechneten Werte aussagekräftiger als andere Werte. 
 
 \section{Visualisierungen}
@@ -70,6 +94,8 @@ Die eben beschriebenen Präsentationen und Begründungen sollen für jede der dr
 \subsubsection{Visualisierung Drei}
 
 \subsection{Interaktion}
+-checkboxes als filter nicht umgesetzt -> bessere übersicht über geografische verhältnisse
+
 Erklären sie die möglichen Interaktionen mit den einzelnen Visualisierungen und die möglichen Verknüpfungen zwischen ihnen. Begründen Sie warum die konkreten Interaktionen umgesetzt wurden und welche Zwecke für die Anwenderinnen mit ihnen unterstützt werden. Begründen sie ebenfalls warum sie andere Interaktionsmöglichkeiten nicht umgesetzt haben. 
 
 \section{Implementierung}
