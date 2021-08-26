@@ -5360,9 +5360,9 @@ var $author$project$Model$GotData = function (a) {
 	return {$: 'GotData', a: a};
 };
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
-var $author$project$Conflict$Conflict = F8(
-	function (event_id_no_cnty, year, event_date, event_type, fatalities, notes, country, region) {
-		return {country: country, event_date: event_date, event_id_no_cnty: event_id_no_cnty, event_type: event_type, fatalities: fatalities, notes: notes, region: region, year: year};
+var $author$project$Conflict$Conflict = F6(
+	function (year, event_date, event_type, fatalities, country, region) {
+		return {country: country, event_date: event_date, event_type: event_type, fatalities: fatalities, region: region, year: year};
 	});
 var $elm_community$json_extra$Json$Decode$Extra$andMap = $elm$json$Json$Decode$map2($elm$core$Basics$apR);
 var $elm$json$Json$Decode$field = _Json_decodeField;
@@ -5376,23 +5376,17 @@ var $author$project$Conflict$decodeConflict = A2(
 		A2($elm$json$Json$Decode$field, 'COUNTRY', $elm$json$Json$Decode$string),
 		A2(
 			$elm_community$json_extra$Json$Decode$Extra$andMap,
-			A2($elm$json$Json$Decode$field, 'NOTES', $elm$json$Json$Decode$string),
+			A2($elm$json$Json$Decode$field, 'FATALITIES', $elm$json$Json$Decode$int),
 			A2(
 				$elm_community$json_extra$Json$Decode$Extra$andMap,
-				A2($elm$json$Json$Decode$field, 'FATALITIES', $elm$json$Json$Decode$int),
+				A2($elm$json$Json$Decode$field, 'EVENT_TYPE', $elm$json$Json$Decode$string),
 				A2(
 					$elm_community$json_extra$Json$Decode$Extra$andMap,
-					A2($elm$json$Json$Decode$field, 'EVENT_TYPE', $elm$json$Json$Decode$string),
+					A2($elm$json$Json$Decode$field, 'EVENT_DATE', $elm$json$Json$Decode$string),
 					A2(
 						$elm_community$json_extra$Json$Decode$Extra$andMap,
-						A2($elm$json$Json$Decode$field, 'EVENT_DATE', $elm$json$Json$Decode$string),
-						A2(
-							$elm_community$json_extra$Json$Decode$Extra$andMap,
-							A2($elm$json$Json$Decode$field, 'YEAR', $elm$json$Json$Decode$int),
-							A2(
-								$elm_community$json_extra$Json$Decode$Extra$andMap,
-								A2($elm$json$Json$Decode$field, 'EVENT_ID_NO_CNTY', $elm$json$Json$Decode$int),
-								$elm$json$Json$Decode$succeed($author$project$Conflict$Conflict)))))))));
+						A2($elm$json$Json$Decode$field, 'YEAR', $elm$json$Json$Decode$int),
+						$elm$json$Json$Decode$succeed($author$project$Conflict$Conflict)))))));
 var $elm$json$Json$Decode$decodeString = _Json_runOnString;
 var $elm$http$Http$BadStatus_ = F2(
 	function (a, b) {
