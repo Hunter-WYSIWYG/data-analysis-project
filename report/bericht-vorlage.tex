@@ -49,25 +49,77 @@ Dieses Projekt setzt sich zusammen aus dem Datensatz des ACLED-Projekts von 1997
 Die Beiträge dieses Projekts belaufen sich auf die Auswahl, die Verarbeitung sowie die Visualisierung von Daten der Konflikte in Afrika in den Jahren 1997 bis 2021. Ganz konkret wird hierbei der Prototyp einer möglichen Anwendung diskutiert, welcher dem Nutzer die gewählten Daten und deren Zusammenhänge als interaktiv verbundenes System näher bringen soll. Hierbei werden die einzelnen Teile der Anwendung kritisch betrachtet, gelungene Ansätze hervorgehoben und Vorschläge zur weiteren Verbesserung geäußert.
 
 \section{Daten}
--65535 Datenobjekte
--je 29 Felder
--30 MB csv getrennt mit ;
--63 MB json
--verwendete Felder + paar andere nennen
--warum eignen sich die daten gut/schlecht für bearbeitung? -> gewählte oft int, gut zu verarbeiten, einheitlich -> nicht gewählte oft als code, zu uneinhetlich, zu komplex (auch ausgelassene gute, z.B. geodaten -> hilfreich aber nicht nötig für zielgruppe)
--eignung für zielgruppen: gesamtüberblick vermittelbar -> ansatzweise gefahreneinschätzung möglich -> zu wenig um allein mit anwendung job zu machen (für HO und AA) vor allem weil es um sicherheit von reisenden und hilfskräften geht genauere einschätzungen notwendig
--keine ergänzung durch andere datenquellen notwendig -> bei verwendung von geodaten wären polygondaten für eine interaktive karte denkbar | einige daten als numeric code -> übersetzungsdaten zusätzlich
+Der Datensatz des ACLED-Projekt für die Afrikakonflikte von 1997 bis 2021 beinhaltet insgesamt 65443 einzelne Datenobjekte bzw. Datenzeilen, welche jeweils einen gesonderten Konflikt repräsentieren.
 
-Beschreiben Sie vorhandenen Daten. Gehen sie kritisch darauf ein, in wie weit sich die Daten für die Bearbeitung der Fragestellungen und dem Erreichen von Lösungen für die oben beschriebene Zielgruppen eignen. Haben sie die Daten sinnvoll mit weiteren Datenquellen ergänzt? Wenn ja, wie?
+\begin{figure}[]
+\begin{center}
+
+\begin{tabular}{lllll}
+ \parbox{5.5cm}{
+ \begin{enumerate}
+  \item ISO
+  \item EVENT\_ID\_CNTY
+  \item EVENT\_ID\_NO\_CNTY
+  \item EVENT\_DATE
+  \item YEAR
+  \item TIME\_PRECISION
+  \item EVENT\_TYPE
+  \item SUB\_EVENT\_TYPE
+  \item ACTOR1
+  \item ASSOC\_ACTOR\_1
+ \end{enumerate}}
+ &
+ \parbox{4.5cm}{
+ \begin{enumerate}
+ \setcounter{enumi}{10}
+  \item INTER1
+  \item ACTOR2
+  \item ASSOC\_ACTOR\_2
+  \item INTER2
+  \item INTERACTION
+  \item REGION
+  \item COUNTRY
+  \item ADMIN1
+  \item ADMIN2
+  \item ADMIN3
+ \end{enumerate}}
+ &
+ \parbox{5cm}{
+ \begin{enumerate}
+ \setcounter{enumi}{20}
+  \item LOCATION
+  \item LATITUDE
+  \item LONGITUDE
+  \item GEO\_PRECISION
+  \item SOURCE
+  \item SOURCE\_SCALE
+  \item NOTES
+  \item FATALITIES
+  \item TIMESTAMP
+ \end{enumerate}}
+
+\end{tabular}
+
+\caption{Dimensionen des ACLED-Datensatzes}
+Quelle: Eigene Darstellung
+\label{dimensions}
+\end{center}
+\end{figure}
+
+Jedes Datenobjekt des Datensatzes liegt in insgesamt 29 Dimensionen vor, welche im einzelnen in Abbildung \ref{dimensions} eingesehen werden können. Verwendet werden von diesen Dimensionen in der Anwendung EVENT\_DATE, YEAR, EVENT\_TYPE, REGION, COUNTRY und FATALITIES. Diese gewählten Dimensionen beinhalten alle für das Programm benötigten Daten und bieten den Vorteil, unkodiert und fast ausschließlich in direkt verwendbarer Form vorzuliegen. Direkt verwendbar bedeutet hierbei, dass die Dimensionen keine weitere Verarbeitung benötigen und direkt in einfach Elm-Datenstrukturen (Int und String) umgewandelt werden können. Lediglich die Dimension EVENT\_DATE bedarf einer zusätzlichen Übersetzerfunktion, welche genutzt werden kann, um den erhaltenen Event-Date-String auf den zugehörigen Monat zu mappen.\\
+
+Es bleibt die Frage, in wie weit sich der Datensatz des ACLED-Projekts für die Zielgruppen dieser Arbeit eignet. Die eindeutigen Daten zu Zeitpunkt, Name des Landes und Todesopfern eignen sich gut für Hilfsorganisationen, um zu ermitteln, welche Länder aktuell am meisten unter den Konflikten leiden. Hierdurch kann eine Vorauswahl getroffen werden, welche Länder momentan Hilfsleistungen benötigen könnten. Mithilfe der Art des Events (EVENT\_TYPE) kann es diesen Organisationen weiterhin gut möglich gemacht werden, die Problemlage im Land besser zu verstehen und einen potenziellen Hilfseinsatz präziser auf eine bestimmte Art von Konflikten vorzubereiten. Bei der Aufgabe einer Gefahreneinschätzung für Reisende durch das Auswärtige Amt kann mithilfe der gewählten Dimensionen des Datensatzes durchaus auch geholfen werden. Informationen wie die Konfliktdichte, die Todesopferdichte und auch die Konfliktarten in einer bestimmten Region lassen eine erste Einschätzungen zu der Situation eines Landes und zur Gefahr für Reisende zu.\\ Eine Verwendung der vorhandenen Geodaten zur Erweiterung der Anwendung durch eine interaktive Karte wäre durchaus denkbar und würde den Zielgruppen beim Verstehen von Zusammenhängen zwischen den Geodaten und den Konfliktdaten zusätzlich helfen. Eine solche Anwendung der Geodaten würde jedoch aufgrund von Problemen bei der Datenaufbereitung (siehe \ref{koordinatenproblem}) sowie der nötigen Ergänzung des Projektes durch Polygondaten für Länderumrisse den Rahmen dieser Arbeit sprengen.\\ Es ist an dieser Stelle wichtig anzumerken, dass die Daten, welche im Programm Anwendung finden, nicht allein ausreichen um die genannten Aufgaben der Zielgruppen zu erfüllen. Da sowohl die Planung von Hilfseinsätzen, als auch die Einschätzung von Gefahrenländern Auswirkungen auf die Sicherheit von Menschenleben haben kann, ist eine Ergänzung des Datensatzes durch zusätzliche detaillierte Informationen zur Politik, Mentalität, Religion und anderen landes- und regionsspezifischen Informationen abseits der aufgezeichneten Konflikte unabdingbar. Beispielsweise kann offen gezeigte Homosexualität momentan in der Republik Kongo zu willkürlichen Verhaftungen wegen angeblich sittenwidrigen Verhaltens führen (\url{https://www.auswaertiges-amt.de/de/aussenpolitik/laender/kongorepublik-node/kongorepubliksicherheit/208542#content_1}), was unbedingt bei einer Gefahreneinschätzung des Landes für westliche Reisende berücksichtigt werden sollte. Diese Information könnte jedoch nicht aus dem gewählten Datensatz ermittelt werden, da sich dieser lediglich auf größere Konflikte und nicht auf einzelne Verhaftungen innerhalb der Republik Kongo stützt.
+
 \subsection{Technische Bereitstellung der Daten}
--von kaggle (link) und von acled (Link) bereitgestellt als csv
--felder alle als string, int oder float (bsp) einlesbar -> genutzte felder alle string oder int (aufzählen)
+
+Bereitgestellt werden die verwendeten Daten von Kaggle (url{https://www.kaggle.com/}), einer Plattform auf der unter anderem Datensätze für Data-Science-Projekte geteilt werden können. Eine andere Möglichkeit für den Download der Daten bietet die Seite des ACLED-Projekts (url{https://acleddata.com/data-export-tool/}). In dieser Arbeit wird der Datensatz von Kaggle verwendet, da die dort bereitgestellten Daten, anders als auf der ACLED-Seite, bereits nach Konflikten im Raum Afrika gefiltert sind. Läd man den Datensatz direkt von Kaggle herunter, so erhält man diesen im CSV-Dateiformat. Als Seperator werden hierbei Semikolons verwendet. Die größe des Datensatzes beläuft sich auf etwa 30,5 MB (30.565.061 Bytes) im Standard CSV-Format, welche sich jedoch auf 62,4 MB (65.467.818 Bytes) mehr als verdoppelt nach einer Umwandlung der Daten in ein JSON-Dateiformat. Die Notwendigkeit für eine solche Umwandlung des Formats wird im Kapitel \ref{sec:datenvorverarbeitung} genauer besprochen.\\ Jede Dimension des Datensatzes ist grundsätzlich entweder als Integer-Wert (Ziffern ohne Komma oder Anführungszeichen) oder als String-Wert (Zeichenfolgen in Anführungszeichen) gegeben. Hierzu gehören auch die Werte LATITUDE und LONGITUDE, welche eigentlich Float-Werte darstellen sollten. Dies stellt ein Problem, welches vor der eigentlichen Verwendung der Daten beim Einlesen durch eine Aufbereitung behoben werden müsste. Die Angaben in LATITUDE und LONGITUDE liegen als String vor, welcher unterschiedlich lange Ziffernfolgen enthalten kann. Hierbei ist keine Kommastelle angegeben, wodurch die Koordinaten des Konflikts nicht eindeutig wiedergegeben werden. Beispielsweise existiert ein Konflikt mit dem Breitengrad 36672 und dem Längengrad 2789. Mit diesen Daten könnten die Koordinaten (3.6672, 27.89) gemeint sein, welche eine Position im Wald in der Demokratischen Republik Kongo bestimmen. Aufgrund der Größe des Kontinents könnten hier jedoch auch die Koordinaten (36.672, 2.789) in Frage kommen, welche eine Position in der Stadt Koléa in Algerien beschreiben. In diesem Fall ist die zweite Möglichkeit korrekt. Es wird jedoch ersichtlich, dass die Position des Kommas in den Breiten- und Längengraden nicht trivial bestimmt werden kann. Einige weitere Dimensionen des Datensatzes sind ebenfalls nicht sehr leicht zugänglich. Die Dimension INTERACTION liegt beispielsweise, neben einigen anderen, nur als numerischer Code vor. Um die tatsächliche Art der Interaktion der betroffenen Parteien ermitteln zu können, müsste hierfür vorher ein Übersetzer mithilfe des Codebooks des ACLED-Projekts (\url{https://reliefweb.int/sites/reliefweb.int/files/resources/ACLED_Codebook_2017FINAL%20%281%29.pdf}) gebaut werden.\\
+
 -einige daten nur als numerischer code angegeben -> bei nutzung übersetzung notwendig (einlesen oder als funktion)
 -geodaten als int, nicht als float -> erstmal uneindeutig
 -metadaten wie timestamp, geoprecision, timeprecision, etc ignoriert
 
 Wie sind die Daten zugänglich? Welche Formate werden genutzt. Gibt es Besonderheiten beim Lesen der Formate?
-\subsection{Datenvorverarbeitung}
+\subsection{Datenvorverarbeitung} \label{sec:datenvorverarbeitung}
 -einmalig umgewandelt in json datei -> lesbarkeit während der entwicklung, vorsortierte strukturen welche von elm beim einlesen direkt genutzt werden können
 -vorfilterung nach regionen, initial nach ghana -> filterConflicts erklären
 -datum auf monat reduziert -> ausreichend für visualisierung der parallelen Koordinaten -> jahr als intervall genauer aber schwer zu realisieren und übersteigt den nutzen

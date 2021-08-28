@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.25)  26 AUG 2021 19:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.25)  28 AUG 2021 16:39
 entering extended mode
 **./bericht-vorlage.tex
 (bericht-vorlage.tex
@@ -838,41 +838,67 @@ Underfull \hbox (badness 10000) in paragraph at lines 47--48
 
  []
 
-[3] [4] [5]
 
-LaTeX Warning: Empty bibliography on input line 120.
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 54.
 
-[6] (bericht-vorlage.aux)
+
+Overfull \hbox (7.54718pt too wide) in paragraph at lines 57--102
+ [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
+
+ []
+
+[3]
+
+LaTeX Warning: Reference `koordinatenproblem' on page 4 undefined on input line
+ 111.
+
+
+Overfull \hbox (39.6469pt too wide) in paragraph at lines 111--112
+\T1/lmtt/m/n/10.95 de / de / aussenpolitik / laender / kongorepublik-[]node / k
+ongorepubliksicherheit / 208542 # content _
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 115--116
+
+ []
+
+[5] [6] [7]
+
+LaTeX Warning: Empty bibliography on input line 174.
+
+[8] (bericht-vorlage.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `bericht-vorlage.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                bericht-vorlage
-(biblatex)                and rerun LaTeX afterwards.
-
 Package logreq Info: Writing requests to 'bericht-vorlage.run.xml'.
 \openout1 = `bericht-vorlage.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 19663 strings out of 478868
- 353923 string characters out of 2858700
- 1240910 words of memory out of 3000000
- 37321 multiletter control sequences out of 15000+600000
+ 19699 strings out of 478868
+ 354206 string characters out of 2858700
+ 1248015 words of memory out of 3000000
+ 37325 multiletter control sequences out of 15000+600000
  454947 words of font info for 70 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
- 108i,7n,108p,10639b,2241s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 108i,11n,108p,10639b,2241s stack positions out of 5000i,500n,10000p,200000b,80000s
 {D:/Verschiedenes/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}<D:/Verschiedenes/MiKTe
-X/fonts/type1/public/lm/lmbx12.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/
-lm/lmr10.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/lm/lmr12.pfb><D:/Versc
-hiedenes/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><D:/Verschiedenes/MiKTeX/fon
-ts/type1/public/lm/lmtt10.pfb>
-Output written on bericht-vorlage.pdf (6 pages, 170403 bytes).
+X/fonts/type1/public/lm/lmbx10.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/
+lm/lmbx12.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/lm/lmr10.pfb><D:/Vers
+chiedenes/MiKTeX/fonts/type1/public/lm/lmr12.pfb><D:/Verschiedenes/MiKTeX/fonts
+/type1/public/lm/lmssbx10.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/lm/lm
+tt10.pfb>
+Output written on bericht-vorlage.pdf (8 pages, 208182 bytes).
 PDF statistics:
- 153 PDF objects out of 1000 (max. 8388607)
- 30 named destinations out of 1000 (max. 500000)
+ 213 PDF objects out of 1000 (max. 8388607)
+ 62 named destinations out of 1000 (max. 500000)
  177 words of extra memory for PDF output out of 10000 (max. 10000000)
 
