@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.25)  28 AUG 2021 16:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.25)  28 AUG 2021 17:49
 entering extended mode
 **./bericht-vorlage.tex
 (bericht-vorlage.tex
@@ -840,39 +840,39 @@ Underfull \hbox (badness 10000) in paragraph at lines 47--48
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 54.
+               Default added (so using `tbp') on input line 52.
 
 
-Overfull \hbox (7.54718pt too wide) in paragraph at lines 57--102
+Overfull \hbox (7.54718pt too wide) in paragraph at lines 55--100
  [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 109--110
+Underfull \hbox (badness 10000) in paragraph at lines 107--108
 
  []
 
 [3]
 
 LaTeX Warning: Reference `koordinatenproblem' on page 4 undefined on input line
- 111.
+ 109.
 
 
-Overfull \hbox (39.6469pt too wide) in paragraph at lines 111--112
+Overfull \hbox (39.6469pt too wide) in paragraph at lines 109--110
 \T1/lmtt/m/n/10.95 de / de / aussenpolitik / laender / kongorepublik-[]node / k
 ongorepubliksicherheit / 208542 # content _
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 115--116
+Underfull \hbox (badness 10000) in paragraph at lines 113--114
 
  []
 
-[5] [6] [7]
+[5] [6] [7] [8]
 
-LaTeX Warning: Empty bibliography on input line 174.
+LaTeX Warning: Empty bibliography on input line 166.
 
-[8] (bericht-vorlage.aux)
+[9] (bericht-vorlage.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -883,9 +883,9 @@ Package logreq Info: Writing requests to 'bericht-vorlage.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 19699 strings out of 478868
- 354206 string characters out of 2858700
- 1248015 words of memory out of 3000000
+ 19700 strings out of 478868
+ 354212 string characters out of 2858700
+ 1247015 words of memory out of 3000000
  37325 multiletter control sequences out of 15000+600000
  454947 words of font info for 70 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
@@ -896,9 +896,9 @@ lm/lmbx12.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/lm/lmr10.pfb><D:/Vers
 chiedenes/MiKTeX/fonts/type1/public/lm/lmr12.pfb><D:/Verschiedenes/MiKTeX/fonts
 /type1/public/lm/lmssbx10.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/lm/lm
 tt10.pfb>
-Output written on bericht-vorlage.pdf (8 pages, 208182 bytes).
+Output written on bericht-vorlage.pdf (9 pages, 210961 bytes).
 PDF statistics:
- 213 PDF objects out of 1000 (max. 8388607)
- 62 named destinations out of 1000 (max. 500000)
+ 217 PDF objects out of 1000 (max. 8388607)
+ 63 named destinations out of 1000 (max. 500000)
  177 words of extra memory for PDF output out of 10000 (max. 10000000)
 
