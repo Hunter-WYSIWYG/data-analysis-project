@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.25)  29 AUG 2021 12:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.25)  29 AUG 2021 16:27
 entering extended mode
 **./bericht-vorlage.tex
 (bericht-vorlage.tex
@@ -888,11 +888,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 125--126
 
  []
 
-[8] [9]
 
-LaTeX Warning: Empty bibliography on input line 173.
+Underfull \hbox (badness 10000) in paragraph at lines 128--129
 
-[10] (bericht-vorlage.aux)
+ []
+
+[8] [9] [10]
+
+LaTeX Warning: Empty bibliography on input line 171.
+
+[11] (bericht-vorlage.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -903,9 +908,9 @@ Package logreq Info: Writing requests to 'bericht-vorlage.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 19701 strings out of 478868
- 354219 string characters out of 2858700
- 1247015 words of memory out of 3000000
+ 19702 strings out of 478868
+ 354226 string characters out of 2858700
+ 1247017 words of memory out of 3000000
  37325 multiletter control sequences out of 15000+600000
  454947 words of font info for 70 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
@@ -916,9 +921,9 @@ lm/lmbx12.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/lm/lmr10.pfb><D:/Vers
 chiedenes/MiKTeX/fonts/type1/public/lm/lmr12.pfb><D:/Verschiedenes/MiKTeX/fonts
 /type1/public/lm/lmssbx10.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/lm/lm
 tt10.pfb>
-Output written on bericht-vorlage.pdf (10 pages, 214704 bytes).
+Output written on bericht-vorlage.pdf (11 pages, 217009 bytes).
 PDF statistics:
- 221 PDF objects out of 1000 (max. 8388607)
- 64 named destinations out of 1000 (max. 500000)
+ 225 PDF objects out of 1000 (max. 8388607)
+ 65 named destinations out of 1000 (max. 500000)
  177 words of extra memory for PDF output out of 10000 (max. 10000000)
 
