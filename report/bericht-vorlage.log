@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.25)  30 AUG 2021 19:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.25)  31 AUG 2021 22:21
 entering extended mode
 **./bericht-vorlage.tex
 (bericht-vorlage.tex
@@ -950,13 +950,46 @@ Underfull \hbox (badness 10000) in paragraph at lines 150--151
 
  []
 
-[9] [10 <./Scatterplot.PNG>] [11] [12]
+[9] [10 <./Scatterplot.PNG>]
 
-LaTeX Warning: Empty bibliography on input line 191.
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 154.
 
-[13] (bericht-vorlage.aux)
+<ParalleleKoordinaten.PNG, id=106, 543.53062pt x 444.91219pt>
+File: ParalleleKoordinaten.PNG Graphic file (type png)
+<use ParalleleKoordinaten.PNG>
+Package pdftex.def Info: ParalleleKoordinaten.PNG  used on input line 156.
+(pdftex.def)             Requested size: 341.44745pt x 279.49507pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 163--164
+
+ []
+
+[11] [12 <./ParalleleKoordinaten.PNG>]
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 167.
+
+<FilterTree.PNG, id=122, 247.67531pt x 406.51875pt>
+File: FilterTree.PNG Graphic file (type png)
+<use FilterTree.PNG>
+Package pdftex.def Info: FilterTree.PNG  used on input line 169.
+(pdftex.def)             Requested size: 173.35641pt x 284.53636pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 176--177
+
+ []
+
+[13] [14 <./FilterTree.PNG>] [15] [16]
+
+LaTeX Warning: Empty bibliography on input line 209.
+
+[17] (bericht-vorlage.aux)
 
 LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 Package rerunfilecheck Info: File `bericht-vorlage.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
@@ -965,10 +998,10 @@ Package logreq Info: Writing requests to 'bericht-vorlage.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 20502 strings out of 478868
- 365395 string characters out of 2858700
- 1259742 words of memory out of 3000000
- 38090 multiletter control sequences out of 15000+600000
+ 20518 strings out of 478868
+ 365720 string characters out of 2858700
+ 1259972 words of memory out of 3000000
+ 38098 multiletter control sequences out of 15000+600000
  454947 words of font info for 70 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  108i,11n,108p,10639b,2241s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -978,9 +1011,9 @@ lm/lmbx12.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/lm/lmr10.pfb><D:/Vers
 chiedenes/MiKTeX/fonts/type1/public/lm/lmr12.pfb><D:/Verschiedenes/MiKTeX/fonts
 /type1/public/lm/lmssbx10.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/lm/lm
 tt10.pfb>
-Output written on bericht-vorlage.pdf (13 pages, 250723 bytes).
+Output written on bericht-vorlage.pdf (17 pages, 348232 bytes).
 PDF statistics:
- 240 PDF objects out of 1000 (max. 8388607)
- 68 named destinations out of 1000 (max. 500000)
- 182 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 270 PDF objects out of 1000 (max. 8388607)
+ 74 named destinations out of 1000 (max. 500000)
+ 192 words of extra memory for PDF output out of 10000 (max. 10000000)
 
