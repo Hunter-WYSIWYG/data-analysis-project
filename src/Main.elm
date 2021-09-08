@@ -1,21 +1,19 @@
 module Main exposing (..)
 
 import Browser
-import Html
+import Html exposing (sub)
 import Html.Attributes
+import Html.Events
 import Http
 import List.Extra
+import Set
+import Dict
 
 import Conflict
 import Scatterplot
 import ParallelCoordinates
 import Tree
-import Html.Events
-import Model exposing (Msg(..), Model, MainViewType(..), GeoLocationType(..), Filter, init)
-import Model exposing (GeoTree)
-import Dict
-import Html exposing (sub)
-import Set
+import Model exposing (..)
 
 main : Program () Model Msg
 main =
@@ -65,7 +63,7 @@ view model =
         conflictView =
             case model.mainViewType of
                 ScatterplotView ->
-                    Scatterplot.scatterplot (filterConflicts regions model.activeFilter model.conflicts)
+                    Scatterplot.renderScatterplot (filterConflicts regions model.activeFilter model.conflicts)
                 ParallelCoordinatesView year ->
                     let
                         previousDisabled = year==1997
@@ -87,7 +85,7 @@ view model =
                             , Html.Events.onClick (ChangeMainView (ParallelCoordinatesView (year + 1)))
                             , Html.Attributes.disabled nextDisabled
                             ] [ Html.text "Next Year" ]
-                        , ParallelCoordinates.parallelCoordinates (filterConflicts regions model.activeFilter model.conflicts) year
+                        , ParallelCoordinates.renderParallelCoordinates (filterConflicts regions model.activeFilter model.conflicts) year
                         ]
         eventTypeList = List.Extra.unique (List.map (.event_type) model.conflicts)
     in

@@ -8075,7 +8075,7 @@ var $author$project$ParallelCoordinates$yAxisOrdinal = function (axisName) {
 			formatFunction,
 			$author$project$ParallelCoordinates$yScaleOrdinal(axisName)));
 };
-var $author$project$ParallelCoordinates$parallelCoordinates = F2(
+var $author$project$ParallelCoordinates$renderParallelCoordinates = F2(
 	function (conflicts, year) {
 		var half = function (t) {
 			return t.a + ((t.b - t.a) / 2);
@@ -8212,6 +8212,351 @@ var $author$project$ParallelCoordinates$parallelCoordinates = F2(
 					_List_fromArray(
 						[description]))));
 	});
+var $author$project$Scatterplot$h = 450;
+var $author$project$Scatterplot$padding = 60;
+var $elm_community$typed_svg$TypedSvg$circle = $elm_community$typed_svg$TypedSvg$Core$node('circle');
+var $elm_community$typed_svg$TypedSvg$Attributes$class = function (names) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'class',
+		A2($elm$core$String$join, ' ', names));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$cx = function (length) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'cx',
+		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$InPx$cx = function (value) {
+	return $elm_community$typed_svg$TypedSvg$Attributes$cx(
+		$elm_community$typed_svg$TypedSvg$Types$px(value));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$cy = function (length) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'cy',
+		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$InPx$cy = function (value) {
+	return $elm_community$typed_svg$TypedSvg$Attributes$cy(
+		$elm_community$typed_svg$TypedSvg$Types$px(value));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$r = function (length) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'r',
+		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$InPx$r = function (value) {
+	return $elm_community$typed_svg$TypedSvg$Attributes$r(
+		$elm_community$typed_svg$TypedSvg$Types$px(value));
+};
+var $author$project$Scatterplot$point = F3(
+	function (scaleX, scaleY, conflict) {
+		return A2(
+			$elm_community$typed_svg$TypedSvg$g,
+			_List_fromArray(
+				[
+					$elm_community$typed_svg$TypedSvg$Attributes$class(
+					_List_fromArray(
+						['point'])),
+					$elm_community$typed_svg$TypedSvg$Attributes$fontSize(
+					$elm_community$typed_svg$TypedSvg$Types$Px(10.0)),
+					$elm_community$typed_svg$TypedSvg$Attributes$fontFamily(
+					_List_fromArray(
+						['sans-serif'])),
+					$elm_community$typed_svg$TypedSvg$Attributes$transform(
+					_List_fromArray(
+						[
+							A2(
+							$elm_community$typed_svg$TypedSvg$Types$Translate,
+							A2($gampleman$elm_visualization$Scale$convert, scaleX, conflict.year),
+							A2($gampleman$elm_visualization$Scale$convert, scaleY, conflict.fatalities))
+						]))
+				]),
+			_List_fromArray(
+				[
+					A2(
+					$elm_community$typed_svg$TypedSvg$circle,
+					_List_fromArray(
+						[
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$cx(0),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$cy(0),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$r(5)
+						]),
+					_List_Nil)
+				]));
+	});
+var $author$project$Scatterplot$w = 900;
+var $author$project$Scatterplot$defaultExtent = _Utils_Tuple2(0, 100);
+var $author$project$Scatterplot$tickCount = 5;
+var $author$project$Scatterplot$padExtent = function (_v0) {
+	var min = _v0.a;
+	var max = _v0.b;
+	var extentPadding = (max - min) / ($author$project$Scatterplot$tickCount * 2);
+	return _Utils_Tuple2(min - extentPadding, max + extentPadding);
+};
+var $author$project$Scatterplot$wideExtent = function (values) {
+	return A2(
+		$elm$core$Maybe$withDefault,
+		$author$project$Scatterplot$defaultExtent,
+		A2(
+			$elm$core$Maybe$map,
+			$author$project$Scatterplot$padExtent,
+			$gampleman$elm_visualization$Statistics$extent(values)));
+};
+var $gampleman$elm_visualization$Axis$verticalAttrs = {
+	horizontal: false,
+	translate: function (x) {
+		return 'translate(' + ($elm$core$String$fromFloat(x) + ', 0)');
+	},
+	x: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$y, $elm$core$String$fromFloat),
+	x1: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$y1, $elm$core$String$fromFloat),
+	x2: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$y2, $elm$core$String$fromFloat),
+	y: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$x, $elm$core$String$fromFloat),
+	y1: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$x1, $elm$core$String$fromFloat),
+	y2: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$x2, $elm$core$String$fromFloat)
+};
+var $gampleman$elm_visualization$Axis$bottom = A4($gampleman$elm_visualization$Axis$element, $gampleman$elm_visualization$Axis$verticalAttrs, 1, '0.71em', 'middle');
+var $author$project$Scatterplot$xScale = function (values) {
+	return A2(
+		$gampleman$elm_visualization$Scale$linear,
+		_Utils_Tuple2(0, $author$project$Scatterplot$w - (2 * $author$project$Scatterplot$padding)),
+		$author$project$Scatterplot$wideExtent(values));
+};
+var $author$project$Scatterplot$xAxis = function (values) {
+	return A2(
+		$gampleman$elm_visualization$Axis$bottom,
+		_List_fromArray(
+			[
+				$gampleman$elm_visualization$Axis$tickCount($author$project$Scatterplot$tickCount)
+			]),
+		$author$project$Scatterplot$xScale(values));
+};
+var $author$project$Scatterplot$yScale = function (values) {
+	return A2(
+		$gampleman$elm_visualization$Scale$linear,
+		_Utils_Tuple2($author$project$Scatterplot$h - (2 * $author$project$Scatterplot$padding), 0),
+		$author$project$Scatterplot$wideExtent(values));
+};
+var $author$project$Scatterplot$yAxis = function (values) {
+	return A2(
+		$gampleman$elm_visualization$Axis$left,
+		_List_fromArray(
+			[
+				$gampleman$elm_visualization$Axis$tickCount($author$project$Scatterplot$tickCount)
+			]),
+		$author$project$Scatterplot$yScale(values));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$InPx$height = function (value) {
+	return $elm_community$typed_svg$TypedSvg$Attributes$height(
+		$elm_community$typed_svg$TypedSvg$Types$px(value));
+};
+var $elm_community$typed_svg$TypedSvg$rect = $elm_community$typed_svg$TypedSvg$Core$node('rect');
+var $elm_community$typed_svg$TypedSvg$Attributes$InPx$width = function (value) {
+	return $elm_community$typed_svg$TypedSvg$Attributes$width(
+		$elm_community$typed_svg$TypedSvg$Types$px(value));
+};
+var $author$project$Scatterplot$yearSelectionBox = F3(
+	function (scaleX, scaleY, conflictYear) {
+		return A2(
+			$elm_community$typed_svg$TypedSvg$g,
+			_List_fromArray(
+				[
+					$elm_community$typed_svg$TypedSvg$Attributes$class(
+					_List_fromArray(
+						['yearSelection'])),
+					$elm_community$typed_svg$TypedSvg$Attributes$transform(
+					_List_fromArray(
+						[
+							A2(
+							$elm_community$typed_svg$TypedSvg$Types$Translate,
+							A2($gampleman$elm_visualization$Scale$convert, scaleX, conflictYear) - 13.5,
+							0)
+						]))
+				]),
+			_List_fromArray(
+				[
+					A2(
+					$elm_community$typed_svg$TypedSvg$rect,
+					_List_fromArray(
+						[
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$height(330.5),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$width(27),
+							$elm$html$Html$Events$onClick(
+							$author$project$Model$ChangeMainView(
+								$author$project$Model$ParallelCoordinatesView(conflictYear)))
+						]),
+					_List_Nil),
+					A2(
+					$elm_community$typed_svg$TypedSvg$rect,
+					_List_fromArray(
+						[
+							$elm_community$typed_svg$TypedSvg$Attributes$class(
+							_List_fromArray(
+								['textBox'])),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(0),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(335),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$height(15),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$width(27),
+							$elm$html$Html$Events$onClick(
+							$author$project$Model$ChangeMainView(
+								$author$project$Model$ParallelCoordinatesView(conflictYear)))
+						]),
+					_List_Nil),
+					A2(
+					$elm_community$typed_svg$TypedSvg$text_,
+					_List_fromArray(
+						[
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(2),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(346.5),
+							$elm$html$Html$Events$onClick(
+							$author$project$Model$ChangeMainView(
+								$author$project$Model$ParallelCoordinatesView(conflictYear)))
+						]),
+					_List_fromArray(
+						[
+							$elm$html$Html$text(
+							$elm$core$String$fromInt(conflictYear))
+						]))
+				]));
+	});
+var $author$project$Scatterplot$renderScatterplot = function (filteredConflicts) {
+	var yValues = A2(
+		$elm$core$List$map,
+		function (c) {
+			return c.fatalities;
+		},
+		filteredConflicts);
+	var yScaleLocal = $author$project$Scatterplot$yScale(yValues);
+	var xValues = A2(
+		$elm$core$List$map,
+		function (c) {
+			return c.year;
+		},
+		filteredConflicts);
+	var xScaleLocal = $author$project$Scatterplot$xScale(xValues);
+	var kreisbeschriftung = '';
+	var half = function (t) {
+		return t.a + ((t.b - t.a) / 2);
+	};
+	var labelPositions = {
+		x: half(
+			$author$project$Scatterplot$wideExtent(xValues)),
+		y: $author$project$Scatterplot$wideExtent(yValues).b
+	};
+	return A2(
+		$elm_community$typed_svg$TypedSvg$svg,
+		_List_fromArray(
+			[
+				A4($elm_community$typed_svg$TypedSvg$Attributes$viewBox, 0, 0, $author$project$Scatterplot$w, $author$project$Scatterplot$h),
+				$elm_community$typed_svg$TypedSvg$Attributes$width(
+				$elm_community$typed_svg$TypedSvg$Types$Percent(100)),
+				$elm_community$typed_svg$TypedSvg$Attributes$height(
+				$elm_community$typed_svg$TypedSvg$Types$Percent(100))
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$elm_community$typed_svg$TypedSvg$g,
+				_List_fromArray(
+					[
+						$elm_community$typed_svg$TypedSvg$Attributes$transform(
+						_List_fromArray(
+							[
+								A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Scatterplot$padding - 1, $author$project$Scatterplot$h - $author$project$Scatterplot$padding)
+							])),
+						$elm_community$typed_svg$TypedSvg$Attributes$fontSize(
+						$elm_community$typed_svg$TypedSvg$Types$Px(15.0)),
+						$elm_community$typed_svg$TypedSvg$Attributes$fontFamily(
+						_List_fromArray(
+							['sans-serif']))
+					]),
+				_List_fromArray(
+					[
+						$author$project$Scatterplot$xAxis(xValues),
+						A2(
+						$elm_community$typed_svg$TypedSvg$text_,
+						_List_fromArray(
+							[
+								$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(
+								A2($gampleman$elm_visualization$Scale$convert, xScaleLocal, labelPositions.x)),
+								$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(30),
+								$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle)
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text('Year')
+							]))
+					])),
+				A2(
+				$elm_community$typed_svg$TypedSvg$g,
+				_List_fromArray(
+					[
+						$elm_community$typed_svg$TypedSvg$Attributes$transform(
+						_List_fromArray(
+							[
+								A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Scatterplot$padding - 1, $author$project$Scatterplot$padding)
+							])),
+						$elm_community$typed_svg$TypedSvg$Attributes$fontSize(
+						$elm_community$typed_svg$TypedSvg$Types$Px(15.0)),
+						$elm_community$typed_svg$TypedSvg$Attributes$fontFamily(
+						_List_fromArray(
+							['sans-serif']))
+					]),
+				_List_fromArray(
+					[
+						$author$project$Scatterplot$yAxis(yValues),
+						A2(
+						$elm_community$typed_svg$TypedSvg$text_,
+						_List_fromArray(
+							[
+								$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(0),
+								$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(
+								A2($gampleman$elm_visualization$Scale$convert, yScaleLocal, labelPositions.y) - ($author$project$Scatterplot$padding / 3)),
+								$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle)
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text('Fatalities')
+							]))
+					])),
+				A2(
+				$elm_community$typed_svg$TypedSvg$g,
+				_List_fromArray(
+					[
+						$elm_community$typed_svg$TypedSvg$Attributes$transform(
+						_List_fromArray(
+							[
+								A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Scatterplot$padding, $author$project$Scatterplot$padding)
+							]))
+					]),
+				A2(
+					$elm$core$List$map,
+					A2($author$project$Scatterplot$point, xScaleLocal, yScaleLocal),
+					filteredConflicts)),
+				A2(
+				$elm_community$typed_svg$TypedSvg$g,
+				_List_fromArray(
+					[
+						$elm_community$typed_svg$TypedSvg$Attributes$transform(
+						_List_fromArray(
+							[
+								A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Scatterplot$padding, $author$project$Scatterplot$padding)
+							]))
+					]),
+				A2(
+					$elm$core$List$map,
+					A2($author$project$Scatterplot$yearSelectionBox, xScaleLocal, yScaleLocal),
+					$elm_community$list_extra$List$Extra$unique(
+						A2(
+							$elm$core$List$map,
+							function ($) {
+								return $.year;
+							},
+							filteredConflicts))))
+			]));
+};
 var $author$project$Model$Country = {$: 'Country'};
 var $author$project$Model$Region = {$: 'Region'};
 var $elm$core$Dict$map = F2(
@@ -8970,351 +9315,6 @@ var $author$project$Tree$renderTree = F2(
 			$author$project$Tree$drawLine,
 			tree);
 	});
-var $author$project$Scatterplot$h = 450;
-var $author$project$Scatterplot$padding = 60;
-var $elm_community$typed_svg$TypedSvg$circle = $elm_community$typed_svg$TypedSvg$Core$node('circle');
-var $elm_community$typed_svg$TypedSvg$Attributes$class = function (names) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'class',
-		A2($elm$core$String$join, ' ', names));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$cx = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'cx',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$cx = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$cx(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$cy = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'cy',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$cy = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$cy(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$r = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'r',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$r = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$r(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $author$project$Scatterplot$point = F3(
-	function (scaleX, scaleY, conflict) {
-		return A2(
-			$elm_community$typed_svg$TypedSvg$g,
-			_List_fromArray(
-				[
-					$elm_community$typed_svg$TypedSvg$Attributes$class(
-					_List_fromArray(
-						['point'])),
-					$elm_community$typed_svg$TypedSvg$Attributes$fontSize(
-					$elm_community$typed_svg$TypedSvg$Types$Px(10.0)),
-					$elm_community$typed_svg$TypedSvg$Attributes$fontFamily(
-					_List_fromArray(
-						['sans-serif'])),
-					$elm_community$typed_svg$TypedSvg$Attributes$transform(
-					_List_fromArray(
-						[
-							A2(
-							$elm_community$typed_svg$TypedSvg$Types$Translate,
-							A2($gampleman$elm_visualization$Scale$convert, scaleX, conflict.year),
-							A2($gampleman$elm_visualization$Scale$convert, scaleY, conflict.fatalities))
-						]))
-				]),
-			_List_fromArray(
-				[
-					A2(
-					$elm_community$typed_svg$TypedSvg$circle,
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$cx(0),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$cy(0),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$r(5)
-						]),
-					_List_Nil)
-				]));
-	});
-var $author$project$Scatterplot$w = 900;
-var $author$project$Scatterplot$defaultExtent = _Utils_Tuple2(0, 100);
-var $author$project$Scatterplot$tickCount = 5;
-var $author$project$Scatterplot$padExtent = function (_v0) {
-	var min = _v0.a;
-	var max = _v0.b;
-	var extentPadding = (max - min) / ($author$project$Scatterplot$tickCount * 2);
-	return _Utils_Tuple2(min - extentPadding, max + extentPadding);
-};
-var $author$project$Scatterplot$wideExtent = function (values) {
-	return A2(
-		$elm$core$Maybe$withDefault,
-		$author$project$Scatterplot$defaultExtent,
-		A2(
-			$elm$core$Maybe$map,
-			$author$project$Scatterplot$padExtent,
-			$gampleman$elm_visualization$Statistics$extent(values)));
-};
-var $gampleman$elm_visualization$Axis$verticalAttrs = {
-	horizontal: false,
-	translate: function (x) {
-		return 'translate(' + ($elm$core$String$fromFloat(x) + ', 0)');
-	},
-	x: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$y, $elm$core$String$fromFloat),
-	x1: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$y1, $elm$core$String$fromFloat),
-	x2: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$y2, $elm$core$String$fromFloat),
-	y: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$x, $elm$core$String$fromFloat),
-	y1: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$x1, $elm$core$String$fromFloat),
-	y2: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$x2, $elm$core$String$fromFloat)
-};
-var $gampleman$elm_visualization$Axis$bottom = A4($gampleman$elm_visualization$Axis$element, $gampleman$elm_visualization$Axis$verticalAttrs, 1, '0.71em', 'middle');
-var $author$project$Scatterplot$xScale = function (values) {
-	return A2(
-		$gampleman$elm_visualization$Scale$linear,
-		_Utils_Tuple2(0, $author$project$Scatterplot$w - (2 * $author$project$Scatterplot$padding)),
-		$author$project$Scatterplot$wideExtent(values));
-};
-var $author$project$Scatterplot$xAxis = function (values) {
-	return A2(
-		$gampleman$elm_visualization$Axis$bottom,
-		_List_fromArray(
-			[
-				$gampleman$elm_visualization$Axis$tickCount($author$project$Scatterplot$tickCount)
-			]),
-		$author$project$Scatterplot$xScale(values));
-};
-var $author$project$Scatterplot$yScale = function (values) {
-	return A2(
-		$gampleman$elm_visualization$Scale$linear,
-		_Utils_Tuple2($author$project$Scatterplot$h - (2 * $author$project$Scatterplot$padding), 0),
-		$author$project$Scatterplot$wideExtent(values));
-};
-var $author$project$Scatterplot$yAxis = function (values) {
-	return A2(
-		$gampleman$elm_visualization$Axis$left,
-		_List_fromArray(
-			[
-				$gampleman$elm_visualization$Axis$tickCount($author$project$Scatterplot$tickCount)
-			]),
-		$author$project$Scatterplot$yScale(values));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$height = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$height(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $elm_community$typed_svg$TypedSvg$rect = $elm_community$typed_svg$TypedSvg$Core$node('rect');
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$width = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$width(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $author$project$Scatterplot$yearSelectionBox = F3(
-	function (scaleX, scaleY, conflictYear) {
-		return A2(
-			$elm_community$typed_svg$TypedSvg$g,
-			_List_fromArray(
-				[
-					$elm_community$typed_svg$TypedSvg$Attributes$class(
-					_List_fromArray(
-						['yearSelection'])),
-					$elm_community$typed_svg$TypedSvg$Attributes$transform(
-					_List_fromArray(
-						[
-							A2(
-							$elm_community$typed_svg$TypedSvg$Types$Translate,
-							A2($gampleman$elm_visualization$Scale$convert, scaleX, conflictYear) - 13.5,
-							0)
-						]))
-				]),
-			_List_fromArray(
-				[
-					A2(
-					$elm_community$typed_svg$TypedSvg$rect,
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$height(330.5),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$width(27),
-							$elm$html$Html$Events$onClick(
-							$author$project$Model$ChangeMainView(
-								$author$project$Model$ParallelCoordinatesView(conflictYear)))
-						]),
-					_List_Nil),
-					A2(
-					$elm_community$typed_svg$TypedSvg$rect,
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Attributes$class(
-							_List_fromArray(
-								['textBox'])),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(0),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(335),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$height(15),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$width(27),
-							$elm$html$Html$Events$onClick(
-							$author$project$Model$ChangeMainView(
-								$author$project$Model$ParallelCoordinatesView(conflictYear)))
-						]),
-					_List_Nil),
-					A2(
-					$elm_community$typed_svg$TypedSvg$text_,
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(2),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(346.5),
-							$elm$html$Html$Events$onClick(
-							$author$project$Model$ChangeMainView(
-								$author$project$Model$ParallelCoordinatesView(conflictYear)))
-						]),
-					_List_fromArray(
-						[
-							$elm$html$Html$text(
-							$elm$core$String$fromInt(conflictYear))
-						]))
-				]));
-	});
-var $author$project$Scatterplot$scatterplot = function (filteredConflicts) {
-	var yValues = A2(
-		$elm$core$List$map,
-		function (c) {
-			return c.fatalities;
-		},
-		filteredConflicts);
-	var yScaleLocal = $author$project$Scatterplot$yScale(yValues);
-	var xValues = A2(
-		$elm$core$List$map,
-		function (c) {
-			return c.year;
-		},
-		filteredConflicts);
-	var xScaleLocal = $author$project$Scatterplot$xScale(xValues);
-	var kreisbeschriftung = '';
-	var half = function (t) {
-		return t.a + ((t.b - t.a) / 2);
-	};
-	var labelPositions = {
-		x: half(
-			$author$project$Scatterplot$wideExtent(xValues)),
-		y: $author$project$Scatterplot$wideExtent(yValues).b
-	};
-	return A2(
-		$elm_community$typed_svg$TypedSvg$svg,
-		_List_fromArray(
-			[
-				A4($elm_community$typed_svg$TypedSvg$Attributes$viewBox, 0, 0, $author$project$Scatterplot$w, $author$project$Scatterplot$h),
-				$elm_community$typed_svg$TypedSvg$Attributes$width(
-				$elm_community$typed_svg$TypedSvg$Types$Percent(100)),
-				$elm_community$typed_svg$TypedSvg$Attributes$height(
-				$elm_community$typed_svg$TypedSvg$Types$Percent(100))
-			]),
-		_List_fromArray(
-			[
-				A2(
-				$elm_community$typed_svg$TypedSvg$g,
-				_List_fromArray(
-					[
-						$elm_community$typed_svg$TypedSvg$Attributes$transform(
-						_List_fromArray(
-							[
-								A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Scatterplot$padding - 1, $author$project$Scatterplot$h - $author$project$Scatterplot$padding)
-							])),
-						$elm_community$typed_svg$TypedSvg$Attributes$fontSize(
-						$elm_community$typed_svg$TypedSvg$Types$Px(15.0)),
-						$elm_community$typed_svg$TypedSvg$Attributes$fontFamily(
-						_List_fromArray(
-							['sans-serif']))
-					]),
-				_List_fromArray(
-					[
-						$author$project$Scatterplot$xAxis(xValues),
-						A2(
-						$elm_community$typed_svg$TypedSvg$text_,
-						_List_fromArray(
-							[
-								$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(
-								A2($gampleman$elm_visualization$Scale$convert, xScaleLocal, labelPositions.x)),
-								$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(30),
-								$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle)
-							]),
-						_List_fromArray(
-							[
-								$elm$html$Html$text('Year')
-							]))
-					])),
-				A2(
-				$elm_community$typed_svg$TypedSvg$g,
-				_List_fromArray(
-					[
-						$elm_community$typed_svg$TypedSvg$Attributes$transform(
-						_List_fromArray(
-							[
-								A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Scatterplot$padding - 1, $author$project$Scatterplot$padding)
-							])),
-						$elm_community$typed_svg$TypedSvg$Attributes$fontSize(
-						$elm_community$typed_svg$TypedSvg$Types$Px(15.0)),
-						$elm_community$typed_svg$TypedSvg$Attributes$fontFamily(
-						_List_fromArray(
-							['sans-serif']))
-					]),
-				_List_fromArray(
-					[
-						$author$project$Scatterplot$yAxis(yValues),
-						A2(
-						$elm_community$typed_svg$TypedSvg$text_,
-						_List_fromArray(
-							[
-								$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(0),
-								$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(
-								A2($gampleman$elm_visualization$Scale$convert, yScaleLocal, labelPositions.y) - ($author$project$Scatterplot$padding / 3)),
-								$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle)
-							]),
-						_List_fromArray(
-							[
-								$elm$html$Html$text('Fatalities')
-							]))
-					])),
-				A2(
-				$elm_community$typed_svg$TypedSvg$g,
-				_List_fromArray(
-					[
-						$elm_community$typed_svg$TypedSvg$Attributes$transform(
-						_List_fromArray(
-							[
-								A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Scatterplot$padding, $author$project$Scatterplot$padding)
-							]))
-					]),
-				A2(
-					$elm$core$List$map,
-					A2($author$project$Scatterplot$point, xScaleLocal, yScaleLocal),
-					filteredConflicts)),
-				A2(
-				$elm_community$typed_svg$TypedSvg$g,
-				_List_fromArray(
-					[
-						$elm_community$typed_svg$TypedSvg$Attributes$transform(
-						_List_fromArray(
-							[
-								A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Scatterplot$padding, $author$project$Scatterplot$padding)
-							]))
-					]),
-				A2(
-					$elm$core$List$map,
-					A2($author$project$Scatterplot$yearSelectionBox, xScaleLocal, yScaleLocal),
-					$elm_community$list_extra$List$Extra$unique(
-						A2(
-							$elm$core$List$map,
-							function ($) {
-								return $.year;
-							},
-							filteredConflicts))))
-			]));
-};
 var $author$project$Main$view = function (model) {
 	var regions = $elm_community$list_extra$List$Extra$unique(
 		A2(
@@ -9333,7 +9333,7 @@ var $author$project$Main$view = function (model) {
 	var conflictView = function () {
 		var _v0 = model.mainViewType;
 		if (_v0.$ === 'ScatterplotView') {
-			return $author$project$Scatterplot$scatterplot(
+			return $author$project$Scatterplot$renderScatterplot(
 				A3($author$project$Main$filterConflicts, regions, model.activeFilter, model.conflicts));
 		} else {
 			var year = _v0.a;
@@ -9390,7 +9390,7 @@ var $author$project$Main$view = function (model) {
 								$elm$html$Html$text('Next Year')
 							])),
 						A2(
-						$author$project$ParallelCoordinates$parallelCoordinates,
+						$author$project$ParallelCoordinates$renderParallelCoordinates,
 						A3($author$project$Main$filterConflicts, regions, model.activeFilter, model.conflicts),
 						year)
 					]));

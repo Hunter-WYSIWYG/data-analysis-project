@@ -8,12 +8,11 @@ import Svg.Attributes exposing (x1, y1, x2, y2, stroke, textAnchor, transform)
 import TypedSvg exposing (style)
 import TreeDiagram exposing (node, Tree, defaultTreeLayout, leftToRight)
 import TreeDiagram.Svg exposing (draw)
-
-import Model exposing (Msg(..), GeoLocationType(..), GeoTree)
 import Dict exposing (Dict)
 import Svg exposing (rect)
 import TypedSvg.Core
-import Model exposing (Filter)
+
+import Model exposing (Msg(..), GeoLocationType(..), GeoTree, Filter)
 
 renderTree : GeoTree -> Filter -> Svg Msg
 renderTree geoTree activeFilter =

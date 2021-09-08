@@ -111,8 +111,8 @@ yScaleOrdinal axisName =
     in
     Scale.band { defaultBandConfig | paddingInner = innerPadding, paddingOuter = outerPadding, align = align } ( h - 2 * padding, 0 ) (idList axisName)
 
-parallelCoordinates : List Conflict.Conflict -> Int -> Svg msg
-parallelCoordinates conflicts year =
+renderParallelCoordinates : List Conflict.Conflict -> Int -> Svg msg
+renderParallelCoordinates conflicts year =
     let
         filteredConflicts =
             List.filter (\c -> c.year == year) conflicts

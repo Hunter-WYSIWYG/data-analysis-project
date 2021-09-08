@@ -2,6 +2,7 @@ module Scatterplot exposing (..)
 
 import Html exposing (Html)
 import Html.Attributes
+import Html.Events
 import Scale exposing (ContinuousScale)
 import Statistics
 import Axis
@@ -11,13 +12,12 @@ import TypedSvg.Attributes.InPx exposing (cx, cy, r, x, y)
 import TypedSvg.Core exposing (Svg)
 import TypedSvg.Types exposing (AnchorAlignment(..), Length(..), Transform(..))
 import List.Extra
+import Model exposing (Msg(..), MainViewType(..))
 
 import Conflict
-import Model exposing (Msg(..), MainViewType(..))
-import Html.Events
 
-scatterplot : List Conflict.Conflict -> Svg Msg
-scatterplot filteredConflicts =
+renderScatterplot : List Conflict.Conflict -> Svg Msg
+renderScatterplot filteredConflicts =
     let
         kreisbeschriftung : String
         kreisbeschriftung =
