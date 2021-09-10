@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.25)  9 SEP 2021 12:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.25)  10 SEP 2021 15:59
 entering extended mode
 **./bericht-vorlage.tex
 (bericht-vorlage.tex
@@ -882,122 +882,178 @@ Underfull \hbox (badness 10000) in paragraph at lines 48--49
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 53.
+               Default added (so using `tbp') on input line 54.
 
 
-Overfull \hbox (7.54718pt too wide) in paragraph at lines 56--101
+Overfull \hbox (7.54718pt too wide) in paragraph at lines 57--102
  [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 108--109
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
 
  []
 
 [3]
-
-LaTeX Warning: Reference `koordinatenproblem' on page 4 undefined on input line
- 110.
-
-
-Overfull \hbox (39.6469pt too wide) in paragraph at lines 110--111
+Overfull \hbox (39.6469pt too wide) in paragraph at lines 111--112
 \T1/lmtt/m/n/10.95 de / de / aussenpolitik / laender / kongorepublik-[]node / k
 ongorepubliksicherheit / 208542 # content _
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 114--115
+Underfull \hbox (badness 10000) in paragraph at lines 115--116
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 117--118
+Underfull \hbox (badness 10000) in paragraph at lines 118--119
 
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 122--123
+Underfull \hbox (badness 10000) in paragraph at lines 123--124
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 124--125
+Underfull \hbox (badness 10000) in paragraph at lines 125--126
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 126--127
+Underfull \hbox (badness 10000) in paragraph at lines 127--128
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 129--130
+Underfull \hbox (badness 10000) in paragraph at lines 130--131
 
  []
 
 [8]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 141.
+               Default added (so using `tbp') on input line 142.
 
-<Scatterplot.PNG, id=91, 750.55406pt x 383.93437pt>
+<Scatterplot.PNG, id=90, 750.55406pt x 383.93437pt>
 File: Scatterplot.PNG Graphic file (type png)
 <use Scatterplot.PNG>
-Package pdftex.def Info: Scatterplot.PNG  used on input line 143.
+Package pdftex.def Info: Scatterplot.PNG  used on input line 144.
 (pdftex.def)             Requested size: 341.43391pt x 174.65526pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 150--151
+Underfull \hbox (badness 10000) in paragraph at lines 151--152
 
  []
 
 [9] [10 <./Scatterplot.PNG>]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 154.
+               Default added (so using `tbp') on input line 155.
 
-<ParalleleKoordinaten.PNG, id=106, 543.53062pt x 444.91219pt>
+<ParalleleKoordinaten.PNG, id=105, 543.53062pt x 444.91219pt>
 File: ParalleleKoordinaten.PNG Graphic file (type png)
 <use ParalleleKoordinaten.PNG>
-Package pdftex.def Info: ParalleleKoordinaten.PNG  used on input line 156.
+Package pdftex.def Info: ParalleleKoordinaten.PNG  used on input line 157.
 (pdftex.def)             Requested size: 341.44745pt x 279.49507pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 163--164
+Underfull \hbox (badness 10000) in paragraph at lines 164--165
 
  []
 
 [11] [12 <./ParalleleKoordinaten.PNG>]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 167.
+               Default added (so using `tbp') on input line 168.
 
-<FilterTree.PNG, id=122, 247.67531pt x 406.51875pt>
+<FilterTree.PNG, id=121, 247.67531pt x 406.51875pt>
 File: FilterTree.PNG Graphic file (type png)
 <use FilterTree.PNG>
-Package pdftex.def Info: FilterTree.PNG  used on input line 169.
+Package pdftex.def Info: FilterTree.PNG  used on input line 170.
 (pdftex.def)             Requested size: 173.35641pt x 284.53636pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 176--177
+Underfull \hbox (badness 10000) in paragraph at lines 177--178
 
  []
 
 [13] [14 <./FilterTree.PNG>] [15]
-Underfull \hbox (badness 10000) in paragraph at lines 179--180
+Underfull \hbox (badness 10000) in paragraph at lines 180--181
+
+ []
+
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 183--184
 
  []
 
 
-Overfull \hbox (22.93591pt too wide) in paragraph at lines 183--187
-\T1/lmr/m/n/10.95 da-ten-struk-tu-ren (con-flict, geo-tree, fil-ter, Mo-del) er
--klä-ren: auf-bau, funk-ti-on -impelemtierungsaufwand:
+Underfull \hbox (badness 10000) in paragraph at lines 185--186
+
  []
 
-[16] [17]
 
-LaTeX Warning: Empty bibliography on input line 233.
+Underfull \hbox (badness 10000) in paragraph at lines 187--188
 
-[18] [19] (bericht-vorlage.aux)
+ []
 
-LaTeX Warning: There were undefined references.
+[17]
+Overfull \hbox (5.52237pt too wide) in paragraph at lines 189--190
+[]\T1/lmr/m/n/10.95 Für die Um-set-zung der ers-ten Vi-sua-li-sie-rung (sie-he 
+[]2[]) wur-de ei-ne View-Funktion im Scatterplot-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 189--190
+
+ []
+
+
+Overfull \hbox (6.11456pt too wide) in paragraph at lines 191--192
+[]\T1/lmr/m/n/10.95 Die zwei-te Vi-sua-li-sie-rung wird eben-falls über ei-ne e
+i-ge-ne View-Funktion im ParallelCoordinates-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 191--192
+
+ []
+
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 193.
+
+<monthTranslator.PNG, id=157, 405.01312pt x 201.00093pt>
+File: monthTranslator.PNG Graphic file (type png)
+<use monthTranslator.PNG>
+Package pdftex.def Info: monthTranslator.PNG  used on input line 195.
+(pdftex.def)             Requested size: 341.4385pt x 169.44995pt.
+
+Overfull \hbox (0.48892pt too wide) in paragraph at lines 202--203
+\T1/lmr/m/n/10.95 Datenstruktur über-nimmt die aus-ge-lag-ter-te buildTree-Funk
+tion (sie-he Ab-bil-dung []6[]). Die-se Funk-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 202--203
+
+ []
+
+[18]
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 204.
+
+<buildTree.PNG, id=165, 418.56375pt x 472.01344pt>
+File: buildTree.PNG Graphic file (type png)
+<use buildTree.PNG>
+Package pdftex.def Info: buildTree.PNG  used on input line 206.
+(pdftex.def)             Requested size: 302.77713pt x 341.44113pt.
+[19 <./monthTranslator.PNG>] [20 <./buildTree.PNG>] [21]
+
+LaTeX Warning: Empty bibliography on input line 250.
+
+[22] (bericht-vorlage.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 Package rerunfilecheck Info: File `bericht-vorlage.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
@@ -1006,22 +1062,21 @@ Package logreq Info: Writing requests to 'bericht-vorlage.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 20520 strings out of 478868
- 365734 string characters out of 2858700
- 1259972 words of memory out of 3000000
- 38098 multiletter control sequences out of 15000+600000
+ 20541 strings out of 478868
+ 366076 string characters out of 2858700
+ 1260166 words of memory out of 3000000
+ 38112 multiletter control sequences out of 15000+600000
  454947 words of font info for 70 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  108i,11n,108p,10639b,2241s stack positions out of 5000i,500n,10000p,200000b,80000s
 {D:/Verschiedenes/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}<D:/Verschiedenes/MiKTe
-X/fonts/type1/public/lm/lmbx10.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/
-lm/lmbx12.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/lm/lmr10.pfb><D:/Vers
-chiedenes/MiKTeX/fonts/type1/public/lm/lmr12.pfb><D:/Verschiedenes/MiKTeX/fonts
-/type1/public/lm/lmssbx10.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/lm/lm
-tt10.pfb>
-Output written on bericht-vorlage.pdf (19 pages, 354699 bytes).
+X/fonts/type1/public/lm/lmbx12.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/
+lm/lmr10.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/lm/lmr12.pfb><D:/Versc
+hiedenes/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><D:/Verschiedenes/MiKTeX/fon
+ts/type1/public/lm/lmtt10.pfb>
+Output written on bericht-vorlage.pdf (22 pages, 369431 bytes).
 PDF statistics:
- 281 PDF objects out of 1000 (max. 8388607)
- 76 named destinations out of 1000 (max. 500000)
- 192 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 301 PDF objects out of 1000 (max. 8388607)
+ 81 named destinations out of 1000 (max. 500000)
+ 202 words of extra memory for PDF output out of 10000 (max. 10000000)
 
