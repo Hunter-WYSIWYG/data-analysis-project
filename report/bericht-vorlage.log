@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.25)  10 SEP 2021 15:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.25)  10 SEP 2021 17:32
 entering extended mode
 **./bericht-vorlage.tex
 (bericht-vorlage.tex
@@ -1047,14 +1047,41 @@ File: buildTree.PNG Graphic file (type png)
 <use buildTree.PNG>
 Package pdftex.def Info: buildTree.PNG  used on input line 206.
 (pdftex.def)             Requested size: 302.77713pt x 341.44113pt.
-[19 <./monthTranslator.PNG>] [20 <./buildTree.PNG>] [21]
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+
+ []
+
+[19 <./monthTranslator.PNG>] [20 <./buildTree.PNG>]
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 215.
+
+<yearSelectionBox.PNG, id=179, 517.935pt x 455.45157pt>
+File: yearSelectionBox.PNG Graphic file (type png)
+<use yearSelectionBox.PNG>
+Package pdftex.def Info: yearSelectionBox.PNG  used on input line 217.
+(pdftex.def)             Requested size: 341.4509pt x 300.25842pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 227--228
+
+ []
+
+[21 <./yearSelectionBox.PNG>]
+Underfull \hbox (badness 10000) in paragraph at lines 230--231
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 233--234
+
+ []
+
+[22]
 
 LaTeX Warning: Empty bibliography on input line 250.
 
-[22] (bericht-vorlage.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
+[23] (bericht-vorlage.aux)
 Package rerunfilecheck Info: File `bericht-vorlage.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 Package logreq Info: Writing requests to 'bericht-vorlage.run.xml'.
@@ -1062,10 +1089,10 @@ Package logreq Info: Writing requests to 'bericht-vorlage.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 20541 strings out of 478868
- 366076 string characters out of 2858700
- 1260166 words of memory out of 3000000
- 38112 multiletter control sequences out of 15000+600000
+ 20551 strings out of 478868
+ 366280 string characters out of 2858700
+ 1260254 words of memory out of 3000000
+ 38119 multiletter control sequences out of 15000+600000
  454947 words of font info for 70 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  108i,11n,108p,10639b,2241s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1074,9 +1101,9 @@ X/fonts/type1/public/lm/lmbx12.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/
 lm/lmr10.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/lm/lmr12.pfb><D:/Versc
 hiedenes/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><D:/Verschiedenes/MiKTeX/fon
 ts/type1/public/lm/lmtt10.pfb>
-Output written on bericht-vorlage.pdf (22 pages, 369431 bytes).
+Output written on bericht-vorlage.pdf (23 pages, 395524 bytes).
 PDF statistics:
- 301 PDF objects out of 1000 (max. 8388607)
- 81 named destinations out of 1000 (max. 500000)
- 202 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 309 PDF objects out of 1000 (max. 8388607)
+ 83 named destinations out of 1000 (max. 500000)
+ 207 words of extra memory for PDF output out of 10000 (max. 10000000)
 
