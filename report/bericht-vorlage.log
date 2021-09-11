@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.25)  10 SEP 2021 17:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.25)  11 SEP 2021 17:53
 entering extended mode
 **./bericht-vorlage.tex
 (bericht-vorlage.tex
@@ -626,7 +626,7 @@ Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 
 \@quotelevel=\count398
 \@quotereset=\count399
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 16
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 17
 .
 (D:\Verschiedenes\MiKTeX\tex/latex/lm\t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -639,25 +639,25 @@ File: l3backend-pdftex.def 2021-08-04 L3 backend support: PDF output (pdfTeX)
 (bericht-vorlage.aux)
 \openout1 = `bericht-vorlage.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-Package hyperref Info: Link coloring OFF on input line 16.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+Package hyperref Info: Link coloring OFF on input line 17.
  (D:\Verschiedenes\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 
@@ -669,9 +669,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count401
 )
-LaTeX Info: Redefining \ref on input line 16.
-LaTeX Info: Redefining \pageref on input line 16.
-LaTeX Info: Redefining \nameref on input line 16.
+LaTeX Info: Redefining \ref on input line 17.
+LaTeX Info: Redefining \pageref on input line 17.
+LaTeX Info: Redefining \nameref on input line 17.
 
 (bericht-vorlage.out) (bericht-vorlage.out)
 \@outlinefile=\write4
@@ -684,7 +684,7 @@ Class scrartcl Info: loading recommended package `bookmark'.
 (scrartcl)           `bookmarkpackage=false' before \begin{document} and
 (scrartcl)           you can avoid this message adding:
 (scrartcl)             \usepackage{bookmark}
-(scrartcl)           before \begin{document} on input line 16.
+(scrartcl)           before \begin{document} on input line 17.
 
 (D:\Verschiedenes\MiKTeX\tex/latex/bookmark\bookmark.sty
 Package: bookmark 2020-11-06 v1.29 PDF bookmarks (HO)
@@ -791,74 +791,74 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'bericht-vorlage.bbl' not found.
 
 No file bericht-vorlage.bbl.
-Package biblatex Info: Reference section=0 on input line 16.
-Package biblatex Info: Reference segment=0 on input line 16.
-LaTeX Font Info:    Trying to load font information for T1+lmss on input line 2
-9.
+Package biblatex Info: Reference section=0 on input line 17.
+Package biblatex Info: Reference segment=0 on input line 17.
+LaTeX Font Info:    Trying to load font information for T1+lmss on input line 3
+0.
 (D:\Verschiedenes\MiKTeX\tex/latex/lm\t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 2
-9.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 3
+0.
 
 (D:\Verschiedenes\MiKTeX\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
-9.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 3
+0.
 
 (D:\Verschiedenes\MiKTeX\tex/latex/lm\omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-29.
+30.
 
 (D:\Verschiedenes\MiKTeX\tex/latex/lm\omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-29.
+30.
 
 (D:\Verschiedenes\MiKTeX\tex/latex/lm\omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 29.
+(Font)              <14.4> on input line 30.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 29.
+(Font)              <10> on input line 30.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 29.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 29.
+(Font)              <7> on input line 30.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 30.
 
 
 (D:\Verschiedenes\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 29.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 30.
 
 
 (D:\Verschiedenes\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 3
-1.
+2.
 
 (D:\Verschiedenes\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 31.
+(Font)              <10.95> on input line 32.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 31.
+(Font)              <8> on input line 32.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 31.
+(Font)              <6> on input line 32.
 
-Underfull \hbox (badness 10000) in paragraph at lines 31--32
+Underfull \hbox (badness 10000) in paragraph at lines 32--33
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 33--34
+Underfull \hbox (badness 10000) in paragraph at lines 34--35
 
  []
 
@@ -866,244 +866,286 @@ Underfull \hbox (badness 10000) in paragraph at lines 33--34
 
 
 {C:/Users/marcu/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 41--42
+Underfull \hbox (badness 10000) in paragraph at lines 42--43
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 43--44
+Underfull \hbox (badness 10000) in paragraph at lines 44--45
 
  []
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 48--49
+Underfull \hbox (badness 10000) in paragraph at lines 49--50
 
  []
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 54.
+               Default added (so using `tbp') on input line 55.
 
 
-Overfull \hbox (7.54718pt too wide) in paragraph at lines 57--102
+Overfull \hbox (7.54718pt too wide) in paragraph at lines 58--103
  [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 109--110
+Underfull \hbox (badness 10000) in paragraph at lines 110--111
 
  []
 
 [3]
-Overfull \hbox (39.6469pt too wide) in paragraph at lines 111--112
+Overfull \hbox (39.6469pt too wide) in paragraph at lines 112--113
 \T1/lmtt/m/n/10.95 de / de / aussenpolitik / laender / kongorepublik-[]node / k
 ongorepubliksicherheit / 208542 # content _
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 115--116
+Underfull \hbox (badness 10000) in paragraph at lines 116--117
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 118--119
+Underfull \hbox (badness 10000) in paragraph at lines 119--120
 
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 123--124
+Underfull \hbox (badness 10000) in paragraph at lines 124--125
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 125--126
+Underfull \hbox (badness 10000) in paragraph at lines 126--127
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 127--128
+Underfull \hbox (badness 10000) in paragraph at lines 128--129
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 130--131
+Underfull \hbox (badness 10000) in paragraph at lines 131--132
 
  []
 
 [8]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 142.
+               Default added (so using `tbp') on input line 143.
 
-<Scatterplot.PNG, id=90, 750.55406pt x 383.93437pt>
+<Scatterplot.PNG, id=91, 750.55406pt x 383.93437pt>
 File: Scatterplot.PNG Graphic file (type png)
 <use Scatterplot.PNG>
-Package pdftex.def Info: Scatterplot.PNG  used on input line 144.
+Package pdftex.def Info: Scatterplot.PNG  used on input line 145.
 (pdftex.def)             Requested size: 341.43391pt x 174.65526pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 151--152
+Underfull \hbox (badness 10000) in paragraph at lines 152--153
 
  []
 
 [9] [10 <./Scatterplot.PNG>]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 155.
+               Default added (so using `tbp') on input line 156.
 
-<ParalleleKoordinaten.PNG, id=105, 543.53062pt x 444.91219pt>
+<ParalleleKoordinaten.PNG, id=108, 543.53062pt x 444.91219pt>
 File: ParalleleKoordinaten.PNG Graphic file (type png)
 <use ParalleleKoordinaten.PNG>
-Package pdftex.def Info: ParalleleKoordinaten.PNG  used on input line 157.
+Package pdftex.def Info: ParalleleKoordinaten.PNG  used on input line 158.
 (pdftex.def)             Requested size: 341.44745pt x 279.49507pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 164--165
+Underfull \hbox (badness 10000) in paragraph at lines 165--166
 
  []
 
 [11] [12 <./ParalleleKoordinaten.PNG>]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 168.
+               Default added (so using `tbp') on input line 169.
 
-<FilterTree.PNG, id=121, 247.67531pt x 406.51875pt>
+<FilterTree.PNG, id=123, 247.67531pt x 406.51875pt>
 File: FilterTree.PNG Graphic file (type png)
 <use FilterTree.PNG>
-Package pdftex.def Info: FilterTree.PNG  used on input line 170.
+Package pdftex.def Info: FilterTree.PNG  used on input line 171.
 (pdftex.def)             Requested size: 173.35641pt x 284.53636pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 177--178
+Underfull \hbox (badness 10000) in paragraph at lines 178--179
 
  []
 
 [13] [14 <./FilterTree.PNG>] [15]
-Underfull \hbox (badness 10000) in paragraph at lines 180--181
+Underfull \hbox (badness 10000) in paragraph at lines 181--182
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 184--185
 
  []
 
 [16]
-Underfull \hbox (badness 10000) in paragraph at lines 183--184
+Underfull \hbox (badness 10000) in paragraph at lines 186--187
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 185--186
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 187--188
+Underfull \hbox (badness 10000) in paragraph at lines 188--189
 
  []
 
 [17]
-Overfull \hbox (5.52237pt too wide) in paragraph at lines 189--190
+Overfull \hbox (5.52237pt too wide) in paragraph at lines 190--191
 []\T1/lmr/m/n/10.95 Für die Um-set-zung der ers-ten Vi-sua-li-sie-rung (sie-he 
 []2[]) wur-de ei-ne View-Funktion im Scatterplot-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 189--190
+Underfull \hbox (badness 10000) in paragraph at lines 190--191
 
  []
 
 
-Overfull \hbox (6.11456pt too wide) in paragraph at lines 191--192
+Overfull \hbox (6.11456pt too wide) in paragraph at lines 192--193
 []\T1/lmr/m/n/10.95 Die zwei-te Vi-sua-li-sie-rung wird eben-falls über ei-ne e
 i-ge-ne View-Funktion im ParallelCoordinates-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 191--192
+Underfull \hbox (badness 10000) in paragraph at lines 192--193
 
  []
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 193.
+               Default added (so using `tbp') on input line 194.
 
-<monthTranslator.PNG, id=157, 405.01312pt x 201.00093pt>
+<monthTranslator.PNG, id=159, 405.01312pt x 201.00093pt>
 File: monthTranslator.PNG Graphic file (type png)
 <use monthTranslator.PNG>
-Package pdftex.def Info: monthTranslator.PNG  used on input line 195.
+Package pdftex.def Info: monthTranslator.PNG  used on input line 196.
 (pdftex.def)             Requested size: 341.4385pt x 169.44995pt.
 
-Overfull \hbox (0.48892pt too wide) in paragraph at lines 202--203
+Overfull \hbox (0.48892pt too wide) in paragraph at lines 203--204
 \T1/lmr/m/n/10.95 Datenstruktur über-nimmt die aus-ge-lag-ter-te buildTree-Funk
 tion (sie-he Ab-bil-dung []6[]). Die-se Funk-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 202--203
+Underfull \hbox (badness 10000) in paragraph at lines 203--204
 
  []
 
 [18]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 204.
+               Default added (so using `tbp') on input line 205.
 
-<buildTree.PNG, id=165, 418.56375pt x 472.01344pt>
+<buildTree.PNG, id=167, 418.56375pt x 472.01344pt>
 File: buildTree.PNG Graphic file (type png)
 <use buildTree.PNG>
-Package pdftex.def Info: buildTree.PNG  used on input line 206.
+Package pdftex.def Info: buildTree.PNG  used on input line 207.
 (pdftex.def)             Requested size: 302.77713pt x 341.44113pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 213--214
+Underfull \hbox (badness 10000) in paragraph at lines 214--215
 
  []
 
 [19 <./monthTranslator.PNG>] [20 <./buildTree.PNG>]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 215.
+               Default added (so using `tbp') on input line 216.
 
-<yearSelectionBox.PNG, id=179, 517.935pt x 455.45157pt>
+<yearSelectionBox.PNG, id=181, 517.935pt x 455.45157pt>
 File: yearSelectionBox.PNG Graphic file (type png)
 <use yearSelectionBox.PNG>
-Package pdftex.def Info: yearSelectionBox.PNG  used on input line 217.
+Package pdftex.def Info: yearSelectionBox.PNG  used on input line 218.
 (pdftex.def)             Requested size: 341.4509pt x 300.25842pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 227--228
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
 
  []
 
 [21 <./yearSelectionBox.PNG>]
-Underfull \hbox (badness 10000) in paragraph at lines 230--231
+Underfull \hbox (badness 10000) in paragraph at lines 231--232
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 233--234
+Underfull \hbox (badness 10000) in paragraph at lines 234--235
 
  []
 
 [22]
 
-LaTeX Warning: Empty bibliography on input line 250.
+LaTeX Warning: Citation 'Munzner2008' on page 23 undefined on input line 237.
 
-[23] (bericht-vorlage.aux)
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 239--240
+
+ []
+
+[23]
+Underfull \hbox (badness 10000) in paragraph at lines 242--243
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+
+ []
+
+[24]
+Underfull \hbox (badness 10000) in paragraph at lines 246--247
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 248--249
+
+ []
+
+
+LaTeX Warning: Empty bibliography on input line 252.
+
+[25] (bericht-vorlage.aux)
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `bericht-vorlage.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                bericht-vorlage
+(biblatex)                and rerun LaTeX afterwards.
+
 Package logreq Info: Writing requests to 'bericht-vorlage.run.xml'.
 \openout1 = `bericht-vorlage.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 20551 strings out of 478868
- 366280 string characters out of 2858700
- 1260254 words of memory out of 3000000
- 38119 multiletter control sequences out of 15000+600000
+ 20734 strings out of 478868
+ 369844 string characters out of 2858700
+ 1260282 words of memory out of 3000000
+ 38300 multiletter control sequences out of 15000+600000
  454947 words of font info for 70 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  108i,11n,108p,10639b,2241s stack positions out of 5000i,500n,10000p,200000b,80000s
 {D:/Verschiedenes/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}<D:/Verschiedenes/MiKTe
-X/fonts/type1/public/lm/lmbx12.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/
-lm/lmr10.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/lm/lmr12.pfb><D:/Versc
-hiedenes/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><D:/Verschiedenes/MiKTeX/fon
-ts/type1/public/lm/lmtt10.pfb>
-Output written on bericht-vorlage.pdf (23 pages, 395524 bytes).
+X/fonts/type1/public/lm/lmbx10.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/
+lm/lmbx12.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/lm/lmr10.pfb><D:/Vers
+chiedenes/MiKTeX/fonts/type1/public/lm/lmr12.pfb><D:/Verschiedenes/MiKTeX/fonts
+/type1/public/lm/lmssbx10.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/lm/lm
+tt10.pfb>
+Output written on bericht-vorlage.pdf (25 pages, 426238 bytes).
 PDF statistics:
- 309 PDF objects out of 1000 (max. 8388607)
- 83 named destinations out of 1000 (max. 500000)
+ 326 PDF objects out of 1000 (max. 8388607)
+ 85 named destinations out of 1000 (max. 500000)
  207 words of extra memory for PDF output out of 10000 (max. 10000000)
 
