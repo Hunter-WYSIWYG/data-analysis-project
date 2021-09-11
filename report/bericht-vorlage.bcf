@@ -2344,7 +2344,16 @@
     <bcf:datasource type="file" datatype="bibtex" glob="false">literatur.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">Munzner2008</bcf:citekey>
+    <bcf:citekey order="1">acled</bcf:citekey>
+    <bcf:citekey order="2">aa</bcf:citekey>
+    <bcf:citekey order="3">aa-kongo</bcf:citekey>
+    <bcf:citekey order="4">kaggle</bcf:citekey>
+    <bcf:citekey order="5">acled</bcf:citekey>
+    <bcf:citekey order="6">acled-codebook</bcf:citekey>
+    <bcf:citekey order="7">elm</bcf:citekey>
+    <bcf:citekey order="8">elm-vis</bcf:citekey>
+    <bcf:citekey order="9">coal</bcf:citekey>
+    <bcf:citekey order="10">tablet</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
