@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.25)  11 SEP 2021 20:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.25)  11 SEP 2021 20:23
 entering extended mode
-**./bericht-vorlage.tex
-(bericht-vorlage.tex
+**./Gagelmann-Bericht-InfoVis21.tex
+(Gagelmann-Bericht-InfoVis21.tex
 LaTeX2e <2021-06-01> patch level 1
 L3 programming layer <2021-07-12>
 (D:\Verschiedenes\MiKTeX\tex/latex/koma-script\scrartcl.cls
@@ -654,8 +654,8 @@ File: l3backend-pdftex.def 2021-08-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count404
 \l__pdf_internal_box=\box52
 )
-(bericht-vorlage.aux)
-\openout1 = `bericht-vorlage.aux'.
+No file Gagelmann-Bericht-InfoVis21.aux.
+\openout1 = `Gagelmann-Bericht-InfoVis21.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
 LaTeX Font Info:    ... okay on input line 18.
@@ -676,7 +676,7 @@ LaTeX Font Info:    ... okay on input line 18.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 18.
 LaTeX Font Info:    ... okay on input line 18.
 Package hyperref Info: Link coloring OFF on input line 18.
- (D:\Verschiedenes\MiKTeX\tex/latex/hyperref\nameref.sty
+(D:\Verschiedenes\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 
 (D:\Verschiedenes\MiKTeX\tex/latex/refcount\refcount.sty
@@ -690,10 +690,8 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 18.
 LaTeX Info: Redefining \pageref on input line 18.
 LaTeX Info: Redefining \nameref on input line 18.
-
-(bericht-vorlage.out) (bericht-vorlage.out)
 \@outlinefile=\write4
-\openout4 = `bericht-vorlage.out'.
+\openout4 = `Gagelmann-Bericht-InfoVis21.out'.
 
 Class scrartcl Info: loading recommended package `bookmark'.
 (scrartcl)           Using `bookmark' together with `hyperref' is recommended,
@@ -803,12 +801,12 @@ Package: xparse 2021-08-04 L3 Experimental document command parser
 )
 Package: blx-case-expl3 2020/12/31 v3.16 expl3 case changing code for biblatex
 )
-\openout3 = `bericht-vorlage.bcf'.
+\openout3 = `Gagelmann-Bericht-InfoVis21.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'bericht-vorlage.bbl' not found.
+Package biblatex Info: ... file 'Gagelmann-Bericht-InfoVis21.bbl' not found.
 
-No file bericht-vorlage.bbl.
+No file Gagelmann-Bericht-InfoVis21.bbl.
 Package biblatex Info: Reference section=0 on input line 18.
 Package biblatex Info: Reference segment=0 on input line 18.
 LaTeX Font Info:    Trying to load font information for T1+lmss on input line 3
@@ -871,16 +869,25 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 33.
 
-
-LaTeX Warning: Citation 'acled' on page 1 undefined on input line 36.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 36--37
+Underfull \hbox (badness 10000) in paragraph at lines 33--38
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 38--39
+Underfull \hbox (badness 10000) in paragraph at lines 33--38
+
+ []
+
+
+LaTeX Warning: Citation 'acled' on page 1 undefined on input line 40.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--41
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--43
 
  []
 
@@ -888,166 +895,199 @@ Underfull \hbox (badness 10000) in paragraph at lines 38--39
 
 
 {C:/Users/marcu/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 46--47
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 48--49
+Underfull \hbox (badness 10000) in paragraph at lines 50--51
 
  []
 
 [2]
+Underfull \hbox (badness 10000) in paragraph at lines 52--53
 
-LaTeX Warning: Citation 'aa' on page 3 undefined on input line 50.
+ []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 53--54
+LaTeX Warning: Citation 'aa' on page 3 undefined on input line 54.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 57--58
 
  []
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 59.
+               Default added (so using `tbp') on input line 63.
 
 
-Overfull \hbox (7.54718pt too wide) in paragraph at lines 62--107
+Overfull \hbox (7.54718pt too wide) in paragraph at lines 66--111
  [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 114--115
+LaTeX Warning: Reference `dimensions' on page 3 undefined on input line 118.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--119
 
  []
 
 [3]
 
-LaTeX Warning: Citation 'aa-kongo' on page 4 undefined on input line 116.
+LaTeX Warning: Citation 'aa-kongo' on page 4 undefined on input line 120.
 
 [4]
 
-LaTeX Warning: Citation 'kaggle' on page 5 undefined on input line 120.
+LaTeX Warning: Citation 'kaggle' on page 5 undefined on input line 124.
 
 
-LaTeX Warning: Citation 'acled' on page 5 undefined on input line 120.
+LaTeX Warning: Citation 'acled' on page 5 undefined on input line 124.
 
 
-LaTeX Warning: Citation 'acled-codebook' on page 5 undefined on input line 120.
+LaTeX Warning: Reference `sec:datenvorverarbeitung' on page 5 undefined on inpu
+t line 124.
+
+
+LaTeX Warning: Citation 'acled-codebook' on page 5 undefined on input line 124.
 
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--121
+LaTeX Warning: Reference `sec:datenvorverarbeitung' on page 5 undefined on inpu
+t line 124.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 124--125
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 123--124
+Underfull \hbox (badness 10000) in paragraph at lines 127--128
 
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 128--129
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 130--131
-
- []
-
-[7]
 Underfull \hbox (badness 10000) in paragraph at lines 132--133
 
  []
 
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 134--135
 
-Underfull \hbox (badness 10000) in paragraph at lines 135--136
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 136--137
 
  []
 
 [8]
+Underfull \hbox (badness 10000) in paragraph at lines 139--140
+
+ []
+
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 140.
+               Default added (so using `tbp') on input line 144.
 
-<Scatterplot.PNG, id=87, 750.55406pt x 383.93437pt>
+<Scatterplot.PNG, id=84, 750.55406pt x 383.93437pt>
 File: Scatterplot.PNG Graphic file (type png)
 <use Scatterplot.PNG>
-Package pdftex.def Info: Scatterplot.PNG  used on input line 142.
+Package pdftex.def Info: Scatterplot.PNG  used on input line 146.
 (pdftex.def)             Requested size: 341.43391pt x 174.65526pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 149--150
+LaTeX Warning: Reference `scatterplot' on page 9 undefined on input line 153.
+
+
+LaTeX Warning: Reference `parallelCoordinates' on page 9 undefined on input lin
+e 153.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 153--154
 
  []
 
 [9] [10 <./Scatterplot.PNG>]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 153.
+               Default added (so using `tbp') on input line 157.
 
-<ParalleleKoordinaten.PNG, id=105, 543.53062pt x 444.91219pt>
+<ParalleleKoordinaten.PNG, id=99, 543.53062pt x 444.91219pt>
 File: ParalleleKoordinaten.PNG Graphic file (type png)
 <use ParalleleKoordinaten.PNG>
-Package pdftex.def Info: ParalleleKoordinaten.PNG  used on input line 155.
+Package pdftex.def Info: ParalleleKoordinaten.PNG  used on input line 159.
 (pdftex.def)             Requested size: 341.44745pt x 279.49507pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 162--163
+LaTeX Warning: Reference `parallelCoordinates' on page 11 undefined on input li
+ne 166.
+
+
+LaTeX Warning: Reference `sec:datenvorverarbeitung' on page 11 undefined on inp
+ut line 166.
+
+
+LaTeX Warning: Reference `scatterplot' on page 11 undefined on input line 166.
+
+
+LaTeX Warning: Reference `parallelCoordinates' on page 11 undefined on input li
+ne 166.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 166--167
 
  []
 
 [11] [12 <./ParalleleKoordinaten.PNG>]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 166.
+               Default added (so using `tbp') on input line 170.
 
-<FilterTree.PNG, id=120, 247.67531pt x 406.51875pt>
+<FilterTree.PNG, id=111, 247.67531pt x 406.51875pt>
 File: FilterTree.PNG Graphic file (type png)
 <use FilterTree.PNG>
-Package pdftex.def Info: FilterTree.PNG  used on input line 168.
+Package pdftex.def Info: FilterTree.PNG  used on input line 172.
 (pdftex.def)             Requested size: 173.35641pt x 284.53636pt.
+[13]
 
-Underfull \hbox (badness 10000) in paragraph at lines 175--176
+LaTeX Warning: Reference `filtertree' on page 14 undefined on input line 179.
+
+
+LaTeX Warning: Reference `interaktion' on page 14 undefined on input line 179.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 179--180
 
  []
 
-[13] [14 <./FilterTree.PNG>]
-Underfull \hbox (badness 10000) in paragraph at lines 178--179
+[14 <./FilterTree.PNG>]
+
+LaTeX Warning: Reference `scatterplot' on page 15 undefined on input line 182.
+
+
+LaTeX Warning: Reference `filtertree' on page 15 undefined on input line 182.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 182--183
 
  []
 
 [15]
 
-LaTeX Warning: Citation 'elm' on page 16 undefined on input line 181.
+LaTeX Warning: Citation 'elm' on page 16 undefined on input line 185.
 
 
-Overfull \hbox (21.01883pt too wide) in paragraph at lines 181--182
+Overfull \hbox (21.01883pt too wide) in paragraph at lines 185--186
 \T1/lmr/m/n/10.95 Pro-gramms rea-li-sie-ren. Zu-erst wur-de ein Conflict-Modul 
 be-nö-tigt, wel-ches die Conflict-Datenstruktur
  []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 181--182
-
- []
-
-[16]
-Underfull \hbox (badness 10000) in paragraph at lines 183--184
-
- []
-
-
-LaTeX Warning: Citation 'elm-vis' on page 17 undefined on input line 185.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 185--186
 
  []
 
-[17]
-Overfull \hbox (5.52237pt too wide) in paragraph at lines 187--188
-[]\T1/lmr/m/n/10.95 Für die Um-set-zung der ers-ten Vi-sua-li-sie-rung (sie-he 
-[]2[]) wur-de ei-ne View-Funktion im Scatterplot-
- []
+[16]
+
+LaTeX Warning: Reference `filtertree' on page 17 undefined on input line 187.
+
+
+LaTeX Warning: Reference `sec:daten' on page 17 undefined on input line 187.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 187--188
@@ -1055,10 +1095,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 187--188
  []
 
 
-Overfull \hbox (6.11456pt too wide) in paragraph at lines 189--190
-[]\T1/lmr/m/n/10.95 Die zwei-te Vi-sua-li-sie-rung wird eben-falls über ei-ne e
-i-ge-ne View-Funktion im ParallelCoordinates-
- []
+LaTeX Warning: Citation 'elm-vis' on page 17 undefined on input line 189.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 189--190
@@ -1066,134 +1103,182 @@ Underfull \hbox (badness 10000) in paragraph at lines 189--190
  []
 
 
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 191.
+LaTeX Warning: Reference `scatterplot' on page 17 undefined on input line 191.
 
-<monthTranslator.PNG, id=156, 405.01312pt x 201.00093pt>
+
+LaTeX Warning: Reference `scatterplot' on page 17 undefined on input line 191.
+
+
+Overfull \hbox (11.94014pt too wide) in paragraph at lines 191--192
+[]\T1/lmr/m/n/10.95 Für die Um-set-zung der ers-ten Vi-sua-li-sie-rung (sie-he 
+[]) wur-de ei-ne View-Funktion im Scatterplot-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 191--192
+
+ []
+
+[17]
+
+LaTeX Warning: Reference `monthTranslator' on page 18 undefined on input line 1
+93.
+
+
+Overfull \hbox (6.11456pt too wide) in paragraph at lines 193--194
+[]\T1/lmr/m/n/10.95 Die zwei-te Vi-sua-li-sie-rung wird eben-falls über ei-ne e
+i-ge-ne View-Funktion im ParallelCoordinates-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 193--194
+
+ []
+
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 195.
+
+<monthTranslator.PNG, id=138, 405.01312pt x 201.00093pt>
 File: monthTranslator.PNG Graphic file (type png)
 <use monthTranslator.PNG>
-Package pdftex.def Info: monthTranslator.PNG  used on input line 193.
+Package pdftex.def Info: monthTranslator.PNG  used on input line 197.
 (pdftex.def)             Requested size: 341.4385pt x 169.44995pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 200--201
+LaTeX Warning: Reference `buildTree' on page 18 undefined on input line 204.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 204--205
 
  []
 
-[18]
+[18 <./monthTranslator.PNG>]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 202.
+               Default added (so using `tbp') on input line 206.
 
-<buildTree.PNG, id=164, 418.56375pt x 472.01344pt>
+<buildTree.PNG, id=145, 418.56375pt x 472.01344pt>
 File: buildTree.PNG Graphic file (type png)
 <use buildTree.PNG>
-Package pdftex.def Info: buildTree.PNG  used on input line 204.
+Package pdftex.def Info: buildTree.PNG  used on input line 208.
 (pdftex.def)             Requested size: 302.77713pt x 341.44113pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 211--212
+LaTeX Warning: Reference `yearSelectionBox' on page 19 undefined on input line 
+215.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
 
  []
 
-[19 <./monthTranslator.PNG>] [20 <./buildTree.PNG>]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 213.
+               Default added (so using `tbp') on input line 217.
 
-<yearSelectionBox.PNG, id=178, 517.935pt x 455.45157pt>
+<yearSelectionBox.PNG, id=146, 517.935pt x 455.45157pt>
 File: yearSelectionBox.PNG Graphic file (type png)
 <use yearSelectionBox.PNG>
-Package pdftex.def Info: yearSelectionBox.PNG  used on input line 215.
+Package pdftex.def Info: yearSelectionBox.PNG  used on input line 219.
 (pdftex.def)             Requested size: 341.4509pt x 300.25842pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 225--226
+Underfull \hbox (badness 10000) in paragraph at lines 229--230
 
  []
 
-[21 <./yearSelectionBox.PNG>]
-Underfull \hbox (badness 10000) in paragraph at lines 228--229
+[19] [20 <./buildTree.PNG>] [21 <./yearSelectionBox.PNG>]
+Underfull \hbox (badness 10000) in paragraph at lines 232--233
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 231--232
+Underfull \hbox (badness 10000) in paragraph at lines 235--236
 
  []
 
 [22]
 
-LaTeX Warning: Citation 'coal' on page 23 undefined on input line 234.
+LaTeX Warning: Citation 'coal' on page 23 undefined on input line 238.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 234--235
+Underfull \hbox (badness 10000) in paragraph at lines 238--239
 
  []
 
 
-LaTeX Warning: Citation 'tablet' on page 23 undefined on input line 236.
+LaTeX Warning: Citation 'tablet' on page 23 undefined on input line 240.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 236--237
+Underfull \hbox (badness 10000) in paragraph at lines 240--241
 
  []
 
 [23]
-Underfull \hbox (badness 10000) in paragraph at lines 239--240
-
- []
-
-[24]
-Underfull \hbox (badness 10000) in paragraph at lines 241--242
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 243--244
 
  []
 
-
+[24]
 Underfull \hbox (badness 10000) in paragraph at lines 245--246
 
  []
 
 
-LaTeX Warning: Empty bibliography on input line 249.
+Underfull \hbox (badness 10000) in paragraph at lines 247--248
 
-[25] (bericht-vorlage.aux)
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 249--250
+
+ []
+
+[25] [26] [27]
+
+LaTeX Warning: Empty bibliography on input line 362.
+
+[28] (Gagelmann-Bericht-InfoVis21.aux)
 
 LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package rerunfilecheck Info: File `bericht-vorlage.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+
+Package rerunfilecheck Warning: File `Gagelmann-Bericht-InfoVis21.out' has chan
+ged.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `Gagelmann-Bericht-InfoVis21.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
 
 Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                bericht-vorlage
+(biblatex)                Gagelmann-Bericht-InfoVis21
 (biblatex)                and rerun LaTeX afterwards.
 
-Package logreq Info: Writing requests to 'bericht-vorlage.run.xml'.
-\openout1 = `bericht-vorlage.run.xml'.
+Package logreq Info: Writing requests to 'Gagelmann-Bericht-InfoVis21.run.xml'.
+
+\openout1 = `Gagelmann-Bericht-InfoVis21.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 21283 strings out of 478868
- 378969 string characters out of 2858700
- 1281852 words of memory out of 3000000
+ 21280 strings out of 478868
+ 378930 string characters out of 2858700
+ 1280951 words of memory out of 3000000
  38840 multiletter control sequences out of 15000+600000
  454947 words of font info for 70 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
- 108i,11n,108p,10639b,2241s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 108i,11n,108p,10651b,2241s stack positions out of 5000i,500n,10000p,200000b,80000s
 {D:/Verschiedenes/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}<D:/Verschiedenes/MiKTe
 X/fonts/type1/public/lm/lmbx10.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/
 lm/lmbx12.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/lm/lmr10.pfb><D:/Vers
 chiedenes/MiKTeX/fonts/type1/public/lm/lmr12.pfb><D:/Verschiedenes/MiKTeX/fonts
 /type1/public/lm/lmssbx10.pfb><D:/Verschiedenes/MiKTeX/fonts/type1/public/lm/lm
 tt10.pfb>
-Output written on bericht-vorlage.pdf (25 pages, 423459 bytes).
+Output written on Gagelmann-Bericht-InfoVis21.pdf (28 pages, 431372 bytes).
 PDF statistics:
- 322 PDF objects out of 1000 (max. 8388607)
- 86 named destinations out of 1000 (max. 500000)
+ 314 PDF objects out of 1000 (max. 8388607)
+ 89 named destinations out of 1000 (max. 500000)
  207 words of extra memory for PDF output out of 10000 (max. 10000000)
 

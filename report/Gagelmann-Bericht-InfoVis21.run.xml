@@ -44,10 +44,10 @@
   <internal package="biblatex" priority="9" active="1">
     <generic>latex</generic>
     <provides type="dynamic">
-      <file>bericht-vorlage.bcf</file>
+      <file>Gagelmann-Bericht-InfoVis21.bcf</file>
     </provides>
     <requires type="dynamic">
-      <file>bericht-vorlage.bbl</file>
+      <file>Gagelmann-Bericht-InfoVis21.bbl</file>
     </requires>
     <requires type="static">
       <file>blx-dm.def</file>
@@ -65,19 +65,19 @@
     <generic>biber</generic>
     <cmdline>
       <binary>biber</binary>
-      <infile>bericht-vorlage</infile>
+      <infile>Gagelmann-Bericht-InfoVis21</infile>
     </cmdline>
     <input>
-      <file>bericht-vorlage.bcf</file>
+      <file>Gagelmann-Bericht-InfoVis21.bcf</file>
     </input>
     <output>
-      <file>bericht-vorlage.bbl</file>
+      <file>Gagelmann-Bericht-InfoVis21.bbl</file>
     </output>
     <provides type="dynamic">
-      <file>bericht-vorlage.bbl</file>
+      <file>Gagelmann-Bericht-InfoVis21.bbl</file>
     </provides>
     <requires type="dynamic">
-      <file>bericht-vorlage.bcf</file>
+      <file>Gagelmann-Bericht-InfoVis21.bcf</file>
     </requires>
     <requires type="editable">
       <file>literatur.bib</file>
